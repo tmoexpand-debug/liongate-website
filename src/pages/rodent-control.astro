@@ -1,0 +1,187 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const included = [
+  'Mice (all species)',
+  'Rats (Norway & Roof Rats)',
+  'Full home inspection',
+  'Bait station placement',
+  'Snap trap installation',
+  'Entry point identification',
+  'Exclusion recommendations',
+  'Attic & crawl space inspection',
+  'Garage & outbuilding assessment',
+  'Follow-up monitoring visits',
+];
+
+const excluded = [
+  'Structural sealing / repair work',
+  'Dead rodent removal (available as add-on)',
+  'Squirrels & wildlife',
+  'Insulation replacement',
+];
+
+const schedule = [
+  { label: 'Initial Visit', desc: 'Full inspection, trapping setup, bait station placement, entry point mapping' },
+  { label: '2-Week Check', desc: 'Monitor bait stations, reset traps, assess activity levels' },
+  { label: '1-Month Follow-Up', desc: 'Confirm elimination, adjust strategy if needed, exclusion guidance' },
+  { label: 'Quarterly Maintenance', desc: 'Ongoing monitoring to prevent re-infestation, seasonal proofing tips' },
+];
+---
+
+<Layout title="Rodent Control Services" description="Professional rodent control in Los Angeles. We eliminate mice and rats with bait stations, trapping, and exclusion. 100% satisfaction guarantee.">
+
+  <!-- Guarantee Banner -->
+  <div class="bg-brand-dark diagonal-stripe py-5 px-4">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-white font-bold uppercase tracking-wider text-center sm:text-left">
+        🛡️ Rodents return before next visit? We come back <span class="text-yellow-300">FREE</span>
+      </p>
+      <a href="sms:+18183534800&body=SAVE50" class="btn-sms text-sm py-2 px-6 flex-shrink-0">
+        Claim 50% Off Now
+      </a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-brand-light py-16 px-4 border-b-4 border-brand-medium">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="text-brand-medium font-bold uppercase tracking-widest text-sm mb-2">Los Angeles Rodent Specialists</p>
+      <h1 class="text-4xl md:text-6xl font-extrabold text-brand-dark uppercase tracking-widest mb-6">
+        Rodent Control
+      </h1>
+      <p class="text-brand-body text-lg max-w-2xl mx-auto leading-relaxed mb-8">
+        Mice and rats are more than a nuisance — they carry disease, chew wiring, and contaminate food. Our targeted rodent control program eliminates the problem at its source and keeps them from coming back.
+      </p>
+      <a href="sms:+18183534800&body=SAVE50" class="btn-sms-lg">
+        Get a Free Rodent Inspection
+      </a>
+    </div>
+  </section>
+
+  <!-- Why It Matters -->
+  <section class="bg-white py-12 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="text-center bg-red-50 rounded-xl p-6 border border-red-100">
+          <div class="text-3xl mb-2">🦠</div>
+          <h3 class="font-bold text-red-700 uppercase tracking-wider text-sm mb-2">Health Risk</h3>
+          <p class="text-sm text-brand-body">Rodents carry hantavirus, salmonella, and other pathogens that contaminate surfaces and food.</p>
+        </div>
+        <div class="text-center bg-orange-50 rounded-xl p-6 border border-orange-100">
+          <div class="text-3xl mb-2">⚡</div>
+          <h3 class="font-bold text-orange-700 uppercase tracking-wider text-sm mb-2">Fire Hazard</h3>
+          <p class="text-sm text-brand-body">Rodents gnaw on electrical wiring — a leading cause of house fires in the United States.</p>
+        </div>
+        <div class="text-center bg-yellow-50 rounded-xl p-6 border border-yellow-100">
+          <div class="text-3xl mb-2">🏠</div>
+          <h3 class="font-bold text-yellow-700 uppercase tracking-wider text-sm mb-2">Property Damage</h3>
+          <p class="text-sm text-brand-body">They chew through insulation, pipes, and structural materials causing costly damage over time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Included / Excluded -->
+  <section class="bg-brand-light py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="section-heading mb-12">What's Included</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <!-- Included -->
+        <div class="bg-white rounded-2xl p-8 border-2 border-brand-medium">
+          <h3 class="text-brand-dark font-extrabold uppercase tracking-widest text-lg mb-6 flex items-center gap-2">
+            <span class="text-brand-medium text-2xl">✓</span> We Cover
+          </h3>
+          <ul class="space-y-3">
+            {included.map(item => (
+              <li class="flex items-center gap-3 text-brand-body font-semibold text-sm">
+                <span class="text-brand-medium font-bold flex-shrink-0">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <!-- Excluded + Custom -->
+        <div>
+          <div class="bg-red-50 rounded-2xl p-8 border-2 border-red-200 mb-6">
+            <h3 class="text-red-700 font-extrabold uppercase tracking-widest text-lg mb-6 flex items-center gap-2">
+              <span class="text-red-500 text-2xl">✗</span> Not Included
+            </h3>
+            <ul class="space-y-3">
+              {excluded.map(item => (
+                <li class="flex items-center gap-3 text-red-700 font-semibold text-sm">
+                  <span class="text-red-500 font-bold flex-shrink-0">✗</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="bg-brand-dark rounded-2xl p-6">
+            <h4 class="text-white font-extrabold uppercase tracking-widest text-sm mb-3">Combo Plans Available</h4>
+            <p class="text-green-200 text-sm leading-relaxed">
+              Combine Rodent Control with our Pest Control plan for complete home protection at the best value. Includes all 40+ pest treatments plus full rodent management.
+            </p>
+            <a href="sms:+18183534800&body=SAVE50" class="inline-block mt-4 text-yellow-300 font-bold text-sm uppercase tracking-wider hover:text-white transition-colors">
+              Ask About Combo Plans →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Treatment Schedule -->
+  <section class="bg-white py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="section-heading mb-4">Rodent Treatment Schedule</h2>
+      <p class="section-subheading mb-12">A multi-step approach for complete elimination and prevention</p>
+      <div class="space-y-4 mb-12">
+        {schedule.map((s, i) => (
+          <div class="flex gap-6 items-start bg-brand-light rounded-xl p-6 border border-green-200">
+            <div class="w-10 h-10 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold text-sm flex-shrink-0">{i + 1}</div>
+            <div>
+              <h3 class="font-extrabold text-brand-dark uppercase tracking-wider mb-1">{s.label}</h3>
+              <p class="text-brand-body text-sm leading-relaxed">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="text-center">
+        <a href="sms:+18183534800&body=SAVE50" class="btn-sms-lg">
+          Get a Quote — 50% Off First Treatment
+        </a>
+        <p class="text-brand-body text-sm mt-4 font-semibold">Family Owned · Licensed &amp; Insured in California</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signs of Infestation -->
+  <section class="bg-brand-light py-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-heading mb-4">Signs You Have Rodents</h2>
+      <p class="section-subheading mb-10">Don't wait — early action prevents bigger problems</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {[
+          { icon: '💩', sign: 'Droppings near food, in cabinets, or along walls' },
+          { icon: '🔊', sign: 'Scratching or scurrying sounds in walls or attic' },
+          { icon: '🕳️', sign: 'Gnaw marks on food packaging, wires, or wood' },
+          { icon: '👃', sign: 'Musty or ammonia-like odor from hidden areas' },
+          { icon: '🪺', sign: 'Nesting material like shredded paper or insulation' },
+          { icon: '🐾', sign: 'Tracks or grease marks along baseboards' },
+        ].map(item => (
+          <div class="flex items-center gap-4 bg-white rounded-xl p-4 border border-green-200">
+            <span class="text-2xl">{item.icon}</span>
+            <p class="text-brand-body text-sm font-semibold">{item.sign}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-10 text-center">
+        <p class="text-brand-body font-bold mb-4 uppercase tracking-wider">Seeing any of these? Don't wait.</p>
+        <a href="sms:+18183534800&body=SAVE50" class="btn-sms">
+          Text Us Now — Fast Response
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

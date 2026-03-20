@@ -1,0 +1,98 @@
+---
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Reviews', href: '/reviews' },
+];
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="bg-brand-dark sticky top-0 z-50 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="/">
+          <img src="/logo.png" alt="Lion Gate Pest" class="h-10 w-auto" />
+        </a>
+      </div>
+
+      <!-- Desktop nav -->
+      <div class="hidden md:flex items-center space-x-2">
+        <a href="/" class="text-white hover:text-green-200 px-3 py-2 text-sm font-semibold uppercase tracking-wider transition-colors">Home</a>
+
+        <!-- Services dropdown -->
+        <div class="nav-dropdown-parent relative px-3 py-2">
+          <button class="text-white hover:text-green-200 text-sm font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 focus:outline-none">
+            Services
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+            </svg>
+          </button>
+          <div class="nav-dropdown">
+            <a href="/pest-control">Pest Control</a>
+            <a href="/rodent-control">Rodent Control</a>
+          </div>
+        </div>
+
+        <a href="/reviews" class="text-white hover:text-green-200 px-3 py-2 text-sm font-semibold uppercase tracking-wider transition-colors">Reviews</a>
+        <a href="/contact" class="text-white hover:text-green-200 px-3 py-2 text-sm font-semibold uppercase tracking-wider transition-colors">Contact</a>
+
+        <a href="sms:+18183534800&body=SAVE50" class="ml-4 btn-sms text-sm py-2 px-5">
+          Get 50% Off
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <div class="md:hidden">
+        <button id="hamburger" class="text-white focus:outline-none p-2" aria-label="Toggle menu">
+          <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-green-700">
+    <div class="px-4 pt-2 pb-4 space-y-1">
+      <a href="/" class="block text-white font-semibold uppercase tracking-wider py-3 border-b border-green-700 text-sm">Home</a>
+      <div class="py-2 border-b border-green-700">
+        <p class="text-green-300 font-semibold uppercase tracking-wider text-xs mb-2">Services</p>
+        <a href="/pest-control" class="block text-white font-semibold uppercase tracking-wider py-2 pl-3 text-sm">→ Pest Control</a>
+        <a href="/rodent-control" class="block text-white font-semibold uppercase tracking-wider py-2 pl-3 text-sm">→ Rodent Control</a>
+      </div>
+      <a href="/reviews" class="block text-white font-semibold uppercase tracking-wider py-3 border-b border-green-700 text-sm">Reviews</a>
+      <a href="/contact" class="block text-white font-semibold uppercase tracking-wider py-3 border-b border-green-700 text-sm">Contact</a>
+      <div class="pt-3">
+        <a href="sms:+18183534800&body=SAVE50" class="btn-sms w-full text-center block text-sm">
+          Text SAVE50 — Get 50% Off
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = !mobileMenu?.classList.contains('hidden');
+    if (isOpen) {
+      mobileMenu?.classList.add('hidden');
+      hamburgerIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    } else {
+      mobileMenu?.classList.remove('hidden');
+      hamburgerIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+    }
+  });
+</script>

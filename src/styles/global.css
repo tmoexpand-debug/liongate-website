@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Montserrat', sans-serif;
+    color: #1A1A1A;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+}
+
+@layer components {
+  .btn-sms {
+    @apply inline-block bg-brand-medium text-white font-bold uppercase tracking-widest py-4 px-8 rounded-lg text-center transition-all duration-200 hover:bg-brand-dark hover:shadow-lg;
+  }
+  .btn-sms-lg {
+    @apply inline-block bg-brand-medium text-white font-extrabold uppercase tracking-widest py-5 px-10 rounded-lg text-center text-lg transition-all duration-200 hover:bg-brand-dark hover:shadow-xl;
+  }
+  .section-heading {
+    @apply text-3xl md:text-4xl font-extrabold text-brand-dark uppercase tracking-widest text-center;
+  }
+  .section-subheading {
+    @apply text-lg text-center text-brand-body mt-4 max-w-2xl mx-auto;
+  }
+  .diagonal-stripe {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(255,255,255,0.05) 10px,
+      rgba(255,255,255,0.05) 20px
+    );
+  }
+}
+
+/* Nav dropdown */
+.nav-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #2D5A3D;
+  min-width: 200px;
+  border-top: 2px solid #3A7D44;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+.nav-dropdown-parent:hover .nav-dropdown,
+.nav-dropdown-parent:focus-within .nav-dropdown {
+  display: block;
+}
+.nav-dropdown a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  transition: background 0.15s;
+}
+.nav-dropdown a:hover {
+  background: #3A7D44;
+}
+
+/* FAQ accordion */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.faq-answer.open {
+  max-height: 500px;
+}
+.faq-toggle svg {
+  transition: transform 0.3s ease;
+}
+.faq-toggle.open svg {
+  transform: rotate(180deg);
+}
+
+/* Modal */
+#pest-modal {
+  display: none;
+}
+#pest-modal.open {
+  display: flex;
+}

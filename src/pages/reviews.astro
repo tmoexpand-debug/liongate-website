@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const reviews = [
+  {
+    name: 'Jennifer M.',
+    location: 'Burbank, CA',
+    text: 'Lion Gate Pest did an amazing job clearing out an ant infestation that had been driving me crazy for months. Fast, professional, and the technician was so friendly and thorough. Highly recommend!',
+    rating: 5,
+  },
+  {
+    name: 'David R.',
+    location: 'Glendale, CA',
+    text: 'We had a serious rat problem in our attic. They came out quickly, set up bait stations, and within two weeks the problem was gone. They also pointed out where the rats were getting in. Great service.',
+    rating: 5,
+  },
+  {
+    name: 'Maria S.',
+    location: 'Pasadena, CA',
+    text: 'Very impressed with the professionalism and the results. They explained exactly what they were doing and what products they used. My home has been pest-free for 6 months now on the quarterly plan.',
+    rating: 5,
+  },
+];
+---
+
+<Layout title="Customer Reviews" description="See what Los Angeles homeowners say about Lion Gate Pest Control. Hundreds of satisfied customers across the Greater Los Angeles area.">
+
+  <!-- Hero -->
+  <section class="bg-brand-dark diagonal-stripe py-16 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white uppercase tracking-widest mb-4">
+        Customer Reviews
+      </h1>
+      <p class="text-green-200 text-lg max-w-xl mx-auto">
+        Don't take our word for it — hear from your neighbors across Los Angeles
+      </p>
+      <div class="flex justify-center gap-1 mt-6 text-3xl">
+        {'★★★★★'.split('').map(s => <span class="text-yellow-400">{s}</span>)}
+      </div>
+      <p class="text-green-200 text-sm mt-2 font-semibold">5-Star Rated · Hundreds of Happy Customers</p>
+    </div>
+  </section>
+
+  <!-- Review Cards -->
+  <section class="bg-white py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <!-- TODO: Replace placeholder reviews with live Google/Yelp review embed or API feed -->
+      <div class="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-4 mb-10 text-center">
+        <p class="text-yellow-800 text-sm font-semibold">
+          📌 <strong>TODO:</strong> Replace these placeholder reviews with a live Google Business review widget or Yelp embed.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        {reviews.map(review => (
+          <div class="bg-brand-light rounded-2xl p-8 shadow-md border border-green-200 flex flex-col">
+            <!-- Stars -->
+            <div class="flex gap-1 mb-4">
+              {'★★★★★'.split('').map(s => <span class="text-yellow-400 text-xl">{s}</span>)}
+            </div>
+            <!-- Review Text -->
+            <p class="text-brand-body italic leading-relaxed flex-1 mb-6">"{review.text}"</p>
+            <!-- Reviewer -->
+            <div class="border-t border-green-200 pt-4">
+              <p class="font-extrabold text-brand-dark uppercase tracking-wider text-sm">{review.name}</p>
+              <p class="text-brand-body text-xs mt-1">{review.location}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- More reviews placeholder -->
+      <div class="text-center">
+        <div class="bg-brand-light rounded-2xl p-8 border-2 border-dashed border-green-300 max-w-2xl mx-auto">
+          <div class="text-4xl mb-3">⭐</div>
+          <h3 class="font-extrabold text-brand-dark uppercase tracking-widest text-lg mb-2">More Reviews Coming</h3>
+          <p class="text-brand-body text-sm mb-4">
+            <!-- TODO: Add Google Business profile link and Yelp profile link here -->
+            We're growing our online reviews. Check our Google Business listing for the most up-to-date testimonials from your neighbors.
+          </p>
+          <p class="text-brand-body text-xs text-gray-400 italic">TODO: Add Google Business &amp; Yelp profile links</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats / Trust -->
+  <section class="bg-brand-dark py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl font-extrabold text-white mb-1">100%</div>
+          <div class="text-green-300 text-sm font-bold uppercase tracking-wider">Satisfaction Guarantee</div>
+        </div>
+        <div>
+          <div class="text-4xl font-extrabold text-white mb-1">40+</div>
+          <div class="text-green-300 text-sm font-bold uppercase tracking-wider">Pest Types Treated</div>
+        </div>
+        <div>
+          <div class="text-4xl font-extrabold text-white mb-1">⭐ 5</div>
+          <div class="text-green-300 text-sm font-bold uppercase tracking-wider">Star Rated</div>
+        </div>
+        <div>
+          <div class="text-4xl font-extrabold text-white mb-1">LA</div>
+          <div class="text-green-300 text-sm font-bold uppercase tracking-wider">Area Specialists</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-brand-light py-16 px-4">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="section-heading mb-4">Ready To Join Our Happy Customers?</h2>
+      <p class="text-brand-body mb-8 leading-relaxed">
+        Text <strong>SAVE50</strong> to <strong>(818) 353-4800</strong> and get 50% off your first service. Join hundreds of satisfied Los Angeles homeowners.
+      </p>
+      <a href="sms:+18183534800&body=SAVE50" class="btn-sms-lg">
+        Text SAVE50 — Get 50% Off First Service
+      </a>
+    </div>
+  </section>
+
+</Layout>

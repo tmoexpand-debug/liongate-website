@@ -1,0 +1,362 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const pestsLeft = ['Ants', 'Aphids', 'Beetles', 'Box Elder Bugs', 'Centipedes', 'Cockroaches', 'Fleas'];
+const pestsRight = ['Flies', 'Mice/Rats', 'Mites', 'Mosquitoes', 'Spiders', 'Ticks', 'Wasps'];
+
+const allPests = [
+  'Ants', 'Aphids', 'Bed Bugs', 'Beetles', 'Box Elder Bugs', 'Carpenter Ants', 'Carpenter Bees',
+  'Centipedes', 'Cicadas', 'Cockroaches', 'Crickets', 'Earwigs', 'Fire Ants', 'Fleas',
+  'Flies', 'Fruit Flies', 'Gnats', 'Ground Beetles', 'Hornets', 'House Flies',
+  'Mice', 'Millipedes', 'Mites', 'Mosquitoes', 'Moths', 'Pill Bugs', 'Rats',
+  'Silverfish', 'Slugs', 'Snails', 'Sowbugs', 'Spiders', 'Stink Bugs',
+  'Termites (preventive)', 'Ticks', 'Wasps', 'Weevils', 'Whiteflies', 'Yellow Jackets', 'Zika Mosquitoes'
+];
+
+const faqs = [
+  {
+    q: 'Do you handle rodent problems like mice and rats?',
+    a: 'Yes! We offer dedicated Rodent Control services including inspection, bait stations, exclusion, and follow-up visits. Rodents can carry disease and cause serious property damage — we take it seriously.'
+  },
+  {
+    q: 'How soon can you schedule a visit?',
+    a: 'In most cases we can schedule your first treatment within 24–48 hours. We serve the Greater Los Angeles area and try to accommodate your schedule as quickly as possible.'
+  },
+  {
+    q: 'Do you treat during the winter months?',
+    a: 'Absolutely. Pests don\'t take the winter off, and neither do we. Many species like cockroaches, rodents, and spiders actually seek warmth indoors during cooler months. Year-round protection is the best approach.'
+  },
+  {
+    q: 'What is your satisfaction guarantee?',
+    a: 'We stand behind our work 100%. If you see pests between scheduled treatments, call us and we\'ll return for a free re-treatment. Your peace of mind is our priority.'
+  },
+  {
+    q: 'How is pricing determined?',
+    a: 'Pricing depends on your home size, pest type, and treatment plan. Text us SAVE50 to get a quote and claim 50% off your first service. No hidden fees — we\'re transparent about costs upfront.'
+  },
+  {
+    q: 'Are your treatments safe for pets and children?',
+    a: 'Yes. We use EPA-registered products and apply them responsibly. We\'ll always advise you on any brief re-entry times if needed. Our technicians are trained to minimize exposure to your family and pets.'
+  },
+];
+---
+
+<Layout title="Professional Pest Control — Los Angeles">
+
+  <!-- HERO -->
+  <section class="bg-brand-dark diagonal-stripe min-h-[85vh] flex items-center py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-green-300 font-bold uppercase tracking-widest text-sm md:text-base mb-3">
+        Family &amp; Pet Friendly
+      </p>
+      <h1 class="text-5xl md:text-7xl font-extrabold text-white uppercase tracking-widest leading-tight mb-4">
+        Pest Control
+      </h1>
+      <p class="text-xl md:text-2xl font-bold text-yellow-300 uppercase tracking-wider mb-8">
+        Limited Time — 50% Off First Service
+      </p>
+      <a href="sms:+18183534800&body=SAVE50" class="btn-sms-lg">
+        Text "SAVE50" To Get 50% Off
+      </a>
+      <p class="text-green-200 mt-8 text-sm md:text-base max-w-2xl mx-auto leading-relaxed uppercase tracking-wide font-semibold">
+        Serving Los Angeles Homeowners With Industry Leading Service And A 100% Satisfaction Guarantee
+      </p>
+    </div>
+  </section>
+
+  <!-- REVIEWS PLACEHOLDER -->
+  <section class="bg-white py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <!-- TODO: Replace with actual Google/Yelp review widget or embed -->
+      <h2 class="section-heading mb-4">What Our Customers Say</h2>
+      <p class="section-subheading mb-10">Trusted by hundreds of Los Angeles homeowners</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {[1,2,3].map((i) => (
+          <div class="bg-brand-light rounded-xl p-6 shadow-sm border border-green-100">
+            <div class="flex mb-3">
+              {'★★★★★'.split('').map(s => <span class="text-yellow-400 text-xl">{s}</span>)}
+            </div>
+            <p class="text-brand-body italic mb-4">"Placeholder review — Replace with real customer testimonials."</p>
+            <p class="font-bold text-brand-dark text-sm uppercase tracking-wider">— Happy Customer #{i}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PEST LIST -->
+  <section class="bg-brand-light py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="section-heading mb-4">Pests We Eliminate</h2>
+      <p class="section-subheading mb-10">Comprehensive pest control for your Los Angeles home</p>
+      <div class="grid grid-cols-2 gap-3 max-w-2xl mx-auto mb-10">
+        <ul class="space-y-3">
+          {pestsLeft.map(pest => (
+            <li class="flex items-center gap-3 text-brand-body font-semibold">
+              <span class="text-brand-medium text-xl font-bold flex-shrink-0">✓</span>
+              {pest}
+            </li>
+          ))}
+        </ul>
+        <ul class="space-y-3">
+          {pestsRight.map(pest => (
+            <li class="flex items-center gap-3 text-brand-body font-semibold">
+              <span class="text-brand-medium text-xl font-bold flex-shrink-0">✓</span>
+              {pest}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="text-center">
+        <button id="open-pest-modal" class="btn-sms">
+          More Pests We Take Care Of
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEST MODAL -->
+  <div id="pest-modal" class="fixed inset-0 z-50 items-center justify-center bg-black/60 px-4 py-8">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-8 relative">
+      <button id="close-pest-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold">✕</button>
+      <h3 class="text-2xl font-extrabold text-brand-dark uppercase tracking-widest mb-6 text-center">All Pests We Treat</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-y-3 gap-x-4">
+        {allPests.map(pest => (
+          <div class="flex items-center gap-2 text-brand-body text-sm font-semibold">
+            <span class="text-brand-medium font-bold">✓</span>
+            {pest}
+          </div>
+        ))}
+      </div>
+      <div class="mt-8 text-center">
+        <a href="sms:+18183534800&body=SAVE50" class="btn-sms">
+          Get 50% Off My First Treatment
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3-STEP OFFER -->
+  <section class="bg-white py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="section-heading mb-4">How It Works</h2>
+      <p class="section-subheading mb-12">Three easy steps to a pest-free home</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div class="text-center p-6 bg-brand-light rounded-2xl border border-green-200">
+          <div class="w-16 h-16 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold text-2xl mx-auto mb-4">1</div>
+          <h3 class="font-extrabold text-brand-dark uppercase tracking-wider text-lg mb-3">Text to Claim Your Discount</h3>
+          <p class="text-brand-body text-sm leading-relaxed">Text <strong>SAVE50</strong> to <strong>(818) 353-4800</strong> and lock in 50% off your first service. Takes 30 seconds and there's no commitment.</p>
+        </div>
+        <div class="text-center p-6 bg-brand-light rounded-2xl border border-green-200">
+          <div class="w-16 h-16 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold text-2xl mx-auto mb-4">2</div>
+          <h3 class="font-extrabold text-brand-dark uppercase tracking-wider text-lg mb-3">We Book Your Visit</h3>
+          <p class="text-brand-body text-sm leading-relaxed">We'll confirm a convenient appointment time that fits your schedule. Our technicians arrive on time — we respect your day.</p>
+        </div>
+        <div class="text-center p-6 bg-brand-light rounded-2xl border border-green-200">
+          <div class="w-16 h-16 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold text-2xl mx-auto mb-4">3</div>
+          <h3 class="font-extrabold text-brand-dark uppercase tracking-wider text-lg mb-3">We Treat, You Relax</h3>
+          <p class="text-brand-body text-sm leading-relaxed">Our licensed technician treats your home using proven, family-safe methods. You sit back and enjoy a pest-free environment.</p>
+        </div>
+      </div>
+      <div class="text-center">
+        <a href="sms:+18183534800&body=SAVE50" class="btn-sms-lg">
+          Text SAVE50 — Get 50% Off
+        </a>
+        <p class="text-brand-body text-sm mt-4 font-semibold uppercase tracking-wider">
+          Family Owned · Licensed &amp; Insured in California
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section class="bg-brand-light py-16 px-4 border-t-4 border-brand-medium">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="text-5xl mb-4">🛡️</div>
+      <h2 class="section-heading mb-6">100% Satisfaction Guarantee</h2>
+      <p class="text-xl md:text-2xl font-bold text-brand-dark leading-relaxed max-w-3xl mx-auto">
+        If you see any pests between treatments, we'll come back absolutely free!
+      </p>
+      <p class="text-brand-body mt-6 text-base leading-relaxed max-w-2xl mx-auto">
+        We stand behind every treatment we perform. If pests return before your next scheduled visit, just give us a call and we'll return at no additional charge. No questions asked.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAMILY & PET SAFE -->
+  <section class="bg-white py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-brand-medium font-bold uppercase tracking-widest text-sm mb-2">Our Promise</p>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark uppercase tracking-wide leading-tight mb-6">
+            Safe For Your Family &amp; Pets
+          </h2>
+          <p class="text-brand-body leading-relaxed mb-4">
+            Your family's safety is our top priority. We use only EPA-registered products, applied by trained and licensed technicians who understand how to keep treatments effective while minimizing exposure to children, pets, and sensitive family members.
+          </p>
+          <p class="text-brand-body leading-relaxed mb-8">
+            We'll walk you through exactly what products we use and any recommended precautions before every treatment. No surprises — just professional, transparent service you can trust.
+          </p>
+          <a href="sms:+18183534800&body=SAVE50" class="btn-sms">
+            Get a Free Quote
+          </a>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-brand-light rounded-xl p-5 text-center">
+            <div class="text-3xl mb-2">🐾</div>
+            <h4 class="font-bold text-brand-dark uppercase text-sm tracking-wider">Pet Safe</h4>
+            <p class="text-xs text-brand-body mt-1">Products safe around dogs &amp; cats</p>
+          </div>
+          <div class="bg-brand-light rounded-xl p-5 text-center">
+            <div class="text-3xl mb-2">👶</div>
+            <h4 class="font-bold text-brand-dark uppercase text-sm tracking-wider">Child Safe</h4>
+            <p class="text-xs text-brand-body mt-1">Family-friendly application methods</p>
+          </div>
+          <div class="bg-brand-light rounded-xl p-5 text-center">
+            <div class="text-3xl mb-2">🌿</div>
+            <h4 class="font-bold text-brand-dark uppercase text-sm tracking-wider">EPA Registered</h4>
+            <p class="text-xs text-brand-body mt-1">Approved, tested products only</p>
+          </div>
+          <div class="bg-brand-light rounded-xl p-5 text-center">
+            <div class="text-3xl mb-2">🏅</div>
+            <h4 class="font-bold text-brand-dark uppercase text-sm tracking-wider">Licensed</h4>
+            <p class="text-xs text-brand-body mt-1">CA licensed &amp; insured technicians</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="bg-brand-light py-16 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="section-heading mb-4">Frequently Asked Questions</h2>
+      <p class="section-subheading mb-10">Everything you need to know before you call</p>
+      <div class="space-y-3" id="faq-list">
+        {faqs.map((faq, i) => (
+          <div class="bg-white rounded-xl shadow-sm border border-green-100 overflow-hidden">
+            <button
+              class={`faq-toggle w-full text-left px-6 py-5 flex items-center justify-between font-bold text-brand-dark uppercase tracking-wide text-sm focus:outline-none`}
+              data-index={i}
+            >
+              <span>{faq.q}</span>
+              <svg class="w-5 h-5 flex-shrink-0 ml-4 text-brand-medium" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="faq-answer px-6 pb-0">
+              <div class="pb-5 text-brand-body text-sm leading-relaxed border-t border-green-100 pt-4">
+                {faq.a}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE PLANS -->
+  <section class="bg-white py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="section-heading mb-4">Service Plans</h2>
+      <p class="section-subheading mb-12">Choose the protection that's right for your home</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Pest Control -->
+        <div class="border-2 border-brand-medium rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+          <div class="bg-brand-dark p-6 text-center">
+            <h3 class="text-white font-extrabold uppercase tracking-widest text-xl">Pest Control</h3>
+            <p class="text-green-300 text-sm mt-1">Quarterly treatments</p>
+          </div>
+          <div class="p-6">
+            <ul class="space-y-2 mb-6 text-sm">
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Interior &amp; Exterior Treatment</li>
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> 40+ Pest Types Covered</li>
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Free Re-Treatment Guarantee</li>
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Family &amp; Pet Safe Products</li>
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Quarterly Schedule</li>
+            </ul>
+            <a href="sms:+18183534800&body=SAVE50" class="btn-sms w-full text-center block text-sm">
+              Get a Quote
+            </a>
+          </div>
+        </div>
+        <!-- Rodent Control -->
+        <div class="border-2 border-brand-medium rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow">
+          <div class="bg-brand-dark p-6 text-center">
+            <h3 class="text-white font-extrabold uppercase tracking-widest text-xl">Rodent Control</h3>
+            <p class="text-green-300 text-sm mt-1">Targeted rodent solutions</p>
+          </div>
+          <div class="p-6">
+            <ul class="space-y-2 mb-6 text-sm">
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Full Home Inspection</li>
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Bait Station Placement</li>
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Exclusion Recommendations</li>
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Mice &amp; Rats</li>
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Follow-Up Visits</li>
+            </ul>
+            <a href="sms:+18183534800&body=SAVE50" class="btn-sms w-full text-center block text-sm">
+              Get a Quote
+            </a>
+          </div>
+        </div>
+        <!-- Combo -->
+        <div class="border-2 border-yellow-400 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow relative">
+          <div class="absolute top-3 right-3 bg-yellow-400 text-brand-dark text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Best Value</div>
+          <div class="bg-brand-dark p-6 text-center">
+            <h3 class="text-white font-extrabold uppercase tracking-widest text-xl">Pest &amp; Rodent</h3>
+            <p class="text-green-300 text-sm mt-1">Complete home protection</p>
+          </div>
+          <div class="p-6">
+            <ul class="space-y-2 mb-6 text-sm">
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Everything in Pest Control</li>
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Everything in Rodent Control</li>
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Priority Scheduling</li>
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Maximum Home Protection</li>
+              <li class="flex items-center gap-2"><span class="text-brand-medium font-bold">✓</span> Best Savings</li>
+            </ul>
+            <a href="sms:+18183534800&body=SAVE50" class="btn-sms w-full text-center block text-sm bg-yellow-500 hover:bg-yellow-600 text-brand-dark">
+              Get a Quote
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // FAQ Accordion
+  document.querySelectorAll('.faq-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const answer = btn.nextElementSibling as HTMLElement;
+      const isOpen = answer.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+      document.querySelectorAll('.faq-toggle').forEach(b => b.classList.remove('open'));
+      // Open this one if it was closed
+      if (!isOpen) {
+        answer.classList.add('open');
+        btn.classList.add('open');
+      }
+    });
+  });
+
+  // Pest Modal
+  const modal = document.getElementById('pest-modal');
+  document.getElementById('open-pest-modal')?.addEventListener('click', () => {
+    modal?.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  document.getElementById('close-pest-modal')?.addEventListener('click', () => {
+    modal?.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  });
+</script>

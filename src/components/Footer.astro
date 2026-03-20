@@ -1,0 +1,69 @@
+---
+const pests = ['Ants', 'Aphids', 'Beetles', 'Cockroaches', 'Fleas', 'Flies', 'Mice/Rats', 'Mosquitoes', 'Spiders', 'Ticks', 'Wasps'];
+const cities = ['Los Angeles', 'Burbank', 'Pasadena', 'Glendale', 'Santa Monica', 'Beverly Hills', 'Hollywood', 'Westwood', 'Malibu', 'La Cañada', 'San Fernando Valley'];
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Pest Control', href: '/pest-control' },
+  { label: 'Rodent Control', href: '/rodent-control' },
+  { label: 'Reviews', href: '/reviews' },
+  { label: 'Contact', href: '/contact' },
+];
+---
+
+<footer class="bg-brand-dark text-white pt-12 pb-6">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Top row -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-green-700">
+      <!-- Brand -->
+      <div class="lg:col-span-1">
+        <img src="/logo-white.svg" alt="Lion Gate Pest" class="h-16 w-auto mb-4" />
+        <p class="text-green-200 text-sm leading-relaxed mb-4">
+          Family-owned pest control serving the Greater Los Angeles area. Licensed &amp; insured in California.
+        </p>
+        <div class="space-y-1 text-sm text-green-200">
+          <p>📞 <a href="tel:+18183534800" class="hover:text-white transition-colors">(818) 353-4800</a></p>
+          <p>✉️ <a href="mailto:contact@liongatepest.com" class="hover:text-white transition-colors">contact@liongatepest.com</a></p>
+          <p>🕐 Mon–Fri 9am–5pm</p>
+          <p>📍 Los Angeles Area</p>
+        </div>
+      </div>
+
+      <!-- Navigate -->
+      <div>
+        <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Navigate</h3>
+        <ul class="space-y-2">
+          {navLinks.map(link => (
+            <li>
+              <a href={link.href} class="text-green-200 hover:text-white text-sm transition-colors">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Pests -->
+      <div>
+        <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Pests We Treat</h3>
+        <ul class="space-y-2">
+          {pests.map(pest => (
+            <li class="text-green-200 text-sm">{pest}</li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Service Area -->
+      <div>
+        <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Los Angeles Area</h3>
+        <ul class="space-y-2">
+          {cities.map(city => (
+            <li class="text-green-200 text-sm">{city}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="pt-6 text-center text-green-400 text-xs">
+      <p>&copy; {new Date().getFullYear()} Lion Gate Pest. All rights reserved. Licensed &amp; Insured in California.</p>
+    </div>
+  </div>
+</footer>
