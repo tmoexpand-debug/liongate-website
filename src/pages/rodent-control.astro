@@ -15,18 +15,12 @@ const included = [
 ];
 
 const excluded = [
-  'Structural sealing / repair work',
   'Dead rodent removal (available as add-on)',
   'Squirrels & wildlife',
-  'Insulation replacement',
+  'Insulation replacement (available as add-on)',
 ];
 
-const schedule = [
-  { label: 'Initial Visit', desc: 'Full inspection, trapping setup, bait station placement, entry point mapping' },
-  { label: '2-Week Check', desc: 'Monitor bait stations, reset traps, assess activity levels' },
-  { label: '1-Month Follow-Up', desc: 'Confirm elimination, adjust strategy if needed, exclusion guidance' },
-  { label: 'Quarterly Maintenance', desc: 'Ongoing monitoring to prevent re-infestation, seasonal proofing tips' },
-];
+
 ---
 
 <Layout title="Rodent Control Services" description="Professional rodent control in Los Angeles. We eliminate mice and rats with bait stations, trapping, and exclusion. 100% satisfaction guarantee.">
@@ -58,6 +52,11 @@ const schedule = [
       </a>
     </div>
   </section>
+
+  <!-- Service Photo -->
+  <div class="w-full max-h-[420px] overflow-hidden">
+    <img src="/rodent-control-hero.jpg" alt="Rodent control technician inspecting a home in Los Angeles" class="w-full object-cover object-center max-h-[420px]" />
+  </div>
 
   <!-- Why It Matters -->
   <section class="bg-white py-12 px-4">
@@ -126,31 +125,6 @@ const schedule = [
             </a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Treatment Schedule -->
-  <section class="bg-white py-16 px-4">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="section-heading mb-4">Rodent Treatment Schedule</h2>
-      <p class="section-subheading mb-12">A multi-step approach for complete elimination and prevention</p>
-      <div class="space-y-4 mb-12">
-        {schedule.map((s, i) => (
-          <div class="flex gap-6 items-start bg-brand-light rounded-xl p-6 border border-green-200">
-            <div class="w-10 h-10 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold text-sm flex-shrink-0">{i + 1}</div>
-            <div>
-              <h3 class="font-extrabold text-brand-dark uppercase tracking-wider mb-1">{s.label}</h3>
-              <p class="text-brand-body text-sm leading-relaxed">{s.desc}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div class="text-center">
-        <a href="sms:+18183534800&body=SAVE50" class="btn-sms-lg">
-          Get a Quote — 50% Off First Treatment
-        </a>
-        <p class="text-brand-body text-sm mt-4 font-semibold">Family Owned · Licensed &amp; Insured in California</p>
       </div>
     </div>
   </section>

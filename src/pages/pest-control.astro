@@ -57,13 +57,18 @@ const schedule = [
         Pest Control
       </h1>
       <p class="text-brand-body text-lg max-w-2xl mx-auto leading-relaxed mb-8">
-        Comprehensive pest management for Los Angeles homeowners. We eliminate the bugs and keep them away with our quarterly treatment schedule and free re-treatment guarantee.
+        Comprehensive pest management for Los Angeles homeowners. We eliminate the bugs and keep them away with our regular treatment schedule and free re-treatment guarantee.
       </p>
       <a href="sms:+18183534800&body=SAVE50" class="btn-sms-lg">
         Get a Free Quote
       </a>
     </div>
   </section>
+
+  <!-- Service Photo -->
+  <div class="w-full max-h-[420px] overflow-hidden">
+    <img src="/pest-control-hero.jpg" alt="Ants along a kitchen baseboard — common household pest in Los Angeles" class="w-full object-cover object-center max-h-[420px]" />
+  </div>
 
   <!-- Included / Excluded -->
   <section class="bg-white py-16 px-4">
@@ -114,22 +119,85 @@ const schedule = [
     </div>
   </section>
 
-  <!-- Quarterly Schedule -->
+  <!-- Pest Activity Chart -->
   <section class="bg-brand-light py-16 px-4">
     <div class="max-w-5xl mx-auto">
-      <h2 class="section-heading mb-4">Quarterly Treatment Schedule</h2>
-      <p class="section-subheading mb-12">Year-round protection tailored to seasonal pest activity</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        {schedule.map((s, i) => (
-          <div class="bg-white rounded-xl p-6 shadow-sm border border-green-200 text-center">
-            <div class="w-12 h-12 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold text-sm mx-auto mb-3 uppercase tracking-wide">
-              Q{i + 1}
-            </div>
-            <h3 class="font-extrabold text-brand-dark uppercase tracking-wider text-base mb-2">{s.season}</h3>
-            <p class="text-brand-body text-xs leading-relaxed">{s.focus}</p>
+      <h2 class="section-heading mb-4">What Happens After Treatment</h2>
+      <p class="section-subheading mb-10">Pest activity drops sharply after your first visit and stays low with regular monthly or bi-monthly service</p>
+
+      <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-green-200 mb-10">
+        <svg viewBox="0 0 700 285" class="w-full" role="img" aria-label="Line chart showing pest activity decreasing over 12 months with Lion Gate treatment vs no treatment">
+          <!-- Chart title -->
+          <text x="367" y="16" text-anchor="middle" font-size="18" fill="#2D5A3D" font-weight="bold" font-family="sans-serif" letter-spacing="2">PEST ACTIVITY OVER 12 MONTHS</text>
+
+          <!-- Horizontal grid lines -->
+          <line x1="50" y1="30" x2="685" y2="30" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="50" y1="80" x2="685" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="50" y1="130" x2="685" y2="130" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="50" y1="180" x2="685" y2="180" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="50" y1="220" x2="685" y2="220" stroke="#d1d5db" stroke-width="1"/>
+
+          <!-- Y axis labels -->
+          <text x="44" y="34" text-anchor="end" font-size="16" fill="#9ca3af" font-family="sans-serif">High</text>
+          <text x="44" y="134" text-anchor="end" font-size="16" fill="#9ca3af" font-family="sans-serif">Med</text>
+          <text x="44" y="224" text-anchor="end" font-size="16" fill="#9ca3af" font-family="sans-serif">Low</text>
+
+          <!-- Without treatment shaded area -->
+          <polygon points="50,32 685,32 685,220 50,220" fill="#fee2e2" opacity="0.35"/>
+          <!-- Without treatment line -->
+          <line x1="50" y1="32" x2="685" y2="32" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="8,5"/>
+
+          <!-- With treatment shaded area -->
+          <polygon points="50,32 107,88 164,138 221,168 279,185 336,196 393,202 450,205 507,207 564,210 621,212 685,214 685,220 50,220" fill="#3A7D44" opacity="0.12"/>
+          <!-- With treatment line -->
+          <polyline points="50,32 107,88 164,138 221,168 279,185 336,196 393,202 450,205 507,207 564,210 621,212 685,214" fill="none" stroke="#3A7D44" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+          <!-- Treatment visit dots (bi-monthly: Jan, Mar, May, Jul, Sep, Nov) -->
+          <circle cx="50" cy="32" r="6" fill="#2D5A3D"/>
+          <circle cx="164" cy="138" r="6" fill="#2D5A3D"/>
+          <circle cx="279" cy="185" r="6" fill="#2D5A3D"/>
+          <circle cx="393" cy="202" r="6" fill="#2D5A3D"/>
+          <circle cx="507" cy="207" r="6" fill="#2D5A3D"/>
+          <circle cx="621" cy="212" r="6" fill="#2D5A3D"/>
+
+          <!-- First treatment label -->
+          <text x="50" y="20" text-anchor="middle" font-size="14" fill="#2D5A3D" font-weight="bold" font-family="sans-serif">First Visit</text>
+
+          <!-- Month labels -->
+          <text x="50" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Jan</text>
+          <text x="107" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Feb</text>
+          <text x="164" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Mar</text>
+          <text x="221" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Apr</text>
+          <text x="279" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">May</text>
+          <text x="336" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Jun</text>
+          <text x="393" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Jul</text>
+          <text x="450" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Aug</text>
+          <text x="507" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Sep</text>
+          <text x="564" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Oct</text>
+          <text x="621" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Nov</text>
+          <text x="685" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Dec</text>
+
+          <!-- X axis label -->
+          <text x="367" y="265" text-anchor="middle" font-size="14" fill="#9ca3af" font-family="sans-serif">Month</text>
+        </svg>
+
+        <!-- Legend -->
+        <div class="flex flex-wrap gap-6 justify-center mt-6">
+          <div class="flex items-center gap-2">
+            <svg width="32" height="12"><line x1="0" y1="6" x2="32" y2="6" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6,4"/></svg>
+            <span class="text-sm text-brand-body font-semibold">No treatment</span>
           </div>
-        ))}
+          <div class="flex items-center gap-2">
+            <svg width="32" height="12"><line x1="0" y1="6" x2="32" y2="6" stroke="#3A7D44" stroke-width="3"/></svg>
+            <span class="text-sm text-brand-body font-semibold">With Lion Gate service</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="#2D5A3D"/></svg>
+            <span class="text-sm text-brand-body font-semibold">Treatment visit</span>
+          </div>
+        </div>
       </div>
+
       <div class="text-center">
         <a href="sms:+18183534800&body=SAVE50" class="btn-sms-lg">
           Get a Quote — 50% Off First Treatment
@@ -162,7 +230,7 @@ const schedule = [
           <div class="w-10 h-10 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold flex-shrink-0">3</div>
           <div>
             <h3 class="font-extrabold text-brand-dark uppercase tracking-wider mb-1">Follow-Up &amp; Monitoring</h3>
-            <p class="text-brand-body text-sm leading-relaxed">We schedule quarterly follow-up visits to maintain protection. If pests return between visits, we come back at no charge — that's our guarantee.</p>
+            <p class="text-brand-body text-sm leading-relaxed">We schedule monthly or bi-monthly follow-up visits to maintain protection. If pests return between visits, we come back at no charge — that's our guarantee.</p>
           </div>
         </div>
       </div>

@@ -21,7 +21,7 @@
     @apply inline-block bg-brand-medium text-white font-bold uppercase tracking-widest py-4 px-8 rounded-lg text-center transition-all duration-200 hover:bg-brand-dark hover:shadow-lg;
   }
   .btn-sms-lg {
-    @apply inline-block bg-brand-medium text-white font-extrabold uppercase tracking-widest py-5 px-10 rounded-lg text-center text-lg transition-all duration-200 hover:bg-brand-dark hover:shadow-xl;
+    @apply inline-block bg-brand-medium text-white font-extrabold uppercase tracking-widest py-5 px-6 md:px-10 rounded-lg text-center text-base md:text-lg transition-all duration-200 hover:bg-brand-dark hover:shadow-xl w-full sm:w-auto;
   }
   .section-heading {
     @apply text-3xl md:text-4xl font-extrabold text-brand-dark uppercase tracking-widest text-center;

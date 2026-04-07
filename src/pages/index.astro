@@ -44,12 +44,13 @@ const faqs = [
 <Layout title="Professional Pest Control — Los Angeles">
 
   <!-- HERO -->
-  <section class="bg-brand-dark diagonal-stripe min-h-[85vh] flex items-center py-20 px-4">
-    <div class="max-w-4xl mx-auto text-center">
+  <section class="relative min-h-[85vh] flex items-center py-20 px-4" style="background-image: url('/hero-bg.jpg'); background-size: cover; background-position: center;">
+    <div class="absolute inset-0 bg-black/60"></div>
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
       <p class="text-green-300 font-bold uppercase tracking-widest text-sm md:text-base mb-3">
         Family &amp; Pet Friendly
       </p>
-      <h1 class="text-5xl md:text-7xl font-extrabold text-white uppercase tracking-widest leading-tight mb-4">
+      <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white uppercase tracking-widest leading-tight mb-4">
         Pest Control
       </h1>
       <p class="text-xl md:text-2xl font-bold text-yellow-300 uppercase tracking-wider mb-8">
@@ -58,28 +59,99 @@ const faqs = [
       <a href="sms:+18183534800&body=SAVE50" class="btn-sms-lg">
         Text "SAVE50" To Get 50% Off
       </a>
-      <p class="text-green-200 mt-8 text-sm md:text-base max-w-2xl mx-auto leading-relaxed uppercase tracking-wide font-semibold">
+      <p class="text-green-200 mt-6 text-sm md:text-base max-w-2xl mx-auto leading-relaxed uppercase tracking-wide font-semibold px-2">
         Serving Los Angeles Homeowners With Industry Leading Service And A 100% Satisfaction Guarantee
       </p>
     </div>
   </section>
 
-  <!-- REVIEWS PLACEHOLDER -->
+  <!-- REVIEWS -->
   <section class="bg-white py-16 px-4">
     <div class="max-w-6xl mx-auto">
-      <!-- TODO: Replace with actual Google/Yelp review widget or embed -->
       <h2 class="section-heading mb-4">What Our Customers Say</h2>
-      <p class="section-subheading mb-10">Trusted by hundreds of Los Angeles homeowners</p>
+      <p class="section-subheading mb-10">5.0 ★ · 38 Google Reviews · Trusted by LA homeowners for over 20 years</p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {[1,2,3].map((i) => (
-          <div class="bg-brand-light rounded-xl p-6 shadow-sm border border-green-100">
-            <div class="flex mb-3">
-              {'★★★★★'.split('').map(s => <span class="text-yellow-400 text-xl">{s}</span>)}
-            </div>
-            <p class="text-brand-body italic mb-4">"Placeholder review — Replace with real customer testimonials."</p>
-            <p class="font-bold text-brand-dark text-sm uppercase tracking-wider">— Happy Customer #{i}</p>
+        <div class="bg-brand-light rounded-xl p-6 shadow-sm border border-green-100">
+          <div class="flex mb-3">
+            {'★★★★★'.split('').map(s => <span class="text-yellow-400 text-xl">{s}</span>)}
           </div>
-        ))}
+          <p class="text-brand-body italic mb-4">"I have been with this company for years. I had a very bad ant problem — once I started pest control with every other month service, we have not had any ants. Tom and Rick are great, they are honest. What I like about Lion Gate is they not only do pest, they also do termites and rodent work. I highly recommend Lion Gate."</p>
+          <p class="font-bold text-brand-dark text-sm uppercase tracking-wider">— Verified Google Review</p>
+        </div>
+        <div class="bg-brand-light rounded-xl p-6 shadow-sm border border-green-100">
+          <div class="flex mb-3">
+            {'★★★★★'.split('').map(s => <span class="text-yellow-400 text-xl">{s}</span>)}
+          </div>
+          <p class="text-brand-body italic mb-4">"Lion Gate has been treating our house for over 20 years. Our relatives use Lion Gate too. Very happy with them."</p>
+          <p class="font-bold text-brand-dark text-sm uppercase tracking-wider">— Verified Google Review</p>
+        </div>
+        <div class="bg-brand-light rounded-xl p-6 shadow-sm border border-green-100">
+          <div class="flex mb-3">
+            {'★★★★★'.split('').map(s => <span class="text-yellow-400 text-xl">{s}</span>)}
+          </div>
+          <p class="text-brand-body italic mb-4">"It's been a year we are working with Lion Gate and they are doing a great job with great price. Tom was very friendly and did a great job today. I'm happy with the service."</p>
+          <p class="font-bold text-brand-dark text-sm uppercase tracking-wider">— Verified Google Review</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="bg-brand-dark py-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-green-300 font-bold uppercase tracking-widest text-sm mb-2">Serving Los Angeles Since 2005</p>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-white uppercase tracking-wide leading-tight mb-6">
+            A Team You Can Actually Trust
+          </h2>
+          <p class="text-green-200 leading-relaxed mb-4">
+            Lion Gate Pest Control has been protecting Los Angeles homes for over 20 years. We're a small, family-owned operation — and that's intentional. You'll deal with the same technicians every visit, not a rotating crew of strangers.
+          </p>
+          <p class="text-green-200 leading-relaxed mb-8">
+            Our team handles everything from recurring pest control to rodent exclusion and termite treatments. We show up on time, we're honest about what you need (and what you don't), and we stand behind every job we do.
+          </p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white/10 rounded-xl p-4 text-center">
+              <div class="text-3xl font-extrabold text-white mb-1">20+</div>
+              <div class="text-green-300 text-xs font-bold uppercase tracking-wider">Years Serving LA</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-4 text-center">
+              <div class="text-3xl font-extrabold text-white mb-1">5.0 ★</div>
+              <div class="text-green-300 text-xs font-bold uppercase tracking-wider">Google Rating</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-4 text-center">
+              <div class="text-3xl font-extrabold text-white mb-1">38</div>
+              <div class="text-green-300 text-xs font-bold uppercase tracking-wider">5-Star Reviews</div>
+            </div>
+            <div class="bg-white/10 rounded-xl p-4 text-center">
+              <div class="text-3xl font-extrabold text-white mb-1">100%</div>
+              <div class="text-green-300 text-xs font-bold uppercase tracking-wider">Satisfaction Guarantee</div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div class="bg-white/10 rounded-2xl p-6 border border-white/20">
+            <div class="flex items-center gap-4 mb-3">
+              <div class="w-12 h-12 bg-brand-medium rounded-full flex items-center justify-center text-white font-extrabold text-lg">T</div>
+              <div>
+                <h4 class="text-white font-extrabold uppercase tracking-wider text-sm">Tom</h4>
+                <p class="text-green-300 text-xs uppercase tracking-wider">Owner & Technician</p>
+              </div>
+            </div>
+            <p class="text-green-200 text-sm leading-relaxed">Tom has been in the pest control industry for over a decade. He does the work himself, knows LA's pest patterns inside and out, and won't upsell you on treatments you don't need.</p>
+          </div>
+          <div class="bg-white/10 rounded-2xl p-6 border border-white/20">
+            <div class="flex items-center gap-4 mb-3">
+              <div class="w-12 h-12 bg-brand-medium rounded-full flex items-center justify-center text-white font-extrabold text-lg">R</div>
+              <div>
+                <h4 class="text-white font-extrabold uppercase tracking-wider text-sm">Rick</h4>
+                <p class="text-green-300 text-xs uppercase tracking-wider">Lead Technician</p>
+              </div>
+            </div>
+            <p class="text-green-200 text-sm leading-relaxed">Rick is the guy customers ask for by name. Licensed, thorough, and good with both people and pests — he handles the majority of our service calls across the LA area.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>

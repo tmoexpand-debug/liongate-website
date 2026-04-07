@@ -3,21 +3,39 @@ import Layout from '../layouts/Layout.astro';
 
 const reviews = [
   {
-    name: 'Jennifer M.',
-    location: 'Burbank, CA',
-    text: 'Lion Gate Pest did an amazing job clearing out an ant infestation that had been driving me crazy for months. Fast, professional, and the technician was so friendly and thorough. Highly recommend!',
+    name: 'Verified Google Review',
+    location: 'Los Angeles, CA',
+    text: 'I have been with this company for years. I had a very bad ant problem — once I started pest control with every other month service, we have not had any ants. Tom and Rick are great, they are honest. What I like about Lion Gate is they not only do pest, they also do termites and rodent work. I highly recommend Lion Gate.',
     rating: 5,
   },
   {
-    name: 'David R.',
-    location: 'Glendale, CA',
-    text: 'We had a serious rat problem in our attic. They came out quickly, set up bait stations, and within two weeks the problem was gone. They also pointed out where the rats were getting in. Great service.',
+    name: 'Verified Google Review',
+    location: 'Los Angeles, CA',
+    text: 'Lion Gate has been treating our house for over 20 years. Our relatives use Lion Gate too. Very happy with them.',
     rating: 5,
   },
   {
-    name: 'Maria S.',
-    location: 'Pasadena, CA',
-    text: 'Very impressed with the professionalism and the results. They explained exactly what they were doing and what products they used. My home has been pest-free for 6 months now on the quarterly plan.',
+    name: 'Verified Google Review',
+    location: 'Los Angeles, CA',
+    text: "It's been a year we are working with Lion Gate and they are doing a great job with great price. Tom was very friendly and did a great job today. I'm happy with the service.",
+    rating: 5,
+  },
+  {
+    name: 'Verified Google Review',
+    location: 'Los Angeles, CA',
+    text: 'Absolutely amazing service. Came in, discovered the problem, got it all done diligently. They explained all about what they use and how it will work. Answered any and all questions and were an absolute delight to correspond with. Would give a 10/10 if I could. Can\'t go wrong with Lions Gate.',
+    rating: 5,
+  },
+  {
+    name: 'Verified Google Review',
+    location: 'Los Angeles, CA',
+    text: 'New owner, Tom, provides the same excellent service as the previous owner. Very helpful and answered all my questions. Very satisfied.',
+    rating: 5,
+  },
+  {
+    name: 'Verified Google Review',
+    location: 'Los Angeles, CA',
+    text: 'We have been using Lion Gate for years and they are very nice, professional and great to work with!',
     rating: 5,
   },
 ];
@@ -37,20 +55,13 @@ const reviews = [
       <div class="flex justify-center gap-1 mt-6 text-3xl">
         {'★★★★★'.split('').map(s => <span class="text-yellow-400">{s}</span>)}
       </div>
-      <p class="text-green-200 text-sm mt-2 font-semibold">5-Star Rated · Hundreds of Happy Customers</p>
+      <p class="text-green-200 text-sm mt-2 font-semibold">5.0 ★ · 38 Google Reviews · Serving LA for Over 20 Years</p>
     </div>
   </section>
 
   <!-- Review Cards -->
   <section class="bg-white py-16 px-4">
     <div class="max-w-6xl mx-auto">
-      <!-- TODO: Replace placeholder reviews with live Google/Yelp review embed or API feed -->
-      <div class="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-4 mb-10 text-center">
-        <p class="text-yellow-800 text-sm font-semibold">
-          📌 <strong>TODO:</strong> Replace these placeholder reviews with a live Google Business review widget or Yelp embed.
-        </p>
-      </div>
-
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
         {reviews.map(review => (
           <div class="bg-brand-light rounded-2xl p-8 shadow-md border border-green-200 flex flex-col">
@@ -69,16 +80,16 @@ const reviews = [
         ))}
       </div>
 
-      <!-- More reviews placeholder -->
       <div class="text-center">
-        <div class="bg-brand-light rounded-2xl p-8 border-2 border-dashed border-green-300 max-w-2xl mx-auto">
+        <div class="bg-brand-light rounded-2xl p-8 border-2 border-green-300 max-w-2xl mx-auto">
           <div class="text-4xl mb-3">⭐</div>
-          <h3 class="font-extrabold text-brand-dark uppercase tracking-widest text-lg mb-2">More Reviews Coming</h3>
-          <p class="text-brand-body text-sm mb-4">
-            <!-- TODO: Add Google Business profile link and Yelp profile link here -->
-            We're growing our online reviews. Check our Google Business listing for the most up-to-date testimonials from your neighbors.
+          <h3 class="font-extrabold text-brand-dark uppercase tracking-widest text-lg mb-2">See All 38 Reviews on Google</h3>
+          <p class="text-brand-body text-sm mb-6">
+            We have a 5.0 rating on Google. Check our listing to read all of our reviews from your neighbors across Los Angeles.
           </p>
-          <p class="text-brand-body text-xs text-gray-400 italic">TODO: Add Google Business &amp; Yelp profile links</p>
+          <a href="https://share.google/156d9QWu5Z7cPsNIA" target="_blank" rel="noopener noreferrer" class="btn-sms">
+            Read Our Google Reviews →
+          </a>
         </div>
       </div>
     </div>
@@ -97,8 +108,8 @@ const reviews = [
           <div class="text-green-300 text-sm font-bold uppercase tracking-wider">Pest Types Treated</div>
         </div>
         <div>
-          <div class="text-4xl font-extrabold text-white mb-1">⭐ 5</div>
-          <div class="text-green-300 text-sm font-bold uppercase tracking-wider">Star Rated</div>
+          <div class="text-4xl font-extrabold text-white mb-1">38</div>
+          <div class="text-green-300 text-sm font-bold uppercase tracking-wider">5-Star Google Reviews</div>
         </div>
         <div>
           <div class="text-4xl font-extrabold text-white mb-1">LA</div>
