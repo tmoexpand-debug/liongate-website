@@ -101,23 +101,27 @@ const businessSchema = {
       gtag('js', new Date());
       gtag('config', 'G-86LC50V0SG');
     </script>
-    <!-- Lead tracking: fire a GA4 'generate_lead' event on contact-intent clicks -->
+    <!-- Lead tracking: fire a GA4 'generate_lead' event on contact-intent clicks.
+         Pushes straight to dataLayer (the canonical gtag mechanism) so it does not
+         depend on a global gtag() function, which Astro scopes into a bundled module. -->
     <script is:inline>
-      document.addEventListener('click', function (e) {
-        var link = e.target.closest && e.target.closest('a[href^="sms:"], a[href^="tel:"], a[href^="mailto:"]');
-        if (!link) return;
-        var href = link.getAttribute('href') || '';
-        var method = href.lastIndexOf('sms:', 0) === 0 ? 'text'
-                   : href.lastIndexOf('tel:', 0) === 0 ? 'call'
-                   : 'email';
-        if (typeof gtag === 'function') {
-          gtag('event', 'generate_lead', {
+      (function () {
+        window.dataLayer = window.dataLayer || [];
+        function track() { window.dataLayer.push(arguments); }
+        document.addEventListener('click', function (e) {
+          var link = e.target.closest && e.target.closest('a[href^="sms:"], a[href^="tel:"], a[href^="mailto:"]');
+          if (!link) return;
+          var href = link.getAttribute('href') || '';
+          var method = href.lastIndexOf('sms:', 0) === 0 ? 'text'
+                     : href.lastIndexOf('tel:', 0) === 0 ? 'call'
+                     : 'email';
+          track('event', 'generate_lead', {
             method: method,
             link_text: (link.textContent || '').trim().slice(0, 100),
             page_path: window.location.pathname
           });
-        }
-      }, true);
+        }, true);
+      })();
     </script>
   </head>
   <body class="font-montserrat text-brand-body">
