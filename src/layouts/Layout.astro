@@ -101,6 +101,24 @@ const businessSchema = {
       gtag('js', new Date());
       gtag('config', 'G-86LC50V0SG');
     </script>
+    <!-- Lead tracking: fire a GA4 'generate_lead' event on contact-intent clicks -->
+    <script is:inline>
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest && e.target.closest('a[href^="sms:"], a[href^="tel:"], a[href^="mailto:"]');
+        if (!link) return;
+        var href = link.getAttribute('href') || '';
+        var method = href.lastIndexOf('sms:', 0) === 0 ? 'text'
+                   : href.lastIndexOf('tel:', 0) === 0 ? 'call'
+                   : 'email';
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', {
+            method: method,
+            link_text: (link.textContent || '').trim().slice(0, 100),
+            page_path: window.location.pathname
+          });
+        }
+      }, true);
+    </script>
   </head>
   <body class="font-montserrat text-brand-body">
     <Nav />
