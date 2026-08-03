@@ -1,0 +1,222 @@
+---
+import LandingLayout from '../../layouts/LandingLayout.astro';
+
+// Cities the ?city= token may render. Scoped to the two zones this campaign targets
+// (East Valley + the Pasadena arm), plus the broader names for catch-all ad groups.
+const cities = [
+  'Pasadena', 'Altadena', 'Sierra Madre', 'Arcadia', 'Duarte', 'Alhambra',
+  'Burbank', 'Glendale', 'Sun Valley', 'Tujunga', 'La Crescenta', 'La Cañada',
+  'Los Angeles',
+];
+const defaultCity = 'Los Angeles';
+
+const smsTemplate =
+  "Hi Lion Gate - I'd like a quote for ant control in {city}. I saw the 50% off first service offer.";
+
+// Every review below is verbatim from /reviews — real Google reviews, not written for this page.
+const reviews = [
+  {
+    text: 'I have been with this company for years. I had a very bad ant problem — once I started pest control with every other month service, we have not had any ants. Tom and Rick are great, they are honest. What I like about Lion Gate is they not only do pest, they also do termites and rodent work. I highly recommend Lion Gate.',
+    source: 'Verified Google Review',
+  },
+  {
+    text: 'Lion Gate has been treating our house for over 20 years. Our relatives use Lion Gate too. Very happy with them.',
+    source: 'Verified Google Review',
+  },
+];
+
+const included = [
+  {
+    title: 'Full interior & exterior inspection',
+    body: 'We find where they are actually getting in — plumbing penetrations, weep holes, foundation cracks, tree limbs touching the roofline.',
+  },
+  {
+    title: 'Colony treatment, not just the trail',
+    body: 'Non-repellent product the foragers carry back to the nest. That is what collapses a colony; a can of spray from the hardware store just splits it.',
+  },
+  {
+    title: 'Full perimeter barrier',
+    body: 'Treated entry points and an exterior band around the structure so the next wave does not walk straight back in.',
+  },
+  {
+    title: 'Free re-treatment between visits',
+    body: 'If the ants come back before your next scheduled service, we come back out at no charge. That is the guarantee.',
+  },
+];
+---
+
+<LandingLayout
+  title="Ant Control | Lion Gate Pest Control"
+  description="Ant control for Los Angeles area homeowners. 50% off your first service, no contract. Family owned since 2005, 5.0 stars on Google. Text for a free quote."
+  cities={cities}
+  defaultCity={defaultCity}
+  smsTemplate={smsTemplate}
+>
+
+  <!-- Offer banner -->
+  <div class="bg-yellow-400 text-brand-dark py-3 px-4">
+    <p class="max-w-5xl mx-auto text-center font-extrabold uppercase tracking-wider text-sm md:text-base">
+      50% Off Your First Service · No Contract · Cancel Anytime
+    </p>
+  </div>
+
+  <!-- Hero -->
+  <section class="bg-brand-light py-12 md:py-16 px-4 border-b-4 border-brand-medium">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-brand-medium font-bold uppercase tracking-widest text-xs md:text-sm mb-3">
+        Family Owned · Serving <span data-city>{defaultCity}</span> Since 2005
+      </p>
+
+      <h1 class="text-3xl md:text-5xl font-extrabold text-brand-dark uppercase tracking-widest mb-5">
+        Ant Control in <span data-city>{defaultCity}</span>
+      </h1>
+
+      <p class="text-brand-body text-base md:text-lg leading-relaxed mb-6">
+        Ants in the kitchen, along the baseboards, streaming in from the patio? We treat the
+        colony — not just the ones you can see — and keep them out with regular service.
+      </p>
+
+      <!-- Social proof sits above the CTA on purpose: it is the strongest asset on the page. -->
+      <div class="flex flex-col items-center gap-1 mb-7">
+        <div class="text-2xl text-yellow-500 tracking-widest">★★★★★</div>
+        <p class="text-brand-dark font-bold text-sm">5.0 ★ · 38 Google Reviews</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center items-stretch max-w-2xl mx-auto">
+        <a href="#" data-sms class="btn-sms-lg flex-1 px-4 md:px-5 whitespace-nowrap">
+          💬 Text for a Free Quote
+        </a>
+        <a
+          href="tel:+18183534800"
+          class="flex-1 inline-block bg-white border-2 border-brand-dark text-brand-dark font-extrabold uppercase tracking-widest py-5 px-4 md:px-5 rounded-lg text-center text-base md:text-lg whitespace-nowrap hover:bg-brand-dark hover:text-white transition-all duration-200"
+        >
+          📞 (818) 353-4800
+        </a>
+      </div>
+
+      <p class="text-brand-dark text-xs md:text-sm font-bold mt-4">
+        ⚡ Most texts answered within minutes · Mon–Fri 9am–5pm
+      </p>
+      <p class="text-brand-body text-xs mt-1 opacity-75">
+        Licensed &amp; insured in California
+      </p>
+    </div>
+  </section>
+
+  <!-- Photo -->
+  <div class="w-full max-h-[360px] overflow-hidden">
+    <img
+      src="/pest-control-hero.jpg"
+      alt="Ants trailing along a kitchen baseboard"
+      class="w-full object-cover object-center max-h-[360px]"
+      width="1600"
+      height="900"
+    />
+  </div>
+
+  <!-- The ant-specific argument -->
+  <section class="bg-white py-14 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="section-heading mb-6">Why the Ants Keep Coming Back</h2>
+      <p class="text-brand-body leading-relaxed mb-4">
+        Most Los Angeles ant problems are Argentine ants. They do not live in one nest with one
+        queen — a single colony can run for hundreds of feet with many queens, under the slab,
+        in the planter beds, along the irrigation lines.
+      </p>
+      <p class="text-brand-body leading-relaxed mb-4">
+        That is why store-bought spray makes it worse. Killing the visible trail triggers the
+        colony to split and relocate, so a week later you have ants in two rooms instead of one.
+      </p>
+      <p class="text-brand-body leading-relaxed font-bold">
+        The fix is a product the foragers do not detect, carry home, and share — so the colony
+        goes down with it. That is what we apply, and then we keep a treated barrier around the
+        house so the next colony does not move into the vacancy.
+      </p>
+    </div>
+  </section>
+
+  <!-- What's included -->
+  <section class="bg-brand-light py-14 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-heading mb-10">What Your First Service Includes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {included.map((item) => (
+          <div class="bg-white rounded-2xl p-6 border-2 border-brand-medium">
+            <h3 class="text-brand-dark font-extrabold uppercase tracking-wider text-sm mb-3 flex items-start gap-2">
+              <span class="text-brand-medium text-xl leading-none flex-shrink-0">✓</span>
+              <span>{item.title}</span>
+            </h3>
+            <p class="text-brand-body text-sm leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section class="bg-white py-14 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="section-heading mb-10">What Your Neighbors Say</h2>
+      <div class="space-y-6">
+        {reviews.map((review) => (
+          <blockquote class="bg-brand-light rounded-2xl p-6 border-l-4 border-brand-medium">
+            <div class="text-yellow-500 tracking-widest mb-3">★★★★★</div>
+            <p class="text-brand-body text-sm leading-relaxed italic mb-3">"{review.text}"</p>
+            <cite class="text-brand-dark font-bold text-xs uppercase tracking-wider not-italic">
+              — {review.source}
+            </cite>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="bg-brand-light py-14 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="section-heading mb-10">How It Works</h2>
+      <div class="space-y-6">
+        <div class="flex gap-5 items-start">
+          <div class="w-9 h-9 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold flex-shrink-0">1</div>
+          <div>
+            <h3 class="font-extrabold text-brand-dark uppercase tracking-wider text-sm mb-1">Text us</h3>
+            <p class="text-brand-body text-sm leading-relaxed">Tell us where you are seeing them. A real person here usually replies within a few minutes during business hours, with a straight price — no in-home sales pitch.</p>
+          </div>
+        </div>
+        <div class="flex gap-5 items-start">
+          <div class="w-9 h-9 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold flex-shrink-0">2</div>
+          <div>
+            <h3 class="font-extrabold text-brand-dark uppercase tracking-wider text-sm mb-1">We treat — 50% off</h3>
+            <p class="text-brand-body text-sm leading-relaxed">Inspection, colony treatment, and a full exterior barrier. Products safe to use around family and pets once dry.</p>
+          </div>
+        </div>
+        <div class="flex gap-5 items-start">
+          <div class="w-9 h-9 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold flex-shrink-0">3</div>
+          <div>
+            <h3 class="font-extrabold text-brand-dark uppercase tracking-wider text-sm mb-1">We keep them out</h3>
+            <p class="text-brand-body text-sm leading-relaxed">Bi-monthly or monthly service keeps the barrier live. No contract — stay because it works, not because you signed something.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="bg-brand-dark diagonal-stripe py-14 px-4">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-2xl md:text-4xl font-extrabold text-white uppercase tracking-widest mb-4">
+        Get Rid of the Ants
+      </h2>
+      <p class="text-green-200 mb-8">
+        50% off your first service in <span data-city>{defaultCity}</span>. No contract, cancel anytime.
+      </p>
+      <a href="#" data-sms class="btn-sms-lg bg-yellow-400 text-brand-dark hover:bg-yellow-300 hover:text-brand-dark">
+        💬 Text for a Free Quote
+      </a>
+      <p class="text-green-200 text-sm mt-5">
+        or call <a href="tel:+18183534800" class="text-yellow-300 font-bold hover:text-white transition-colors">(818) 353-4800</a>
+      </p>
+    </div>
+  </section>
+
+</LandingLayout>

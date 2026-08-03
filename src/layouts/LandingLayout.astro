@@ -1,0 +1,161 @@
+---
+// PPC landing page layout.
+// Deliberately NOT the site Layout: no nav, no footer links, no schema — a PPC page
+// has exactly one job and every outbound link is a leak. Also noindex, so it can't
+// compete with or cannibalise the organic pages.
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Cities the ?city= token is allowed to render. Anything else falls back to defaultCity. */
+  cities: string[];
+  defaultCity: string;
+  /** SMS body template. {city} is substituted client-side. */
+  smsTemplate: string;
+}
+
+const { title, description = '', cities, defaultCity, smsTemplate } = Astro.props;
+
+const PHONE = '+18183534800';
+const PHONE_DISPLAY = '(818) 353-4800';
+
+// Server-rendered default. The inline script below rewrites these when ?city= is present.
+const defaultSmsHref = `sms:${PHONE}?&body=${encodeURIComponent(smsTemplate.replace('{city}', defaultCity))}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <!-- Ads-only page: keep it out of the index so it can't cannibalise the organic site.
+         NOTE: do NOT also block /lp/ in robots.txt — Google has to be able to crawl the
+         page to see this tag, and Google Ads needs to crawl it for policy review. -->
+    <meta name="robots" content="noindex, follow" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-86LC50V0SG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-86LC50V0SG');
+    </script>
+
+    <!-- Lead tracking: same generate_lead event the main site fires, plus the campaign
+         context Ads needs to attribute a conversion back to a keyword. -->
+    <script is:inline>
+      (function () {
+        window.dataLayer = window.dataLayer || [];
+        function track() { window.dataLayer.push(arguments); }
+        document.addEventListener('click', function (e) {
+          var link = e.target.closest && e.target.closest('a[href^="sms:"], a[href^="tel:"]');
+          if (!link) return;
+          var href = link.getAttribute('href') || '';
+          var method = href.lastIndexOf('sms:', 0) === 0 ? 'text' : 'call';
+          var params = new URLSearchParams(window.location.search);
+          track('event', 'generate_lead', {
+            method: method,
+            link_text: (link.textContent || '').trim().slice(0, 100),
+            page_path: window.location.pathname,
+            lp_city: document.documentElement.getAttribute('data-resolved-city') || '',
+            gclid: params.get('gclid') || '',
+            campaign_term: params.get('utm_term') || params.get('keyword') || ''
+          });
+        }, true);
+      })();
+    </script>
+  </head>
+
+  <body class="font-montserrat text-brand-body pb-20 md:pb-0">
+    <!-- Minimal header. Logo is intentionally NOT a link — no exits from a PPC page. -->
+    <header class="bg-brand-dark px-4 py-3">
+      <div class="max-w-5xl mx-auto flex items-center justify-between gap-4">
+        <img src="/logo-white.png" alt="Lion Gate Pest Control" class="h-10 md:h-12 w-auto" />
+        <a
+          href={`tel:${PHONE}`}
+          class="text-white font-extrabold tracking-wider text-sm md:text-lg whitespace-nowrap hover:text-yellow-300 transition-colors"
+        >
+          📞 {PHONE_DISPLAY}
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Trust footer. No navigation — NAP and credentials only. -->
+    <footer class="bg-brand-dark text-green-200 px-4 py-8 text-center text-sm">
+      <div class="max-w-3xl mx-auto space-y-2">
+        <p class="text-white font-extrabold uppercase tracking-widest">Lion Gate Pest Control</p>
+        <p>
+          <a href={`tel:${PHONE}`} class="hover:text-white transition-colors">{PHONE_DISPLAY}</a>
+          <span class="mx-2">·</span>
+          <a href="mailto:contact@liongatepest.com" class="hover:text-white transition-colors">contact@liongatepest.com</a>
+        </p>
+        <p>Mon–Fri 9am–5pm · Serving the Greater Los Angeles area</p>
+        <p class="text-green-400 text-xs pt-2">
+          &copy; {new Date().getFullYear()} Lion Gate Pest Control. Family owned since 2005. Licensed &amp; insured in California.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Sticky mobile CTA bar. Most PPC traffic here will be phones. -->
+    <div class="md:hidden fixed bottom-0 inset-x-0 z-50 flex border-t-2 border-brand-dark shadow-[0_-4px_12px_rgba(0,0,0,0.15)]">
+      <a
+        href={defaultSmsHref}
+        data-sms
+        class="flex-1 bg-brand-medium text-white font-extrabold uppercase tracking-wider text-sm py-4 text-center"
+      >
+        💬 Text for Quote
+      </a>
+      <a
+        href={`tel:${PHONE}`}
+        class="flex-1 bg-brand-dark text-white font-extrabold uppercase tracking-wider text-sm py-4 text-center"
+      >
+        📞 Call Now
+      </a>
+    </div>
+
+    <!--
+      City token. Ads pass ?city=Pasadena on the final URL; every [data-city] node and
+      every [data-sms] href picks it up.
+
+      Allowlisted on purpose — the value goes straight into the page, so an open param
+      would let anyone put arbitrary text in the headline. Unknown values fall back to
+      the default city rather than rendering whatever was passed. textContent (never
+      innerHTML) keeps it inert regardless.
+    -->
+    <script is:inline define:vars={{ cities, defaultCity, smsTemplate, PHONE }}>
+      (function () {
+        var raw = (new URLSearchParams(window.location.search).get('city') || '').trim();
+        var city = defaultCity;
+        for (var i = 0; i < cities.length; i++) {
+          if (cities[i].toLowerCase() === raw.toLowerCase()) { city = cities[i]; break; }
+        }
+
+        document.documentElement.setAttribute('data-resolved-city', city);
+
+        var nodes = document.querySelectorAll('[data-city]');
+        for (var j = 0; j < nodes.length; j++) nodes[j].textContent = city;
+
+        // "sms:NUMBER?&body=..." — the ?& form is the one that prefills on both iOS and
+        // Android. Android ignores a bare "&body=", which is why the main site's
+        // SAVE50 links only prefill on iPhones.
+        var href = 'sms:' + PHONE + '?&body=' + encodeURIComponent(smsTemplate.replace('{city}', city));
+        var links = document.querySelectorAll('[data-sms]');
+        for (var k = 0; k < links.length; k++) links[k].setAttribute('href', href);
+      })();
+    </script>
+  </body>
+</html>
