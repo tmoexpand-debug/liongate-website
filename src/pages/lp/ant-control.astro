@@ -13,6 +13,11 @@ const defaultCity = 'Los Angeles';
 const smsTemplate =
   "Hi Lion Gate - I'd like a quote for ant control in {city}. I saw the 50% off first service offer.";
 
+// Server-rendered fallback for the in-page CTAs. The layout script rewrites every
+// [data-sms] href with the resolved ?city= value, but the buttons must already be
+// tappable before that runs — an href="#" CTA is a dead button if JS fails.
+const defaultSmsHref = `sms:+18183534800?&body=${encodeURIComponent(smsTemplate.replace('{city}', defaultCity))}`;
+
 // Every review below is verbatim from /reviews — real Google reviews, not written for this page.
 const reviews = [
   {
@@ -83,7 +88,7 @@ const included = [
       </div>
 
       <div class="flex flex-col sm:flex-row gap-3 justify-center items-stretch max-w-2xl mx-auto">
-        <a href="#" data-sms class="btn-sms-lg flex-1 px-4 md:px-5 whitespace-nowrap">
+        <a href={defaultSmsHref} data-sms class="btn-sms-lg flex-1 px-4 md:px-5 whitespace-nowrap">
           💬 Text for a Free Quote
         </a>
         <a
@@ -210,7 +215,7 @@ const included = [
       <p class="text-green-200 mb-8">
         50% off your first service in <span data-city>{defaultCity}</span>. No contract, cancel anytime.
       </p>
-      <a href="#" data-sms class="btn-sms-lg bg-yellow-400 text-brand-dark hover:bg-yellow-300 hover:text-brand-dark">
+      <a href={defaultSmsHref} data-sms class="btn-sms-lg bg-yellow-400 text-brand-dark hover:bg-yellow-300 hover:text-brand-dark">
         💬 Text for a Free Quote
       </a>
       <p class="text-green-200 text-sm mt-5">
