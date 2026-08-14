@@ -30,6 +30,32 @@ const reviews = [
   },
 ];
 
+// Per-city prose. Only the cities we're actually advertising in get their own
+// entry — the rest fall back to defaultCopy rather than getting invented local
+// detail. Add a city here when it gets its own ad group, not before.
+const cityCopy = {
+  Pasadena: {
+    localTexture:
+      "Pasadena's housing stock works against you. Craftsman bungalows and pre-war homes sit on raised foundations with crawl spaces underneath, decades of settling opens hairline gaps in brick and stucco, and the mature tree canopy puts limbs on rooflines across most of the city. Every one of those is a route inside.",
+    serviceArea:
+      'Serving Bungalow Heaven, Madison Heights, San Rafael, Hastings Ranch and the rest of Pasadena.',
+  },
+  Burbank: {
+    localTexture:
+      "Most of Burbank is post-war slab-on-grade construction, so the ants rarely come in the front door — they run the slab edge and come up through expansion joints and plumbing penetrations. Properties backing onto the Verdugos take extra pressure from the open hillside above.",
+    serviceArea:
+      'Serving Magnolia Park, the Rancho, Burbank Hills, Chandler and the rest of Burbank.',
+  },
+};
+
+// Used for every other city, and rendered server-side so the page reads correctly
+// before the city script runs.
+const defaultCopy = {
+  localTexture:
+    "Southern California's mild winters mean these colonies never really die back — they relocate. Irrigation lines, planter beds and slab edges work as year-round highways toward the house.",
+  serviceArea: '',
+};
+
 const included = [
   {
     title: 'Full interior & exterior inspection',
@@ -52,10 +78,12 @@ const included = [
 
 <LandingLayout
   title="Ant Control | Lion Gate Pest Control"
-  description="Ant control for Los Angeles area homeowners. 50% off your first service, no contract. Family owned since 2005, 5.0 stars on Google. Text for a free quote."
+  description="Local ant control — 50% off your first service, no contract. Family owned since 2005, 5.0 stars on Google. Text for a free quote."
   cities={cities}
   defaultCity={defaultCity}
   smsTemplate={smsTemplate}
+  cityCopy={cityCopy}
+  defaultCopy={defaultCopy}
 >
 
   <!-- Offer banner -->
@@ -124,9 +152,12 @@ const included = [
     <div class="max-w-3xl mx-auto">
       <h2 class="section-heading mb-6">Why the Ants Keep Coming Back</h2>
       <p class="text-brand-body leading-relaxed mb-4">
-        Most Los Angeles ant problems are Argentine ants. They do not live in one nest with one
-        queen — a single colony can run for hundreds of feet with many queens, under the slab,
-        in the planter beds, along the irrigation lines.
+        In <span data-city>{defaultCity}</span>, almost every ant call is Argentine ants. They do
+        not live in one nest with one queen — a single colony can run for hundreds of feet with
+        many queens, under the slab, in the planter beds, along the irrigation lines.
+      </p>
+      <p class="text-brand-body leading-relaxed mb-4" data-city-copy="localTexture">
+        {defaultCopy.localTexture}
       </p>
       <p class="text-brand-body leading-relaxed mb-4">
         That is why store-bought spray makes it worse. Killing the visible trail triggers the
@@ -173,6 +204,11 @@ const included = [
           </blockquote>
         ))}
       </div>
+      <p
+        class="text-center text-brand-body text-sm mt-8 font-semibold"
+        data-city-copy="serviceArea"
+        hidden
+      ></p>
     </div>
   </section>
 
