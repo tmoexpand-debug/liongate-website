@@ -13,9 +13,21 @@ interface Props {
   defaultCity: string;
   /** SMS body template. {city} is substituted client-side. */
   smsTemplate: string;
+  /** Per-city copy, keyed by city then by slot name. Fills [data-city-copy="slot"]. */
+  cityCopy?: Record<string, Record<string, string>>;
+  /** Copy used for any city without its own entry. */
+  defaultCopy?: Record<string, string>;
 }
 
-const { title, description = '', cities, defaultCity, smsTemplate } = Astro.props;
+const {
+  title,
+  description = '',
+  cities,
+  defaultCity,
+  smsTemplate,
+  cityCopy = {},
+  defaultCopy = {},
+} = Astro.props;
 
 const PHONE = '+18183534800';
 const PHONE_DISPLAY = '(818) 353-4800';
@@ -103,7 +115,7 @@ const defaultSmsHref = `sms:${PHONE}?&body=${encodeURIComponent(smsTemplate.repl
           <span class="mx-2">·</span>
           <a href="mailto:contact@liongatepest.com" class="hover:text-white transition-colors">contact@liongatepest.com</a>
         </p>
-        <p>Mon–Fri 9am–5pm · Serving the Greater Los Angeles area</p>
+        <p>Mon–Fri 9am–5pm · Serving <span data-city>{defaultCity}</span> and the surrounding area</p>
         <p class="text-green-400 text-xs pt-2">
           &copy; {new Date().getFullYear()} Lion Gate Pest Control. Family owned since 2005. Licensed &amp; insured in California.
         </p>
@@ -136,7 +148,7 @@ const defaultSmsHref = `sms:${PHONE}?&body=${encodeURIComponent(smsTemplate.repl
       the default city rather than rendering whatever was passed. textContent (never
       innerHTML) keeps it inert regardless.
     -->
-    <script is:inline define:vars={{ cities, defaultCity, smsTemplate, PHONE }}>
+    <script is:inline define:vars={{ cities, defaultCity, smsTemplate, PHONE, cityCopy, defaultCopy }}>
       (function () {
         var raw = (new URLSearchParams(window.location.search).get('city') || '').trim();
         var city = defaultCity;
@@ -148,6 +160,23 @@ const defaultSmsHref = `sms:${PHONE}?&body=${encodeURIComponent(smsTemplate.repl
 
         var nodes = document.querySelectorAll('[data-city]');
         for (var j = 0; j < nodes.length; j++) nodes[j].textContent = city;
+
+        // Per-city prose. Cities without their own entry fall back to defaultCopy;
+        // a slot with no text in either map is removed rather than left showing the
+        // previous city's line.
+        var copy = cityCopy[city] || {};
+        var slots = document.querySelectorAll('[data-city-copy]');
+        for (var s = 0; s < slots.length; s++) {
+          var key = slots[s].getAttribute('data-city-copy');
+          var text = copy[key] || defaultCopy[key] || '';
+          if (text) {
+            slots[s].textContent = text;
+            slots[s].hidden = false;
+          } else {
+            slots[s].textContent = '';
+            slots[s].hidden = true;
+          }
+        }
 
         // "sms:NUMBER?&body=..." — the ?& form is the one that prefills on both iOS and
         // Android. Android ignores a bare "&body=", which is why the main site's
