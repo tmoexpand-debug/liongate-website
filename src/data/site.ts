@@ -67,10 +67,10 @@ export const services: Service[] = [
     href: '/pest-control/#plans',
     name: 'Premium Pest Control',
     tagline: 'Our most complete protection',
-    summary: 'Everything in General Pest Control, plus web and wasp-nest removal and extra attention to the outside of your home.',
+    summary: 'Everything in General Pest Control, plus a 10-point rodent inspection and perimeter treatments to keep pests and rodents from getting in.',
     icon: '⭐',
     price: { amount: '$70', unit: '/mo', label: 'Starting at', note: 'Recurring service plan' },
-    features: ['Everything in General Pest', 'Eave sweep & web removal', 'Wasp & hornet nest removal', 'Priority scheduling'],
+    features: ['Everything in General Pest', '10-point rodent inspection', 'Perimeter treatments'],
   },
   {
     slug: 'mosquito-control',
