@@ -1,69 +1,66 @@
 ---
-const pests = ['Ants', 'Aphids', 'Beetles', 'Cockroaches', 'Fleas', 'Flies', 'Mice/Rats', 'Mosquitoes', 'Spiders', 'Ticks', 'Wasps'];
-const cities = ['Los Angeles', 'Burbank', 'Pasadena', 'Glendale', 'Santa Monica', 'Beverly Hills', 'Hollywood', 'Westwood', 'Malibu', 'La Cañada', 'San Fernando Valley'];
-const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Pest Control', href: '/pest-control' },
-  { label: 'Rodent Control', href: '/rodent-control' },
-  { label: 'Reviews', href: '/reviews' },
-  { label: 'Contact', href: '/contact' },
+import { business, services, cities, cityHref } from '../data/site';
+
+const company = [
+  { label: 'About Us', href: '/about/' },
+  { label: 'Pricing', href: '/pricing/' },
+  { label: 'Reviews', href: '/reviews/' },
+  { label: 'Common Pests', href: '/common-pests/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'FAQ', href: '/faq/' },
+  { label: 'Careers', href: '/careers/' },
+  { label: 'Contact', href: '/contact/' },
 ];
+const heading = 'text-white font-bold text-sm uppercase tracking-widest mb-4';
+const link = 'text-green-100/80 hover:text-white text-sm transition-colors';
 ---
 
-<footer class="bg-brand-dark text-white pt-12 pb-6">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Top row -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-green-700">
-      <!-- Brand -->
-      <div class="lg:col-span-1">
-        <img src="/logo-white.png" alt="Lion Gate Pest" class="h-16 w-auto mb-4" />
-        <p class="text-green-200 text-sm leading-relaxed mb-4">
-          Family-owned pest control serving the Greater Los Angeles area. Licensed &amp; insured in California.
+<footer class="bg-brand-dark text-white pt-16 pb-8">
+  <div class="container-site">
+    <div class="grid grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/15">
+      <div class="col-span-2 lg:col-span-4">
+        <img src="/logo-white.png" alt="Lion Gate Pest Control" class="h-14 w-auto mb-5" />
+        <p class="text-green-100/80 text-sm leading-relaxed mb-5 max-w-sm">
+          Family-owned pest control protecting Los Angeles homes since {business.foundingYear}. Licensed &amp; insured in California.
         </p>
-        <div class="space-y-1 text-sm text-green-200">
-          <p>📞 <a href="tel:+18183534800" class="hover:text-white transition-colors">(818) 353-4800</a></p>
-          <p>✉️ <a href="mailto:contact@liongatepest.com" class="hover:text-white transition-colors">contact@liongatepest.com</a></p>
-          <p>🕐 Mon–Fri 9am–5pm</p>
-          <p>📍 Los Angeles Area</p>
+        <div class="space-y-2 text-sm">
+          <p><a href={business.phoneHref} class="text-white font-bold text-lg hover:text-green-200">{business.phone}</a></p>
+          <p><a href={`mailto:${business.email}`} class={link}>{business.email}</a></p>
+          <p class="text-green-100/80">{business.hours}</p>
+          <p class="text-green-100/80">Serving the Greater Los Angeles Area</p>
+          <p class="pt-2"><a href={business.facebook} target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-white font-semibold hover:text-green-200">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>
+            Follow us on Facebook</a></p>
         </div>
       </div>
 
-      <!-- Navigate -->
-      <div>
-        <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Navigate</h3>
+      <div class="lg:col-span-2">
+        <h3 class={heading}>Services</h3>
         <ul class="space-y-2">
-          {navLinks.map(link => (
-            <li>
-              <a href={link.href} class="text-green-200 hover:text-white text-sm transition-colors">{link.label}</a>
-            </li>
-          ))}
+          {services.map((s) => <li><a href={s.href} class={link}>{s.name}</a></li>)}
+          <li><a href="/services/" class={link}>All Services</a></li>
         </ul>
       </div>
 
-      <!-- Pests -->
-      <div>
-        <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Pests We Treat</h3>
+      <div class="lg:col-span-2">
+        <h3 class={heading}>Company</h3>
         <ul class="space-y-2">
-          {pests.map(pest => (
-            <li class="text-green-200 text-sm">{pest}</li>
-          ))}
+          {company.map((l) => <li><a href={l.href} class={link}>{l.label}</a></li>)}
         </ul>
       </div>
 
-      <!-- Service Area -->
-      <div>
-        <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Los Angeles Area</h3>
-        <ul class="space-y-2">
-          {cities.map(city => (
-            <li class="text-green-200 text-sm">{city}</li>
-          ))}
+      <div class="col-span-2 lg:col-span-4">
+        <h3 class={heading}>Service Areas</h3>
+        <ul class="grid grid-cols-2 gap-x-4 gap-y-2">
+          {cities.map((c) => <li><a href={cityHref(c)} class={link}>{c.name}</a></li>)}
+          <li><a href="/service-areas/" class={link}>All Areas</a></li>
         </ul>
       </div>
     </div>
 
-    <!-- Copyright -->
-    <div class="pt-6 text-center text-green-400 text-xs">
-      <p>&copy; {new Date().getFullYear()} Lion Gate Pest. All rights reserved. Licensed &amp; Insured in California.</p>
+    <div class="pt-6 flex flex-col md:flex-row gap-3 justify-between text-green-100/60 text-xs">
+      <p>&copy; {new Date().getFullYear()} {business.name}. All rights reserved. Licensed &amp; insured in California · SPCB Reg. {business.spcbRegistration}</p>
+      <p><a href="/terms/" class="hover:text-white">Terms &amp; Conditions</a></p>
     </div>
   </div>
 </footer>

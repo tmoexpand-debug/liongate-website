@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { business } from '../data/site';
+const updated = 'October 2026';
+---
+<Layout title="Terms & Conditions" description="Terms and conditions for Lion Gate Pest Control services, promotions, pricing, and use of this website.">
+  <section class="px-4 py-16">
+    <div class="max-w-3xl mx-auto">
+      <nav aria-label="Breadcrumb" class="text-sm text-gray-500 mb-6"><a href="/" class="hover:text-brand-medium">Home</a><span class="mx-2">/</span>Terms &amp; Conditions</nav>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-brand-dark mb-3">Terms &amp; Conditions</h1>
+      <p class="text-gray-500 mb-10">Last updated {updated}</p>
+
+      <div class="prose-lg-site">
+        <p>These terms apply to services provided by {business.name} ("Lion Gate," "we," "us") and to your use of this website. Your written service agreement, if you have one, controls where it differs from this page.</p>
+
+        <h2>Services &amp; scheduling</h2>
+        <p>We provide pest, rodent, mosquito, and termite services in the Greater Los Angeles area. Appointment times are scheduled with you in advance. Please provide access to the areas to be treated, and let us know about pets, children, or anyone with health concerns before service.</p>
+
+        <h2>Pricing</h2>
+        <p>Prices shown on this website are starting prices for a typical home. Your actual price depends on the size of your property, the pest problem, and the service frequency, and we confirm it with you before any work begins. Rodent and termite services begin with a free inspection for homeowners; real estate inspections are quoted separately.</p>
+
+        <h2>Promotions</h2>
+        <p>Promotional discounts (for example, 50% off a first service) require a 12-month service agreement unless the promotion says otherwise. Promotions apply to new customers, cannot be combined, and may end at any time.</p>
+
+        <h2>Satisfaction guarantee</h2>
+        <p>For customers on a recurring service plan, if covered pests return between scheduled visits, we will return and re-treat at no additional charge. The guarantee covers the pests included in your plan and requires that your account be in good standing.</p>
+
+        <h2>Safety</h2>
+        <p>We use EPA-registered products applied according to their labels and California law. Please follow any instructions your technician gives you, such as keeping people and pets off treated areas until they are dry.</p>
+
+        <h2>Licensing</h2>
+        <p>{business.name} is licensed by the California Structural Pest Control Board, Registration {business.spcbRegistration}. Termite inspection reports are prepared as required by the Board's regulations.</p>
+
+        <h2>Website</h2>
+        <p>Information on this website is provided for general guidance and may change without notice. Text messages you send us may be used to respond to your request and schedule service; message and data rates may apply.</p>
+
+        <h2>Contact</h2>
+        <p>Questions about these terms? Call or text <a href={business.phoneHref}>{business.phone}</a> or email <a href={`mailto:${business.email}`}>{business.email}</a>.</p>
+      </div>
+    </div>
+  </section>
+</Layout>

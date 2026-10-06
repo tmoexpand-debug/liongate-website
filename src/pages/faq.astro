@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import FaqList from '../components/FaqList.astro';
+import { business, faqSchema } from '../data/site';
+
+const groups = [
+  {
+    heading: 'Services & scheduling',
+    faqs: [
+      { q: 'What services do you offer?', a: 'We offer general pest control, rodent control, mosquito control, and termite inspections and treatments for homes across the Greater Los Angeles area.' },
+      { q: 'What areas do you serve?', a: 'We serve Los Angeles, the San Fernando Valley, Burbank, Glendale, Pasadena, La Cañada Flintridge, Hollywood, Beverly Hills, Westwood, Santa Monica, Malibu, and nearby communities. If you don\'t see your city, give us a call — we may still be able to help.' },
+      { q: 'How soon can you come out?', a: 'In most cases we can schedule your first visit within 24–48 hours.' },
+      { q: 'What are your business hours?', a: `We're available ${business.hours}. You can text us anytime and we'll reply during business hours — usually within minutes.` },
+      { q: 'Do I need to be home for service?', a: 'For your first visit and any interior treatment, someone 18 or older should be home. Many recurring exterior visits can be done without you there — just make sure we can get into the yard.' },
+      { q: 'How often will you come out?', a: 'Most general pest control customers are on a recurring plan. Mosquito control is monthly during mosquito season. We\'ll recommend a schedule that fits your home and the pests you\'re dealing with.' },
+    ],
+  },
+  {
+    heading: 'Safety',
+    faqs: [
+      { q: 'Are your treatments safe for kids and pets?', a: 'We use EPA-registered products and apply them responsibly, targeting the places pests live and travel. We\'ll tell you about any brief re-entry or dry times before we start.' },
+      { q: 'Do I need to leave the house during treatment?', a: 'For general pest, rodent, and mosquito service, no. Some termite treatments have specific requirements — we\'ll explain them in advance if they apply.' },
+      { q: 'Are you licensed?', a: `Yes. Lion Gate is licensed by the California Structural Pest Control Board (Reg. ${business.spcbRegistration}) and fully insured.` },
+    ],
+  },
+  {
+    heading: 'Pricing & guarantee',
+    faqs: [
+      { q: 'How much does pest control cost?', a: 'General pest control starts at $50/month and mosquito control at $120/month. Rodent and termite services start with a free inspection, followed by a firm quote. See our pricing page for details.' },
+      { q: 'Is there a contract?', a: 'Our recurring plans are service agreements. Promotional discounts require a 12-month service agreement, and we always tell you that up front.' },
+      { q: 'What is your satisfaction guarantee?', a: 'If pests come back between your scheduled visits, contact us and we\'ll return to re-treat at no charge.' },
+    ],
+  },
+];
+const all = groups.flatMap((g) => g.faqs);
+---
+<Layout title="Pest Control FAQs" description="Answers to common questions about Lion Gate Pest Control: services, scheduling, safety for kids and pets, pricing, and our satisfaction guarantee." schema={[faqSchema(all)]}>
+  <PageHero
+    eyebrow="FAQ"
+    title="Everything you need to know."
+    subtitle="Straight answers to the questions we hear most. Don't see yours? Text or call us."
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'FAQ' }]}
+  />
+  {groups.map((g, i) => (
+    <FaqList faqs={g.faqs} heading={g.heading} eyebrow="FAQ" bg={i % 2 ? 'bg-brand-light' : 'bg-white'} />
+  ))}
+</Layout>

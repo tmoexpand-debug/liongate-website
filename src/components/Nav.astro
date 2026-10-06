@@ -1,79 +1,95 @@
 ---
-const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Reviews', href: '/reviews' },
+import { business, services, cities, cityHref, primaryCtaHref } from '../data/site';
+
+const links = [
+  { label: 'Pricing', href: '/pricing/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Reviews', href: '/reviews/' },
+  { label: 'Blog', href: '/blog/' },
 ];
-const currentPath = Astro.url.pathname;
+const linkClass = 'whitespace-nowrap text-brand-body hover:text-brand-medium font-semibold text-[0.95rem] transition-colors';
 ---
 
-<nav class="bg-brand-dark sticky top-0 z-50 shadow-lg">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <!-- Logo -->
-      <div class="flex-shrink-0">
-        <a href="/">
-          <div class="bg-white rounded-full p-2 inline-flex items-center justify-center">
-            <img src="/logo-color.png" alt="Lion Gate Pest" class="h-10 w-auto" />
-          </div>
-        </a>
-      </div>
+<nav class="bg-white/95 backdrop-blur sticky top-0 z-50 border-b border-gray-200">
+  <div class="container-site">
+    <div class="flex items-center justify-between h-20 gap-6">
+      <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="Lion Gate Pest Control home">
+        <img src="/logo-color.png" alt="Lion Gate Pest Control" class="h-14 w-auto" />
+      </a>
 
       <!-- Desktop nav -->
-      <div class="hidden md:flex items-center space-x-2">
-        <a href="/" class="text-white hover:text-green-200 px-3 py-2 text-sm font-semibold uppercase tracking-wider transition-colors">Home</a>
-
-        <!-- Services dropdown -->
-        <div class="nav-dropdown-parent relative px-3 py-2">
-          <button class="text-white hover:text-green-200 text-sm font-semibold uppercase tracking-wider transition-colors flex items-center gap-1 focus:outline-none">
+      <div class="hidden xl:flex items-center gap-7">
+        <div class="site-dropdown-parent relative py-2">
+          <a href="/services/" class={`${linkClass} flex items-center gap-1`}>
             Services
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-            </svg>
-          </button>
-          <div class="nav-dropdown">
-            <a href="/pest-control">Pest Control</a>
-            <a href="/rodent-control">Rodent Control</a>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+          <div class="site-dropdown">
+            <div class="site-dropdown-inner">
+              {services.map((s) => <a href={s.href}>{s.icon} {s.name}</a>)}
+              <a href="/services/" class="!text-brand-medium">All services →</a>
+              <a href="/common-pests/" class="!text-brand-medium">Common pests →</a>
+            </div>
           </div>
         </div>
 
-        <a href="/reviews" class="text-white hover:text-green-200 px-3 py-2 text-sm font-semibold uppercase tracking-wider transition-colors">Reviews</a>
-        <a href="/contact" class="text-white hover:text-green-200 px-3 py-2 text-sm font-semibold uppercase tracking-wider transition-colors">Contact</a>
+        <div class="site-dropdown-parent relative py-2">
+          <a href="/service-areas/" class={`${linkClass} flex items-center gap-1`}>
+            Service Areas
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </a>
+          <div class="site-dropdown cols-2">
+            <div class="site-dropdown-inner">
+              {cities.map((c) => <a href={cityHref(c)}>{c.name}</a>)}
+              <a href="/service-areas/" class="!text-brand-medium">All areas →</a>
+            </div>
+          </div>
+        </div>
 
-        <a href="sms:+18183534800?&body=SAVE50" class="ml-4 btn-sms text-sm py-2 px-5">
-          Get 50% Off
+        {links.map((l) => <a href={l.href} class={linkClass}>{l.label}</a>)}
+      </div>
+
+      <div class="hidden xl:flex items-center gap-3 flex-shrink-0">
+        <a href={primaryCtaHref} class="btn-primary text-sm">Protect My Home</a>
+        <a href={business.phoneHref} class="btn-outline text-sm !py-2.5">
+          {business.phone}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </a>
       </div>
 
-      <!-- Mobile hamburger -->
-      <div class="md:hidden">
-        <button id="hamburger" class="text-white focus:outline-none p-2" aria-label="Toggle menu">
-          <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-          <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
+      <!-- Mobile hamburger (+ CTA on tablets) -->
+      <a href={primaryCtaHref} class="btn-primary text-sm hidden md:inline-flex xl:hidden ml-auto">Protect My Home</a>
+      <button id="hamburger" class="xl:hidden text-brand-dark p-2" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg id="hamburger-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="close-icon" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
     </div>
   </div>
 
   <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-green-700">
-    <div class="px-4 pt-2 pb-4 space-y-1">
-      <a href="/" class="block text-white font-semibold uppercase tracking-wider py-3 border-b border-green-700 text-sm">Home</a>
-      <div class="py-2 border-b border-green-700">
-        <p class="text-green-300 font-semibold uppercase tracking-wider text-xs mb-2">Services</p>
-        <a href="/pest-control" class="block text-white font-semibold uppercase tracking-wider py-2 pl-3 text-sm">→ Pest Control</a>
-        <a href="/rodent-control" class="block text-white font-semibold uppercase tracking-wider py-2 pl-3 text-sm">→ Rodent Control</a>
-      </div>
-      <a href="/reviews" class="block text-white font-semibold uppercase tracking-wider py-3 border-b border-green-700 text-sm">Reviews</a>
-      <a href="/contact" class="block text-white font-semibold uppercase tracking-wider py-3 border-b border-green-700 text-sm">Contact</a>
-      <div class="pt-3">
-        <a href="sms:+18183534800?&body=SAVE50" class="btn-sms w-full text-center block text-sm">
-          Text SAVE50 — Get 50% Off
-        </a>
+  <div id="mobile-menu" class="hidden xl:hidden border-t border-gray-200 bg-white max-h-[calc(100vh-5rem)] overflow-y-auto">
+    <div class="px-4 py-4 space-y-1">
+      <details class="border-b border-gray-100" open>
+        <summary class="py-3 font-bold text-brand-dark cursor-pointer">Services</summary>
+        <div class="pb-3 pl-3 space-y-1">
+          {services.map((s) => <a href={s.href} class="block py-2 font-semibold">{s.icon} {s.name}</a>)}
+          <a href="/services/" class="block py-2 font-semibold text-brand-medium">All services →</a>
+          <a href="/common-pests/" class="block py-2 font-semibold text-brand-medium">Common pests →</a>
+        </div>
+      </details>
+      <details class="border-b border-gray-100">
+        <summary class="py-3 font-bold text-brand-dark cursor-pointer">Service Areas</summary>
+        <div class="pb-3 pl-3 grid grid-cols-2 gap-x-2">
+          {cities.map((c) => <a href={cityHref(c)} class="block py-2 font-semibold text-sm">{c.name}</a>)}
+          <a href="/service-areas/" class="block py-2 font-semibold text-sm text-brand-medium">All areas →</a>
+        </div>
+      </details>
+      {[...links, { label: 'FAQ', href: '/faq/' }, { label: 'Contact', href: '/contact/' }].map((l) => (
+        <a href={l.href} class="block py-3 font-bold text-brand-dark border-b border-gray-100">{l.label}</a>
+      ))}
+      <div class="pt-4 grid gap-3">
+        <a href={primaryCtaHref} class="btn-primary w-full">Protect My Home</a>
+        <a href={business.phoneHref} class="btn-outline w-full">Call {business.phone}</a>
       </div>
     </div>
   </div>
@@ -86,15 +102,9 @@ const currentPath = Astro.url.pathname;
   const closeIcon = document.getElementById('close-icon');
 
   hamburger?.addEventListener('click', () => {
-    const isOpen = !mobileMenu?.classList.contains('hidden');
-    if (isOpen) {
-      mobileMenu?.classList.add('hidden');
-      hamburgerIcon?.classList.remove('hidden');
-      closeIcon?.classList.add('hidden');
-    } else {
-      mobileMenu?.classList.remove('hidden');
-      hamburgerIcon?.classList.add('hidden');
-      closeIcon?.classList.remove('hidden');
-    }
+    const open = mobileMenu?.classList.toggle('hidden') === false;
+    hamburgerIcon?.classList.toggle('hidden', open);
+    closeIcon?.classList.toggle('hidden', !open);
+    hamburger.setAttribute('aria-expanded', String(open));
   });
 </script>

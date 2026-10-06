@@ -94,3 +94,87 @@
 #pest-modal.open {
   display: flex;
 }
+
+/* ------------------------------------------------------------------
+   Main-site design system (pages using Layout.astro, body.site).
+   Scoped so the Google Ads landing pages (LandingLayout) keep their look.
+   ------------------------------------------------------------------ */
+.site h1, .site h2, .site h3, .site h4, .site h5, .site h6 {
+  text-transform: none;
+  letter-spacing: -0.01em;
+}
+.site { background: #fff; }
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-brand-dark text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:bg-brand-medium hover:shadow-lg;
+  }
+  .btn-primary-lg {
+    @apply inline-flex items-center justify-center gap-2 bg-brand-dark text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-200 hover:bg-brand-medium hover:shadow-xl;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-brand-dark text-brand-dark font-bold py-3 px-6 rounded-full transition-all duration-200 hover:bg-brand-dark hover:text-white;
+  }
+  .btn-light {
+    @apply inline-flex items-center justify-center gap-2 bg-white text-brand-dark font-bold py-3 px-6 rounded-full transition-all duration-200 hover:bg-brand-light hover:shadow-lg;
+  }
+  .btn-ghost-light {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-white/70 text-white font-bold py-3 px-6 rounded-full transition-all duration-200 hover:bg-white hover:text-brand-dark;
+  }
+  .eyebrow {
+    @apply text-brand-medium font-bold uppercase tracking-widest text-xs md:text-sm;
+  }
+  .h-display {
+    @apply text-4xl md:text-6xl font-extrabold leading-[1.05];
+  }
+  .h-section {
+    @apply text-3xl md:text-5xl font-extrabold text-brand-dark leading-tight;
+  }
+  .lead {
+    @apply text-lg text-gray-600 leading-relaxed;
+  }
+  .card {
+    @apply bg-white rounded-3xl border border-gray-200 shadow-sm;
+  }
+  .container-site {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .prose-lg-site p { @apply mb-5 leading-relaxed text-gray-700 text-lg; }
+  .prose-lg-site h2 { @apply text-2xl md:text-3xl font-extrabold text-brand-dark mt-10 mb-4; }
+  .prose-lg-site h3 { @apply text-xl font-bold text-brand-dark mt-8 mb-3; }
+  .prose-lg-site ul { @apply list-disc pl-6 mb-5 space-y-2 text-gray-700 text-lg; }
+  .prose-lg-site ol { @apply list-decimal pl-6 mb-5 space-y-2 text-gray-700 text-lg; }
+  .prose-lg-site a { @apply text-brand-medium font-semibold underline underline-offset-2 hover:text-brand-dark; }
+  .prose-lg-site strong { @apply text-brand-body; }
+}
+
+/* White-nav dropdowns */
+.site-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -1rem;
+  padding-top: 0.75rem;
+  min-width: 240px;
+  z-index: 100;
+}
+.site-dropdown-inner {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 1rem;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  padding: 0.5rem;
+}
+.site-dropdown a {
+  display: block;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #1A1A1A;
+}
+.site-dropdown a:hover { background: #EAF2EC; color: #2D5A3D; }
+.site-dropdown-parent:hover .site-dropdown,
+.site-dropdown-parent:focus-within .site-dropdown { display: block; }
+.site-dropdown.cols-2 { min-width: 440px; }
+.site-dropdown.cols-2 .site-dropdown-inner { display: grid; grid-template-columns: 1fr 1fr; }

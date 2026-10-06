@@ -1,0 +1,43 @@
+---
+import { services } from '../data/site';
+
+interface Props {
+  /** Hide the card for the page you're already on */
+  exclude?: string;
+  heading?: string;
+  eyebrow?: string;
+  /** Appended to card titles, e.g. "in Burbank" */
+  suffix?: string;
+}
+const { exclude, heading = 'Explore our services', eyebrow = 'What we do', suffix } = Astro.props;
+const list = services.filter((s) => s.slug !== exclude);
+---
+<section class="py-20 px-4">
+  <div class="container-site">
+    <div class="text-center mb-12">
+      <p class="eyebrow mb-3">{eyebrow}</p>
+      <h2 class="h-section">{heading}</h2>
+    </div>
+    <div class={`grid gap-6 sm:grid-cols-2 ${list.length === 4 ? 'lg:grid-cols-4' : 'lg:grid-cols-3'}`}>
+      {list.map((s) => (
+        <a href={s.href} class="group card overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
+          <div class="aspect-[4/3] overflow-hidden bg-brand-dark diagonal-stripe flex items-center justify-center">
+            {s.image
+              ? <img src={s.image} alt={s.name} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              : <span class="text-7xl" aria-hidden="true">{s.icon}</span>}
+          </div>
+          <div class="p-6 flex flex-col flex-1">
+            <h3 class="text-xl font-extrabold text-brand-dark mb-2">{s.name}{suffix && <span class="sr-only"> {suffix}</span>}</h3>
+            <p class="text-gray-600 text-sm leading-relaxed flex-1">{s.summary}</p>
+            <div class="mt-5 flex items-center justify-between">
+              <span class="text-sm font-bold text-brand-medium">
+                {s.price.amount ? `From ${s.price.amount}${s.price.unit}` : s.price.label}
+              </span>
+              <span class="w-9 h-9 rounded-full bg-brand-light text-brand-dark flex items-center justify-center group-hover:bg-brand-dark group-hover:text-white transition-colors" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

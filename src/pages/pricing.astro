@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PricingCards from '../components/PricingCards.astro';
+import FaqList from '../components/FaqList.astro';
+import { faqSchema } from '../data/site';
+
+const factors = [
+  { title: 'Size of your home & lot', text: 'Larger homes and yards take more product and more time to treat properly.' },
+  { title: 'Type of pest', text: 'Ants and spiders are handled on a routine visit. Rodents and termites need an inspection first.' },
+  { title: 'How bad the problem is', text: 'An active infestation may need an initial clean-out visit before regular service.' },
+  { title: 'How often we visit', text: 'Recurring plans cost less per visit than one-time treatments and keep pests from coming back.' },
+];
+
+const faqs = [
+  { q: 'What does "starting at" mean?', a: 'It is the price for a typical single-family home. We confirm your exact price before any work starts, based on your home and the problem — no surprises on the bill.' },
+  { q: 'Why do rodent and termite services start with an inspection?', a: 'Every rodent and termite problem is different. A free inspection lets us find how rodents are getting in or what kind of termites you have, so we can quote the work that is actually needed instead of guessing.' },
+  { q: 'Is there a contract?', a: 'Our recurring plans are service agreements. Promotional discounts, like 50% off your first service, require a 12-month service agreement, and we tell you that up front.' },
+  { q: 'What if pests come back between visits?', a: 'Recurring customers are covered by our satisfaction guarantee: if pests come back between scheduled visits, we come back and re-treat at no charge.' },
+];
+---
+<Layout title="Pest Control Pricing" description="Honest starting prices for Los Angeles pest control: general pest from $50/mo, mosquito control from $120/mo, and free rodent and termite inspections." schema={[faqSchema(faqs)]}>
+  <section class="px-4 pt-16 pb-4 text-center">
+    <div class="max-w-3xl mx-auto">
+      <nav aria-label="Breadcrumb" class="text-sm text-gray-500 mb-6"><a href="/" class="hover:text-brand-medium">Home</a><span class="mx-2">/</span>Pricing</nav>
+      <p class="eyebrow mb-3">Pricing</p>
+      <h1 class="h-display text-brand-dark">Sign up for a pest-free home.</h1>
+      <p class="lead mt-6">Simple starting prices, free inspections where they're needed, and a firm quote before any work begins.</p>
+    </div>
+  </section>
+
+  <PricingCards heading="Our prices" />
+
+  <section class="py-20 px-4">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">No surprises</p>
+        <h2 class="h-section">What affects your price</h2>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {factors.map((f, i) => (
+          <div class="card p-7">
+            <span class="w-10 h-10 rounded-full bg-brand-light text-brand-dark font-extrabold flex items-center justify-center mb-4">{i + 1}</span>
+            <h3 class="font-extrabold text-brand-dark mb-2">{f.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">{f.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <FaqList faqs={faqs} heading="Pricing questions" bg="bg-brand-light" />
+</Layout>

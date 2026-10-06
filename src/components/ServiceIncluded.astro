@@ -1,0 +1,44 @@
+---
+// "What's included" block shared by the four service pages.
+interface Props {
+  heading?: string;
+  included: string[];
+  includedTitle?: string;
+  excluded?: string[];
+  note?: { title: string; text: string; linkText?: string; href?: string };
+}
+const { heading = "What's included?", included, includedTitle = 'We treat', excluded = [], note } = Astro.props;
+---
+<section class="py-20 px-4">
+  <div class="container-site">
+    <div class="text-center mb-12">
+      <p class="eyebrow mb-3">Service details</p>
+      <h2 class="h-section">{heading}</h2>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="card p-8 md:p-10">
+        <h3 class="text-xl font-extrabold text-brand-dark mb-6">{includedTitle}</h3>
+        <ul class="grid sm:grid-cols-2 gap-3">
+          {included.map((i) => <li class="flex gap-2 font-semibold text-gray-700"><span class="text-brand-medium font-bold">✓</span>{i}</li>)}
+        </ul>
+      </div>
+      <div class="space-y-6">
+        {excluded.length > 0 && (
+          <div class="card p-8 md:p-10 bg-gray-50">
+            <h3 class="text-xl font-extrabold text-brand-dark mb-6">Not included</h3>
+            <ul class="space-y-3">
+              {excluded.map((e) => <li class="flex gap-2 text-gray-600"><span class="text-gray-400 font-bold">✕</span>{e}</li>)}
+            </ul>
+          </div>
+        )}
+        {note && (
+          <div class="rounded-3xl bg-brand-dark diagonal-stripe text-white p-8 md:p-10">
+            <h3 class="text-xl font-extrabold mb-3">{note.title}</h3>
+            <p class="text-green-100/85 leading-relaxed">{note.text}</p>
+            {note.href && <a href={note.href} class="inline-block mt-5 font-bold text-yellow-300 hover:text-white">{note.linkText} →</a>}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
