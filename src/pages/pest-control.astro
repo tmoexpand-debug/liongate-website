@@ -7,7 +7,7 @@ import PestActivityChart from '../components/PestActivityChart.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import FaqList from '../components/FaqList.astro';
 import ServiceCards from '../components/ServiceCards.astro';
-import { services, cities, faqSchema, serviceSchema, smsHref } from '../data/site';
+import { services, cities, faqSchema, serviceSchema, smsHref, promo } from '../data/site';
 
 const included = [
   'Ants (all species)', 'Cockroaches', 'Spiders', 'Fleas', 'Flies & Gnats', 'Wasps & Hornets',
@@ -44,6 +44,7 @@ const faqs = [
 ];
 
 const service = services.find((s) => s.slug === 'pest-control')!;
+const plans = services.filter((s) => s.slug.endsWith('pest-control'));
 ---
 
 <Layout title="Pest Control Services" description="Professional pest control services in Los Angeles. We treat 40+ pests including ants, cockroaches, spiders, wasps, and more. 100% satisfaction guarantee." image="/pest-control-hero.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
@@ -57,6 +58,30 @@ const service = services.find((s) => s.slug === 'pest-control')!;
   >
     <PriceBadge slug="pest-control" />
   </PageHero>
+
+  <section id="plans" class="py-20 px-4 bg-brand-light scroll-mt-24">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">Choose your plan</p>
+        <h2 class="h-section">General or Premium?</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+        {plans.map((p, i) => (
+          <div class={`card p-8 md:p-10 flex flex-col ${i === 1 ? 'ring-2 ring-brand-medium' : ''}`}>
+            <h3 class="text-2xl font-extrabold text-brand-dark">{p.name}</h3>
+            <p class="text-gray-500 mb-6">{p.tagline}</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-500">{p.price.label}</p>
+            <p class="text-5xl font-extrabold text-brand-dark mb-6">{p.price.amount}<span class="text-xl font-bold text-gray-500">{p.price.unit}</span></p>
+            <p class="text-gray-600 mb-6">{p.summary}</p>
+            <ul class="space-y-2 mb-8 flex-1">
+              {p.features.map((f) => <li class="flex gap-2"><span class="text-brand-medium font-bold">✓</span>{f}</li>)}
+            </ul>
+            <a href={smsHref(promo.active ? promo.code : `Hi, I'd like ${p.name}`)} class="btn-primary w-full">Get Started</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <ServiceIncluded
     included={included}
@@ -87,5 +112,5 @@ const service = services.find((s) => s.slug === 'pest-control')!;
 
   <FaqList faqs={faqs} heading="Pest control questions" />
 
-  <ServiceCards exclude="pest-control" heading="Explore our other services" />
+  <ServiceCards exclude={['pest-control', 'premium-pest-control']} heading="Explore our other services" />
 </Layout>

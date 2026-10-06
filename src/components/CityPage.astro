@@ -16,7 +16,7 @@ const nearby = cities.filter((c) => c.slug !== city.slug);
 const faqs = [
   { q: `Do you offer pest control in ${city.name}?`, a: `Yes. Lion Gate provides general pest control, rodent control, mosquito control, and termite services to homes throughout ${city.name}, including ${city.areas.slice(0, 3).join(', ')}, and nearby neighborhoods.` },
   { q: `How soon can you come out to ${short}?`, a: 'In most cases we can schedule your first visit within 24–48 hours. Text or call us and we\'ll find a time that works.' },
-  { q: `How much does pest control cost in ${short}?`, a: `General pest control starts at ${services[0].price.amount}${services[0].price.unit}. Rodent and termite work starts with a free inspection, and we give you a firm quote before any work begins.` },
+  { q: `How much does pest control cost in ${short}?`, a: `General pest control starts at ${services[0].price.amount}${services[0].price.unit}, and Premium pest control at ${services[1].price.amount}${services[1].price.unit}. Rodent and termite work starts with a free inspection, and we give you a firm quote before any work begins.` },
 ];
 
 const serviceSchema = {

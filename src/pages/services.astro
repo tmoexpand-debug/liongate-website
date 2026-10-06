@@ -33,7 +33,7 @@ import { services, smsHref } from '../data/site';
             <div class="flex flex-wrap items-center gap-4">
               <a href={s.href} class="btn-primary">Learn more</a>
               <a href={smsHref(`Hi, I'd like a quote for ${s.name.toLowerCase()}`)} class="btn-outline">Get a quote</a>
-              <span class="font-bold text-brand-medium">{s.price.amount ? `From ${s.price.amount}${s.price.unit}` : s.price.label}</span>
+              <span class="font-bold text-brand-medium">{s.price.amount ? `Starting at ${s.price.amount}${s.price.unit}` : s.price.label}</span>
             </div>
           </div>
         </article>

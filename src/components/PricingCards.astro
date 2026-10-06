@@ -16,9 +16,9 @@ const Tag = asH1 ? 'h1' : 'h2';
       <Tag class={asH1 ? 'h-display text-brand-dark' : 'h-section'}>{heading}</Tag>
       <p class="lead mt-4 max-w-2xl mx-auto">Every home is different. Your exact price depends on the size of your property and the pest problem — we'll confirm it before any work starts.</p>
     </div>
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {services.map((s, i) => (
-        <div class={`card p-8 flex flex-col ${i === 0 ? 'ring-2 ring-brand-medium relative' : ''}`}>
+        <div class={`card p-6 flex flex-col ${i === 0 ? 'ring-2 ring-brand-medium relative' : ''}`}>
           {i === 0 && <span class="absolute -top-3 left-8 bg-brand-medium text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Most popular</span>}
           <h3 class="text-lg font-extrabold text-brand-dark">{s.name}</h3>
           <p class="text-sm text-gray-500 mb-6">{s.tagline}</p>
@@ -30,7 +30,7 @@ const Tag = asH1 ? 'h1' : 'h2';
           <ul class="space-y-2 text-sm mb-8 flex-1">
             {s.features.map((f) => <li class="flex gap-2"><span class="text-brand-medium font-bold">✓</span>{f}</li>)}
           </ul>
-          <a href={smsHref(promo.active && s.slug === 'pest-control' ? promo.code : `Hi, I'd like a quote for ${s.name.toLowerCase()}`)} class="btn-primary w-full">
+          <a href={smsHref(promo.active && s.slug.includes('pest-control') ? promo.code : `Hi, I'd like a quote for ${s.name.toLowerCase()}`)} class="btn-primary w-full whitespace-nowrap !px-4">
             {s.price.amount ? 'Get Started' : 'Book Inspection'}
           </a>
           <a href={s.href} class="text-center text-sm font-semibold text-brand-medium mt-3 hover:text-brand-dark">Learn more →</a>
