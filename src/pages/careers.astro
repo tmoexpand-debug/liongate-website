@@ -1,13 +1,14 @@
 ---
+import Icon from '../components/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import { business } from '../data/site';
 
 const perks = [
-  { icon: '📈', title: 'Room to grow', text: "We're expanding, and we promote from within." },
-  { icon: '🎓', title: 'Paid training', text: 'We help trainees prepare for their California Structural Pest Control license.' },
-  { icon: '🚚', title: 'Steady routes', text: 'Recurring customers mean a predictable schedule, Monday through Friday.' },
-  { icon: '🏡', title: 'Family-owned', text: "A small team where your work is noticed and you're more than a number." },
+  { icon: 'trend', title: 'Room to grow', text: "We're expanding, and we promote from within." },
+  { icon: 'cap', title: 'Paid training', text: 'We help trainees prepare for their California Structural Pest Control license.' },
+  { icon: 'truck', title: 'Steady routes', text: 'Recurring customers mean a predictable schedule, Monday through Friday.' },
+  { icon: 'home', title: 'Family-owned', text: "A small team where your work is noticed and you're more than a number." },
 ];
 
 const looking = [
@@ -40,7 +41,7 @@ const applyHref = `mailto:${business.email}?subject=${encodeURIComponent('Career
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {perks.map((p) => (
           <div class="card p-7">
-            <div class="text-4xl mb-4" aria-hidden="true">{p.icon}</div>
+            <div class="w-12 h-12 rounded-2xl bg-brand-light text-brand-medium flex items-center justify-center mb-4"><Icon name={p.icon} /></div>
             <h3 class="font-extrabold text-brand-dark mb-2">{p.title}</h3>
             <p class="text-sm text-gray-600 leading-relaxed">{p.text}</p>
           </div>

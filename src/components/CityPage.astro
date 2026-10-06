@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 // Shared body for the flat service-area pages in src/pages/service-areas/.
 // Each city's copy lives in src/data/site.ts so every page stays unique.
 import Layout from '../layouts/Layout.astro';
@@ -54,7 +55,7 @@ const serviceSchema = {
         <div class="card p-8 bg-brand-light border-none">
           <h3 class="text-xl font-extrabold text-brand-dark mb-4">Neighborhoods we serve in {short}</h3>
           <ul class="grid grid-cols-2 gap-2 text-gray-700">
-            {city.areas.map((a) => <li class="flex gap-2"><span class="text-brand-medium">📍</span>{a}</li>)}
+            {city.areas.map((a) => <li class="flex gap-2"><Icon name="pin" class="w-5 h-5 flex-shrink-0 text-brand-medium mt-0.5" />{a}</li>)}
           </ul>
           <p class="text-sm text-gray-500 mt-5">Don't see your street? Call {business.phone} — we likely cover you.</p>
         </div>

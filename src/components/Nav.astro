@@ -1,4 +1,5 @@
 ---
+import Icon from './Icon.astro';
 import { business, services, cities, cityHref, primaryCtaHref } from '../data/site';
 
 const links = [
@@ -26,7 +27,7 @@ const linkClass = 'whitespace-nowrap text-brand-body hover:text-brand-medium fon
           </a>
           <div class="site-dropdown">
             <div class="site-dropdown-inner">
-              {services.map((s) => <a href={s.href}>{s.icon} {s.name}</a>)}
+              {services.map((s) => <a href={s.href}><span class="inline-flex items-center gap-2.5"><Icon name={s.icon} class="w-5 h-5 text-brand-medium" />{s.name}</span></a>)}
               <a href="/services/" class="!text-brand-medium">All services →</a>
               <a href="/common-pests/" class="!text-brand-medium">Common pests →</a>
             </div>
@@ -72,7 +73,7 @@ const linkClass = 'whitespace-nowrap text-brand-body hover:text-brand-medium fon
       <details class="border-b border-gray-100" open>
         <summary class="py-3 font-bold text-brand-dark cursor-pointer">Services</summary>
         <div class="pb-3 pl-3 space-y-1">
-          {services.map((s) => <a href={s.href} class="block py-2 font-semibold">{s.icon} {s.name}</a>)}
+          {services.map((s) => <a href={s.href} class="flex items-center gap-2.5 py-2 font-semibold"><Icon name={s.icon} class="w-5 h-5 text-brand-medium" />{s.name}</a>)}
           <a href="/services/" class="block py-2 font-semibold text-brand-medium">All services →</a>
           <a href="/common-pests/" class="block py-2 font-semibold text-brand-medium">Common pests →</a>
         </div>

@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import ServiceCards from '../components/ServiceCards.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
@@ -10,12 +11,12 @@ import { business, promo, primaryCtaHref, workPhotos, faqSchema } from '../data/
 const years = new Date().getFullYear() - business.foundingYear;
 
 const reasons = [
-  { icon: '🏡', title: 'Family owned', text: `A small local team protecting LA homes since ${business.foundingYear}. You'll see the same technicians visit after visit.` },
-  { icon: '🛡️', title: '100% satisfaction guarantee', text: "If pests come back between scheduled visits, we come back too — at no charge." },
-  { icon: '🐾', title: 'Family & pet friendly', text: "EPA-registered products, applied carefully, with clear instructions for kids and pets before we start." },
-  { icon: '📜', title: 'Licensed & insured', text: `Licensed by the California Structural Pest Control Board (Reg. ${business.spcbRegistration}) and fully insured.` },
-  { icon: '💬', title: 'Fast, real replies', text: 'Text us and a real person replies — usually within minutes during business hours.' },
-  { icon: '🤝', title: 'Honest recommendations', text: "We tell you what you need — and what you don't. No upselling, no scare tactics." },
+  { icon: 'home', title: 'Family owned', text: `A small local team protecting LA homes since ${business.foundingYear}. You'll see the same technicians visit after visit.` },
+  { icon: 'shield', title: '100% satisfaction guarantee', text: "If pests come back between scheduled visits, we come back too — at no charge." },
+  { icon: 'paw', title: 'Family & pet friendly', text: "EPA-registered products, applied carefully, with clear instructions for kids and pets before we start." },
+  { icon: 'certificate', title: 'Licensed & insured', text: `Licensed by the California Structural Pest Control Board (Reg. ${business.spcbRegistration}) and fully insured.` },
+  { icon: 'chat', title: 'Fast, real replies', text: 'Text us and a real person replies — usually within minutes during business hours.' },
+  { icon: 'badge', title: 'Honest recommendations', text: "We tell you what you need — and what you don't. No upselling, no scare tactics." },
 ];
 
 const pests = ['Ants', 'Cockroaches', 'Spiders', 'Rats & Mice', 'Mosquitoes', 'Termites', 'Fleas', 'Wasps', 'Silverfish', 'Earwigs', 'Crickets', 'Ticks'];
@@ -94,7 +95,7 @@ const faqs = [
         <div class="grid sm:grid-cols-2 gap-6">
           {reasons.map((r) => (
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-brand-light flex items-center justify-center text-2xl mb-3" aria-hidden="true">{r.icon}</div>
+              <div class="w-12 h-12 rounded-2xl bg-brand-light text-brand-medium flex items-center justify-center mb-3"><Icon name={r.icon} /></div>
               <h3 class="font-extrabold text-brand-dark mb-1">{r.title}</h3>
               <p class="text-sm text-gray-600 leading-relaxed">{r.text}</p>
             </div>

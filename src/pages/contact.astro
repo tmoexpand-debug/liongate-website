@@ -1,12 +1,13 @@
 ---
+import Icon from '../components/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import { business, promo, primaryCtaHref, cities, cityHref } from '../data/site';
 
 const methods = [
-  { icon: '💬', title: 'Text us', value: business.phone, href: primaryCtaHref, note: 'Fastest — we usually reply within minutes during business hours' },
-  { icon: '📞', title: 'Call us', value: business.phone, href: business.phoneHref, note: business.hours },
-  { icon: '✉️', title: 'Email us', value: business.email, href: `mailto:${business.email}`, note: 'We reply within one business day' },
+  { icon: 'chat', title: 'Text us', value: business.phone, href: primaryCtaHref, note: 'Fastest — we usually reply within minutes during business hours' },
+  { icon: 'phone', title: 'Call us', value: business.phone, href: business.phoneHref, note: business.hours },
+  { icon: 'mail', title: 'Email us', value: business.email, href: `mailto:${business.email}`, note: 'We reply within one business day' },
 ];
 ---
 
@@ -27,7 +28,7 @@ const methods = [
         <div class="space-y-4">
           {methods.map((m) => (
             <a href={m.href} class="card p-6 flex items-start gap-5 hover:shadow-lg transition-shadow">
-              <span class="w-14 h-14 flex-shrink-0 rounded-2xl bg-brand-light flex items-center justify-center text-2xl" aria-hidden="true">{m.icon}</span>
+              <span class="w-14 h-14 flex-shrink-0 rounded-2xl bg-brand-light text-brand-medium flex items-center justify-center"><Icon name={m.icon} class="w-7 h-7" /></span>
               <span>
                 <span class="block text-sm font-bold uppercase tracking-wider text-gray-500">{m.title}</span>
                 <span class="block text-xl font-extrabold text-brand-dark break-all">{m.value}</span>

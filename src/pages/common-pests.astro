@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import { services } from '../data/site';
@@ -6,20 +7,20 @@ import { services } from '../data/site';
 const svc = Object.fromEntries(services.map((s) => [s.slug, s]));
 
 const pests = [
-  { name: 'Argentine Ants', icon: '🐜', service: 'pest-control', text: "LA's most common household ant. Small, dark brown, and found in long trails. Colonies move indoors during heat waves and after rain looking for water and sweets.", signs: 'Trails along counters, baseboards, and window sills' },
-  { name: 'German Cockroaches', icon: '🪳', service: 'pest-control', text: 'Small, light-brown roaches that live indoors — especially in kitchens and bathrooms. They reproduce quickly and spread between units in multi-family buildings.', signs: 'Pepper-like droppings in cabinets, roaches at night' },
-  { name: 'American Cockroaches', icon: '🪳', service: 'pest-control', text: 'Large reddish-brown roaches that live in sewers, drains, and damp areas, then wander into homes — especially in coastal neighborhoods.', signs: 'Large roaches near drains, garages, and water heaters' },
-  { name: 'Black Widow Spiders', icon: '🕷️', service: 'pest-control', text: 'Shiny black spiders with a red hourglass. Common across LA in garages, block walls, woodpiles, and outdoor furniture. Their bite is medically significant.', signs: 'Messy, tangled webs low to the ground in dark corners' },
-  { name: 'Roof Rats', icon: '🐀', service: 'rodent-control', text: 'Agile climbers that travel along power lines, fences, and trees — then nest in attics. Fruit trees, palms, and ivy are their favorite habitats.', signs: 'Noises in the attic at night, hollowed-out fruit' },
-  { name: 'House Mice', icon: '🐁', service: 'rodent-control', text: 'Small rodents that can squeeze through a dime-sized gap. They nest in walls, cabinets, and garages and contaminate food and surfaces.', signs: 'Small droppings in drawers, gnawed food packaging' },
-  { name: 'Ankle-Biter Mosquitoes', icon: '🦟', service: 'mosquito-control', text: 'Invasive Aedes mosquitoes that bite during the day, stay low, and breed in tiny amounts of water. Now established across Los Angeles County.', signs: 'Daytime bites around ankles in shady areas' },
-  { name: 'Drywood Termites', icon: '🪵', service: 'termite-control', text: 'Termites that live entirely inside wood — framing, eaves, window frames, and furniture. Common throughout Southern California.', signs: 'Small piles of sand-like pellets, tiny holes in wood' },
-  { name: 'Subterranean Termites', icon: '🪵', service: 'termite-control', text: 'Termites that live in the soil and travel into homes through mud tubes. They can cause serious structural damage before they are noticed.', signs: 'Mud tubes on foundations, spring swarms' },
-  { name: 'Fleas', icon: '🐕', service: 'pest-control', text: 'Tiny jumping insects that hitch a ride on pets and wildlife. Infestations can build quickly in carpets, pet bedding, and shady yards.', signs: 'Itchy pets, bites around ankles, specks in pet bedding' },
-  { name: 'Yellowjackets & Wasps', icon: '🐝', service: 'pest-control', text: 'Paper wasps build nests under eaves; yellowjackets often nest in the ground or in wall voids and get aggressive around food in late summer.', signs: 'Nests under eaves, wasps going in and out of a hole' },
-  { name: 'Silverfish', icon: '🐛', service: 'pest-control', text: 'Silvery, wingless insects that love moisture. They feed on paper, glue, and fabric and are common in bathrooms, closets, and garages.', signs: 'Damaged paper or fabric, insects in sinks and tubs' },
-  { name: 'Earwigs', icon: '🐞', service: 'pest-control', text: 'Brown insects with pincers on their tails. Harmless to people but they invade homes and gardens in damp weather.', signs: 'Insects under doormats, in damp areas, and in plants' },
-  { name: 'Crickets', icon: '🦗', service: 'pest-control', text: 'Field and house crickets move indoors in fall when nights cool down, and their chirping can keep you up at night.', signs: 'Chirping at night, crickets in garages and basements' },
+  { name: 'Argentine Ants', icon: 'bug', service: 'pest-control', text: "LA's most common household ant. Small, dark brown, and found in long trails. Colonies move indoors during heat waves and after rain looking for water and sweets.", signs: 'Trails along counters, baseboards, and window sills' },
+  { name: 'German Cockroaches', icon: 'bug', service: 'pest-control', text: 'Small, light-brown roaches that live indoors — especially in kitchens and bathrooms. They reproduce quickly and spread between units in multi-family buildings.', signs: 'Pepper-like droppings in cabinets, roaches at night' },
+  { name: 'American Cockroaches', icon: 'bug', service: 'pest-control', text: 'Large reddish-brown roaches that live in sewers, drains, and damp areas, then wander into homes — especially in coastal neighborhoods.', signs: 'Large roaches near drains, garages, and water heaters' },
+  { name: 'Black Widow Spiders', icon: 'bug', service: 'pest-control', text: 'Shiny black spiders with a red hourglass. Common across LA in garages, block walls, woodpiles, and outdoor furniture. Their bite is medically significant.', signs: 'Messy, tangled webs low to the ground in dark corners' },
+  { name: 'Roof Rats', icon: 'rodent', service: 'rodent-control', text: 'Agile climbers that travel along power lines, fences, and trees — then nest in attics. Fruit trees, palms, and ivy are their favorite habitats.', signs: 'Noises in the attic at night, hollowed-out fruit' },
+  { name: 'House Mice', icon: 'rodent', service: 'rodent-control', text: 'Small rodents that can squeeze through a dime-sized gap. They nest in walls, cabinets, and garages and contaminate food and surfaces.', signs: 'Small droppings in drawers, gnawed food packaging' },
+  { name: 'Ankle-Biter Mosquitoes', icon: 'droplet', service: 'mosquito-control', text: 'Invasive Aedes mosquitoes that bite during the day, stay low, and breed in tiny amounts of water. Now established across Los Angeles County.', signs: 'Daytime bites around ankles in shady areas' },
+  { name: 'Drywood Termites', icon: 'wood', service: 'termite-control', text: 'Termites that live entirely inside wood — framing, eaves, window frames, and furniture. Common throughout Southern California.', signs: 'Small piles of sand-like pellets, tiny holes in wood' },
+  { name: 'Subterranean Termites', icon: 'wood', service: 'termite-control', text: 'Termites that live in the soil and travel into homes through mud tubes. They can cause serious structural damage before they are noticed.', signs: 'Mud tubes on foundations, spring swarms' },
+  { name: 'Fleas', icon: 'paw', service: 'pest-control', text: 'Tiny jumping insects that hitch a ride on pets and wildlife. Infestations can build quickly in carpets, pet bedding, and shady yards.', signs: 'Itchy pets, bites around ankles, specks in pet bedding' },
+  { name: 'Yellowjackets & Wasps', icon: 'bug', service: 'pest-control', text: 'Paper wasps build nests under eaves; yellowjackets often nest in the ground or in wall voids and get aggressive around food in late summer.', signs: 'Nests under eaves, wasps going in and out of a hole' },
+  { name: 'Silverfish', icon: 'bug', service: 'pest-control', text: 'Silvery, wingless insects that love moisture. They feed on paper, glue, and fabric and are common in bathrooms, closets, and garages.', signs: 'Damaged paper or fabric, insects in sinks and tubs' },
+  { name: 'Earwigs', icon: 'bug', service: 'pest-control', text: 'Brown insects with pincers on their tails. Harmless to people but they invade homes and gardens in damp weather.', signs: 'Insects under doormats, in damp areas, and in plants' },
+  { name: 'Crickets', icon: 'bug', service: 'pest-control', text: 'Field and house crickets move indoors in fall when nights cool down, and their chirping can keep you up at night.', signs: 'Chirping at night, crickets in garages and basements' },
 ];
 ---
 <Layout title="Common Pests in Los Angeles" description="A guide to the most common pests in Los Angeles homes — ants, cockroaches, black widows, roof rats, mosquitoes, termites, and more — and how to get rid of them.">
@@ -38,7 +39,7 @@ const pests = [
         return (
           <article class="card p-8 flex flex-col">
             <div class="flex items-center gap-3 mb-4">
-              <span class="w-12 h-12 rounded-2xl bg-brand-light flex items-center justify-center text-2xl" aria-hidden="true">{p.icon}</span>
+              <span class="w-12 h-12 rounded-2xl bg-brand-light text-brand-medium flex items-center justify-center flex-shrink-0"><Icon name={p.icon} /></span>
               <h2 class="text-xl font-extrabold text-brand-dark">{p.name}</h2>
             </div>
             <p class="text-gray-600 leading-relaxed mb-4 flex-1">{p.text}</p>

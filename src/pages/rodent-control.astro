@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import PriceBadge from '../components/PriceBadge.astro';
@@ -28,18 +29,18 @@ const excluded = [
 ];
 
 const risks = [
-  { icon: '🦠', title: 'Health risk', text: 'Rodents carry hantavirus, salmonella, and other pathogens that contaminate surfaces and food.' },
-  { icon: '⚡', title: 'Fire hazard', text: 'Rodents gnaw on electrical wiring, which can start house fires.' },
-  { icon: '🏠', title: 'Property damage', text: 'They chew through insulation, pipes, and building materials, causing costly damage over time.' },
+  { icon: 'pulse', title: 'Health risk', text: 'Rodents carry hantavirus, salmonella, and other pathogens that contaminate surfaces and food.' },
+  { icon: 'zap', title: 'Fire hazard', text: 'Rodents gnaw on electrical wiring, which can start house fires.' },
+  { icon: 'home', title: 'Property damage', text: 'They chew through insulation, pipes, and building materials, causing costly damage over time.' },
 ];
 
 const signs = [
-  { icon: '💩', sign: 'Droppings near food, in cabinets, or along walls' },
-  { icon: '🔊', sign: 'Scratching or scurrying sounds in walls or attic' },
-  { icon: '🕳️', sign: 'Gnaw marks on food packaging, wires, or wood' },
-  { icon: '👃', sign: 'Musty or ammonia-like odor from hidden areas' },
-  { icon: '🪺', sign: 'Nesting material like shredded paper or insulation' },
-  { icon: '🐾', sign: 'Tracks or grease marks along baseboards' },
+  { icon: 'dots', sign: 'Droppings near food, in cabinets, or along walls' },
+  { icon: 'sound', sign: 'Scratching or scurrying sounds in walls or attic' },
+  { icon: 'gnaw', sign: 'Gnaw marks on food packaging, wires, or wood' },
+  { icon: 'wind', sign: 'Musty or ammonia-like odor from hidden areas' },
+  { icon: 'nest', sign: 'Nesting material like shredded paper or insulation' },
+  { icon: 'paw', sign: 'Tracks or grease marks along baseboards' },
 ];
 
 const steps = [
@@ -74,7 +75,7 @@ const service = services.find((s) => s.slug === 'rodent-control')!;
     <div class="container-site grid gap-6 md:grid-cols-3">
       {risks.map((r) => (
         <div class="card p-8">
-          <div class="text-4xl mb-3" aria-hidden="true">{r.icon}</div>
+          <div class="w-12 h-12 rounded-2xl bg-brand-light text-brand-medium flex items-center justify-center mb-4"><Icon name={r.icon} /></div>
           <h2 class="text-lg font-extrabold text-brand-dark mb-2">{r.title}</h2>
           <p class="text-gray-600 text-sm leading-relaxed">{r.text}</p>
         </div>
@@ -98,7 +99,7 @@ const service = services.find((s) => s.slug === 'rodent-control')!;
       <div class="grid gap-4 sm:grid-cols-2">
         {signs.map((s) => (
           <div class="card p-5 flex items-center gap-4">
-            <span class="text-3xl" aria-hidden="true">{s.icon}</span>
+            <span class="w-12 h-12 rounded-2xl bg-brand-light text-brand-medium flex items-center justify-center flex-shrink-0"><Icon name={s.icon} /></span>
             <p class="font-semibold text-gray-700">{s.sign}</p>
           </div>
         ))}

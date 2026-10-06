@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import ReviewCards from '../components/ReviewCards.astro';
@@ -7,12 +8,12 @@ import { business } from '../data/site';
 const years = new Date().getFullYear() - business.foundingYear;
 
 const values = [
-  { icon: '🤝', title: 'Honest', text: "We recommend what your home actually needs. If you don't need a treatment, we'll tell you." },
-  { icon: '🌿', title: 'Responsible', text: 'Targeted applications of EPA-registered products — the right amount in the right places, not blanket spraying.' },
-  { icon: '⏰', title: 'Reliable', text: 'We show up when we say we will, and we answer texts and calls fast.' },
-  { icon: '🏡', title: 'Family first', text: "We're a family-owned company, and we treat your home the way we'd treat our own." },
-  { icon: '💪', title: 'Hard working', text: 'Thorough inspections and careful work on every visit, not a quick spray and go.' },
-  { icon: '🛡️', title: 'Guaranteed', text: "If pests come back between visits, so do we — free. That's our promise." },
+  { icon: 'badge', title: 'Honest', text: "We recommend what your home actually needs. If you don't need a treatment, we'll tell you." },
+  { icon: 'leaf', title: 'Responsible', text: 'Targeted applications of EPA-registered products — the right amount in the right places, not blanket spraying.' },
+  { icon: 'clock', title: 'Reliable', text: 'We show up when we say we will, and we answer texts and calls fast.' },
+  { icon: 'heart', title: 'Family first', text: "We're a family-owned company, and we treat your home the way we'd treat our own." },
+  { icon: 'wrench', title: 'Hard working', text: 'Thorough inspections and careful work on every visit, not a quick spray and go.' },
+  { icon: 'shield', title: 'Guaranteed', text: "If pests come back between visits, so do we — free. That's our promise." },
 ];
 
 const team = [
@@ -62,7 +63,7 @@ const team = [
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {values.map((v) => (
           <div class="card p-8">
-            <div class="text-4xl mb-4" aria-hidden="true">{v.icon}</div>
+            <div class="w-12 h-12 rounded-2xl bg-brand-light text-brand-medium flex items-center justify-center mb-4"><Icon name={v.icon} /></div>
             <h3 class="text-xl font-extrabold text-brand-dark mb-2">{v.title}</h3>
             <p class="text-gray-600 leading-relaxed">{v.text}</p>
           </div>
