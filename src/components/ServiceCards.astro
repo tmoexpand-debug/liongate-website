@@ -23,19 +23,14 @@ const cols = list.length >= 5 ? 'lg:grid-cols-3 xl:grid-cols-5' : list.length ==
     <div class={`grid gap-6 sm:grid-cols-2 ${cols}`}>
       {list.map((s) => (
         <a href={s.href} class="group card overflow-hidden flex flex-col hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
-          <div class="aspect-[4/3] overflow-hidden bg-brand-dark diagonal-stripe flex items-center justify-center">
-            {s.image
-              ? <img src={s.image} alt={s.name} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              : <span class="text-7xl" aria-hidden="true">{s.icon}</span>}
-          </div>
           <div class="p-6 flex flex-col flex-1">
             <h3 class="text-xl font-extrabold text-brand-dark mb-2">{s.name}{suffix && <span class="sr-only"> {suffix}</span>}</h3>
             <p class="text-gray-600 text-sm leading-relaxed flex-1">{s.summary}</p>
-            <div class="mt-5 flex items-center justify-between">
+            <div class="mt-5 flex items-center justify-between gap-3">
               <span class="text-sm font-bold text-brand-medium whitespace-nowrap">
                 {s.price.amount ? `Starting at ${s.price.amount}${s.price.unit}` : s.price.label}
               </span>
-              <span class="w-9 h-9 rounded-full bg-brand-light text-brand-dark flex items-center justify-center group-hover:bg-brand-dark group-hover:text-white transition-colors" aria-hidden="true">→</span>
+              <span class="w-9 h-9 flex-shrink-0 rounded-full bg-brand-light text-brand-dark flex items-center justify-center group-hover:bg-brand-dark group-hover:text-white transition-colors" aria-hidden="true">→</span>
             </div>
           </div>
         </a>
