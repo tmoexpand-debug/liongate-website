@@ -14,7 +14,6 @@ const included = [
   'Localized wood treatments',
   'Soil treatment for subterranean termites',
   'Written findings & recommendations',
-  'Real estate / escrow inspections',
   'Wood-to-soil & moisture recommendations',
   'Follow-up inspections',
 ];
@@ -39,7 +38,7 @@ const steps = [
 ];
 
 const faqs = [
-  { q: 'Is the termite inspection free?', a: 'Yes, termite inspections for homeowners are free. Real estate (escrow) inspections are quoted separately — ask us when you book.' },
+  { q: 'Is the termite inspection free?', a: 'Yes. Termite inspections for homeowners are free, and you get a written explanation of what we found and a firm quote before any work begins.' },
   { q: 'Do I have drywood or subterranean termites?', a: 'Drywood termites leave piles of small pellets and live inside the wood. Subterranean termites build mud tubes and come up from the soil. Our inspection will tell you which you have — the treatment is different for each.' },
   { q: 'Do I need to tent my house?', a: "Not always. Many drywood infestations that are limited and accessible can be treated locally without tenting. If your home needs a whole-structure treatment, we'll explain why and walk you through your options." },
   { q: 'Are you licensed for termite work?', a: `Yes. Lion Gate is licensed by the California Structural Pest Control Board (Reg. ${business.spcbRegistration}).` },
@@ -84,7 +83,7 @@ const service = services.find((s) => s.slug === 'termite-control')!;
   <ServiceIncluded
     included={included}
     includedTitle="Our termite services"
-    note={{ title: 'Buying or selling a home?', text: 'We provide termite (wood destroying organism) inspections and reports for real estate transactions.', linkText: 'Schedule an escrow inspection', href: smsHref("Hi, I need a termite inspection for a real estate transaction") }}
+    note={{ title: 'Seeing swarmers or pellets?', text: 'Winged termites near windows or small piles of sand-like pellets are early warning signs. Text us a photo and we\'ll tell you what you\'re looking at.', linkText: 'Text us a photo', href: smsHref("Hi, I think I might have termites") }}
   />
 
   <ProcessSteps heading="How termite service works" steps={steps} />

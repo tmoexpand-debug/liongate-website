@@ -42,4 +42,4 @@ Treating for the wrong termite wastes money and leaves the real colony in place.
 
 Termite damage is usually hidden inside walls and framing, and the early signs are easy to miss or mistake for something else. A licensed inspection will identify which termite you have, how far the damage goes, and what it will take to fix it.
 
-Lion Gate is licensed by the California Structural Pest Control Board and offers **free termite inspections** for homeowners, plus real estate (escrow) inspections. Learn more about our [termite control service](/termite-control/).
+Lion Gate is licensed by the California Structural Pest Control Board and offers **free termite inspections** for homeowners. Learn more about our [termite control service](/termite-control/).
