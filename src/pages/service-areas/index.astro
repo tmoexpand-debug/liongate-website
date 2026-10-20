@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import { business, cities, cityHref } from '../../data/site';
+---
+<Layout title="Service Areas — Greater Los Angeles" description="Lion Gate Pest Control serves Los Angeles, the San Fernando Valley, Burbank, Glendale, Pasadena, Santa Monica, Beverly Hills, Malibu, and more. Find your city.">
+  <PageHero
+    eyebrow="Service areas"
+    title="Proudly serving the Greater Los Angeles area."
+    subtitle="From the Valley to the Westside and up into the foothills — find your city below."
+    image="/photos/truck.jpg"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Service Areas' }]}
+  />
+
+  <section class="py-20 px-4">
+    <div class="container-site">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {cities.map((c) => (
+          <a href={cityHref(c)} class="group card p-8 hover:shadow-xl hover:-translate-y-1 transition-all">
+            <h2 class="text-2xl font-extrabold text-brand-dark mb-2 group-hover:text-brand-medium">{c.name}</h2>
+            <p class="text-sm text-gray-600 mb-4">{c.areas.slice(0, 4).join(' · ')}</p>
+            <span class="text-sm font-bold text-brand-medium">Pest control in {c.shortName ?? c.name} →</span>
+          </a>
+        ))}
+      </div>
+      <div class="mt-12 card p-8 md:p-10 bg-brand-light border-none text-center">
+        <h2 class="text-2xl font-extrabold text-brand-dark mb-3">Don't see your city?</h2>
+        <p class="text-gray-600 mb-6">We cover much of Los Angeles County. Give us a call and we'll let you know if we service your area.</p>
+        <a href={business.phoneHref} class="btn-primary">Call {business.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-4 pb-20">
+    <div class="container-site">
+      <div class="rounded-[2rem] overflow-hidden border border-gray-200">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d211282.36557258!2d-118.60467!3d34.20!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2955a67654d2b%3A0x4fa3eb4c23c2db1a!2sSan%20Fernando%20Valley%2C%20CA!5e0!3m2!1sen!2sus!4v1"
+          width="100%" height="420" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Lion Gate Pest Control service area map"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+</Layout>

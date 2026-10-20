@@ -1,0 +1,94 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import PriceBadge from '../components/PriceBadge.astro';
+import ServiceIncluded from '../components/ServiceIncluded.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import FaqList from '../components/FaqList.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import { business, services, cities, faqSchema, serviceSchema, smsHref } from '../data/site';
+
+const included = [
+  'Drywood termite inspection',
+  'Subterranean termite inspection',
+  'Localized wood treatments',
+  'Soil treatment for subterranean termites',
+  'Written findings & recommendations',
+  'Wood-to-soil & moisture recommendations',
+  'Follow-up inspections',
+];
+
+const types = [
+  {
+    name: 'Drywood termites',
+    lives: 'Inside the wood itself — no soil contact needed.',
+    signs: ['Small piles of sand-like pellets (frass)', 'Tiny kick-out holes in wood', 'Discarded wings near windows'],
+  },
+  {
+    name: 'Subterranean termites',
+    lives: 'In the soil, traveling up into your home through mud tubes.',
+    signs: ['Pencil-width mud tubes on foundations', 'Layered, hollowed wood near the ground', 'Spring swarms after rain'],
+  },
+];
+
+const steps = [
+  { title: 'Free inspection', text: 'A licensed inspector checks accessible areas of your home — attic, crawl space, garage, and exterior — for termites and the conditions that attract them.' },
+  { title: 'Clear findings', text: 'You get a written explanation of what we found, what kind of termites you have, and the treatment options with a firm quote.' },
+  { title: 'Targeted treatment', text: 'We treat the infestation with the method that fits — localized wood treatment for drywood termites, or soil treatment for subterranean termites.' },
+];
+
+const faqs = [
+  { q: 'Is the termite inspection free?', a: 'Yes. Termite inspections for homeowners are free, and you get a written explanation of what we found and a firm quote before any work begins.' },
+  { q: 'Do I have drywood or subterranean termites?', a: 'Drywood termites leave piles of small pellets and live inside the wood. Subterranean termites build mud tubes and come up from the soil. Our inspection will tell you which you have — the treatment is different for each.' },
+  { q: 'Do I need to tent my house?', a: "Not always. Many drywood infestations that are limited and accessible can be treated locally without tenting. If your home needs a whole-structure treatment, we'll explain why and walk you through your options." },
+  { q: 'Are you licensed for termite work?', a: `Yes. Lion Gate is licensed by the California Structural Pest Control Board (Reg. ${business.spcbRegistration}).` },
+];
+
+const service = services.find((s) => s.slug === 'termite-control')!;
+---
+
+<Layout title="Termite Inspection & Control in Los Angeles" description="Free termite inspections and targeted drywood and subterranean termite treatments for Los Angeles homes. Licensed by the CA Structural Pest Control Board." schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
+
+  <PageHero
+    eyebrow="Los Angeles Termite Control"
+    title="Termite Control"
+    subtitle="Termites do their damage out of sight. A free, licensed inspection tells you exactly what you're dealing with — and what it takes to fix it."
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: 'Termite Control' }]}
+  >
+    <PriceBadge slug="termite-control" />
+  </PageHero>
+
+  <section class="py-20 px-4">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">Know your termite</p>
+        <h2 class="h-section">Two kinds of termites, two different treatments</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2">
+        {types.map((t) => (
+          <div class="card p-8 md:p-10">
+            <h3 class="text-2xl font-extrabold text-brand-dark mb-2">{t.name}</h3>
+            <p class="text-gray-600 mb-5"><strong class="text-brand-body">Where they live:</strong> {t.lives}</p>
+            <p class="font-bold text-brand-dark mb-2">Signs to look for:</p>
+            <ul class="space-y-2">
+              {t.signs.map((s) => <li class="flex gap-2 text-gray-700"><span class="text-brand-medium font-bold">✓</span>{s}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <p class="text-center mt-8"><a href="/blog/drywood-vs-subterranean-termites/" class="font-bold text-brand-medium hover:text-brand-dark">Read: How to tell which termite you have →</a></p>
+    </div>
+  </section>
+
+  <ServiceIncluded
+    included={included}
+    includedTitle="Our termite services"
+    note={{ title: 'Seeing swarmers or pellets?', text: 'Winged termites near windows or small piles of sand-like pellets are early warning signs. Text us a photo and we\'ll tell you what you\'re looking at.', linkText: 'Text us a photo', href: smsHref("Hi, I think I might have termites") }}
+  />
+
+  <ProcessSteps heading="How termite service works" steps={steps} />
+
+  <FaqList faqs={faqs} heading="Termite questions" />
+
+  <ServiceCards exclude="termite-control" heading="Explore our other services" />
+</Layout>

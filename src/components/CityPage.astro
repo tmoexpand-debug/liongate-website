@@ -1,0 +1,98 @@
+---
+import Icon from './Icon.astro';
+// Shared body for the flat service-area pages in src/pages/service-areas/.
+// Each city's copy lives in src/data/site.ts so every page stays unique.
+import Layout from '../layouts/Layout.astro';
+import PageHero from './PageHero.astro';
+import ServiceCards from './ServiceCards.astro';
+import ReviewCards from './ReviewCards.astro';
+import FaqList from './FaqList.astro';
+import { business, cities, cityHref, services, faqSchema, type City } from '../data/site';
+
+interface Props { slug: string }
+const city = cities.find((c) => c.slug === Astro.props.slug) as City;
+const short = city.shortName ?? city.name;
+const nearby = cities.filter((c) => c.slug !== city.slug);
+
+const faqs = [
+  { q: `Do you offer pest control in ${city.name}?`, a: `Yes. Lion Gate provides general pest control, rodent control, mosquito control, and termite services to homes throughout ${city.name}, including ${city.areas.slice(0, 3).join(', ')}, and nearby neighborhoods.` },
+  { q: `How soon can you come out to ${short}?`, a: 'In most cases we can schedule your first visit within 24–48 hours. Text or call us and we\'ll find a time that works.' },
+  { q: `How much does pest control cost in ${short}?`, a: `General pest control starts at ${services[0].price.amount}${services[0].price.unit}, and Premium pest control at ${services[1].price.amount}${services[1].price.unit}. Rodent and termite work starts with a free inspection, and we give you a firm quote before any work begins.` },
+];
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Pest Control',
+  name: `Pest Control in ${city.name}, CA`,
+  provider: { '@id': 'https://www.liongatepest.com/#business' },
+  areaServed: { '@type': 'City', name: city.name },
+};
+---
+<Layout
+  title={`${city.name} Pest Control`}
+  description={`Pest control in ${city.name}, CA from a family-owned team. Ants, roaches, rodents, mosquitoes & termites. ${business.rating}★ on Google. Call ${business.phone}.`}
+  schema={[serviceSchema, faqSchema(faqs)]}
+>
+  <PageHero
+    eyebrow="Service area"
+    title={`Pest control in ${city.name}`}
+    subtitle={`Trusted, family-owned pest control for ${city.name} homes since ${business.foundingYear}. ${business.rating}★ on Google with a 100% satisfaction guarantee.`}
+    image="/photos/truck.jpg"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Service Areas', href: '/service-areas/' }, { label: city.name }]}
+  />
+
+  <section class="py-20 px-4">
+    <div class="container-site grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-7">
+        <p class="eyebrow mb-3">Serving {short}</p>
+        <h2 class="h-section mb-6">Pest control built for {short} homes</h2>
+        <div class="space-y-4 lead">
+          {city.intro.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+      <aside class="lg:col-span-5">
+        <div class="card p-8 bg-brand-light border-none">
+          <h3 class="text-xl font-extrabold text-brand-dark mb-4">Neighborhoods we serve in {short}</h3>
+          <ul class="grid grid-cols-2 gap-2 text-gray-700">
+            {city.areas.map((a) => <li class="flex gap-2"><Icon name="pin" class="w-5 h-5 flex-shrink-0 text-brand-medium mt-0.5" />{a}</li>)}
+          </ul>
+          <p class="text-sm text-gray-500 mt-5">Don't see your street? Call {business.phone} — we likely cover you.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="py-20 px-4 bg-brand-light">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">What we see in {short}</p>
+        <h2 class="h-section">Common pests in {city.name}</h2>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {city.pests.map((p) => (
+          <div class="card p-7">
+            <h3 class="font-extrabold text-brand-dark text-lg mb-2">{p.name}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">{p.note}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-center mt-8"><a href="/common-pests/" class="font-bold text-brand-medium hover:text-brand-dark">Learn more about common LA pests →</a></p>
+    </div>
+  </section>
+
+  <ServiceCards heading={`Our services in ${city.name}`} eyebrow="What we do" suffix={`in ${city.name}`} />
+
+  <ReviewCards heading="What our clients say" />
+
+  <FaqList faqs={faqs} heading={`${city.name} pest control FAQs`} bg="bg-brand-light" />
+
+  <section class="py-16 px-4">
+    <div class="container-site text-center">
+      <h2 class="text-2xl font-extrabold text-brand-dark mb-6">Other areas we serve</h2>
+      <div class="flex flex-wrap justify-center gap-3">
+        {nearby.map((c) => <a href={cityHref(c)} class="rounded-full border border-gray-200 px-5 py-2.5 font-semibold text-brand-dark hover:bg-brand-light">{c.name}</a>)}
+      </div>
+    </div>
+  </section>
+</Layout>

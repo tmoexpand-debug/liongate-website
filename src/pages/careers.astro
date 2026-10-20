@@ -1,0 +1,71 @@
+---
+import Icon from '../components/Icon.astro';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { business } from '../data/site';
+
+const perks = [
+  { icon: 'trend', title: 'Room to grow', text: "We're expanding, and we promote from within." },
+  { icon: 'cap', title: 'Training', text: 'We help trainees prepare for their California Structural Pest Control license.' },
+  { icon: 'truck', title: 'Steady routes', text: 'Recurring customers mean a predictable schedule, Monday through Friday.' },
+  { icon: 'home', title: 'Family-owned', text: "A small team where your work is noticed and you're more than a number." },
+];
+
+const looking = [
+  'A valid California driver\'s license and a clean driving record',
+  'Reliable, on time, and good with customers',
+  'Comfortable working outdoors, in attics, and in crawl spaces',
+  'Field Representative license (Branch 2 and/or 3) is a plus — or willingness to get one',
+];
+
+const applyHref = `mailto:${business.email}?subject=${encodeURIComponent('Careers — Pest Control Technician')}`;
+---
+<Layout title="Careers — Join Our Pest Control Team" description="Join Lion Gate Pest Control, a family-owned Los Angeles pest control company. Interested in a pest control career? Send us your info.">
+  <PageHero
+    eyebrow="Careers"
+    title="Come work with us."
+    subtitle="We're a growing, family-owned pest control company in Los Angeles, and we're looking for hard-working people who take pride in doing the job right."
+    image="/photos/truck.jpg"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Careers' }]}
+    ctas={false}
+  >
+    <div class="mt-8"><a href={applyHref} class="btn-light !py-4 !px-8">Send us your info</a></div>
+  </PageHero>
+
+  <section class="py-20 px-4">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">Why Lion Gate</p>
+        <h2 class="h-section">A better place to build a career</h2>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {perks.map((p) => (
+          <div class="card p-7">
+            <div class="w-12 h-12 rounded-2xl bg-brand-light text-brand-medium flex items-center justify-center mb-4"><Icon name={p.icon} /></div>
+            <h3 class="font-extrabold text-brand-dark mb-2">{p.title}</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">{p.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 px-4 bg-brand-light">
+    <div class="max-w-3xl mx-auto">
+      <div class="card p-8 md:p-12">
+        <p class="eyebrow mb-2">Future openings</p>
+        <h2 class="text-3xl font-extrabold text-brand-dark mb-4">Pest Control Technician</h2>
+        <p class="text-gray-600 mb-6">Full-time · Greater Los Angeles · Monday–Friday</p>
+        <p class="text-gray-700 leading-relaxed mb-6 rounded-2xl bg-brand-light p-4">We're not hiring at the moment, but we're always glad to hear from good people. Send us your info and we'll keep it on file for our next opening.</p>
+        <p class="text-gray-700 leading-relaxed mb-6">You'll service a route of residential customers — general pest control, rodent work, and inspections — and be the friendly, professional face of Lion Gate at every home you visit.</p>
+        <h3 class="font-extrabold text-brand-dark mb-3">What we're looking for</h3>
+        <ul class="space-y-2 mb-8">
+          {looking.map((l) => <li class="flex gap-2 text-gray-700"><span class="text-brand-medium font-bold">✓</span>{l}</li>)}
+        </ul>
+        <h3 class="font-extrabold text-brand-dark mb-3">How to apply</h3>
+        <p class="text-gray-700 leading-relaxed mb-6">Email your resume (or a few lines about your experience) to <a href={applyHref} class="font-bold text-brand-medium">{business.email}</a> with "Careers" in the subject line.</p>
+        <a href={applyHref} class="btn-primary">Send us your info</a>
+      </div>
+    </div>
+  </section>
+</Layout>

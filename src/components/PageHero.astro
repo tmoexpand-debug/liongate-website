@@ -1,0 +1,44 @@
+---
+import { business, primaryCtaHref } from '../data/site';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  image?: string;
+  /** Breadcrumb trail; the current page is the last item (no href) */
+  crumbs?: { label: string; href?: string }[];
+  ctas?: boolean;
+}
+const { eyebrow, title, subtitle, image, crumbs, ctas = true } = Astro.props;
+---
+<section class="px-3 sm:px-4 pt-3">
+  <div
+    class={`relative overflow-hidden rounded-[2rem] ${image ? '' : 'bg-brand-dark diagonal-stripe'}`}
+    style={image ? `background-image:url('${image}');background-size:cover;background-position:center;` : undefined}
+  >
+    {image && <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/20"></div>}
+    <div class="relative container-site py-20 md:py-28">
+      {crumbs && (
+        <nav aria-label="Breadcrumb" class="mb-6 text-sm text-white/70">
+          {crumbs.map((c, i) => (
+            <span>
+              {i > 0 && <span class="mx-2">/</span>}
+              {c.href ? <a href={c.href} class="hover:text-white">{c.label}</a> : <span class="text-white">{c.label}</span>}
+            </span>
+          ))}
+        </nav>
+      )}
+      {eyebrow && <p class="text-green-300 font-bold uppercase tracking-widest text-xs md:text-sm mb-4">{eyebrow}</p>}
+      <h1 class="h-display text-white max-w-3xl">{title}</h1>
+      {subtitle && <p class="text-white/85 text-lg md:text-xl mt-6 max-w-2xl leading-relaxed">{subtitle}</p>}
+      <slot />
+      {ctas && (
+        <div class="flex flex-col sm:flex-row gap-3 mt-8">
+          <a href={primaryCtaHref} class="btn-light !py-4 !px-8">Protect My Home</a>
+          <a href={business.phoneHref} class="btn-ghost-light !py-4 !px-8">Call {business.phone}</a>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

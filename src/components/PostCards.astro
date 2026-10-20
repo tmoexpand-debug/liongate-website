@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  limit?: number;
+  exclude?: string;
+  heading?: string;
+}
+const { limit, exclude, heading = 'Our latest articles' } = Astro.props;
+const posts = (await getCollection('blog', ({ data, slug }) => !data.draft && slug !== exclude))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, limit);
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+---
+{posts.length > 0 && (
+  <section class="py-20 px-4">
+    <div class="container-site">
+      {heading && (
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div>
+            <p class="eyebrow mb-3">Pest tips for LA homeowners</p>
+            <h2 class="h-section">{heading}</h2>
+          </div>
+          {limit && <a href="/blog/" class="btn-outline self-start sm:self-auto">View all articles</a>}
+        </div>
+      )}
+      <div class="grid gap-6 md:grid-cols-3">
+        {posts.map((p) => (
+          <a href={`/blog/${p.slug}/`} class="group card overflow-hidden flex flex-col hover:shadow-xl transition-shadow">
+            <div class="aspect-[16/10] overflow-hidden bg-brand-dark diagonal-stripe flex items-center justify-center">
+              {p.data.image
+                ? <img src={p.data.image} alt={p.data.imageAlt ?? ''} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                : <img src="/logo-white.png" alt="" class="w-1/2 opacity-80" loading="lazy" />}
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <time class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2" datetime={p.data.pubDate.toISOString()}>{fmt(p.data.pubDate)}</time>
+              <h3 class="text-lg font-extrabold text-brand-dark leading-snug mb-3 group-hover:text-brand-medium">{p.data.title}</h3>
+              <p class="text-sm text-gray-600 leading-relaxed flex-1">{p.data.description}</p>
+              <span class="mt-4 text-sm font-bold text-brand-medium">Read article →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

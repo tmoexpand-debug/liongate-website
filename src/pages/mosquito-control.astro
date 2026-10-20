@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import PriceBadge from '../components/PriceBadge.astro';
+import ServiceIncluded from '../components/ServiceIncluded.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import FaqList from '../components/FaqList.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import { services, cities, faqSchema, serviceSchema, smsHref } from '../data/site';
+
+const included = [
+  'Shrub & foliage treatment',
+  'Treatment under decks & eaves',
+  'Fence lines & shady resting areas',
+  'Standing water inspection',
+  'Larvicide for drains & water you can\'t remove',
+  'Tips to cut breeding sites',
+  'Monthly visits in season',
+  'Free re-service between visits',
+];
+
+const facts = [
+  { title: 'They bite during the day', text: "LA's invasive Aedes \"ankle biter\" mosquitoes are most active in daylight — not just at dusk." },
+  { title: 'They breed in tiny amounts of water', text: 'A bottle cap of water is enough. Plant saucers, drains, and toys are common sources.' },
+  { title: "They don't travel far", text: "If you're getting bitten, they're probably breeding on your property or right next door." },
+];
+
+const steps = [
+  { title: 'Yard inspection', text: 'We walk your property to find breeding sites and the shady spots where adult mosquitoes rest during the day.' },
+  { title: 'Targeted treatment', text: 'We treat foliage, fence lines, and resting areas, and apply larvicide to standing water that can\'t be removed.' },
+  { title: 'Monthly protection', text: 'We come back every month during mosquito season, because new mosquitoes keep arriving from nearby yards.' },
+];
+
+const faqs = [
+  { q: 'When is mosquito season in Los Angeles?', a: 'Mosquitoes are most active in LA from spring through fall, with the worst biting usually in the hottest months. We recommend monthly service throughout the warm season.' },
+  { q: 'Is mosquito treatment safe for my pets and garden?', a: "We use EPA-registered products and target the places mosquitoes rest and breed rather than spraying everything. We'll tell you how long to keep pets off treated areas while they dry." },
+  { q: 'Will I still see some mosquitoes?', a: 'Treatment greatly reduces mosquitoes on your property, but some can still fly in from neighboring yards. Monthly visits and removing standing water keep the numbers down.' },
+  { q: 'Does general pest control cover mosquitoes?', a: 'General pest control focuses on insects in and around the house. Mosquito control is a separate yard treatment that targets where mosquitoes rest and breed.' },
+];
+
+const service = services.find((s) => s.slug === 'mosquito-control')!;
+---
+
+<Layout title="Mosquito Control in Los Angeles" description="Mosquito control for Los Angeles yards. Monthly treatments target day-biting 'ankle biter' mosquitoes where they rest and breed. Starting at $120/mo." image="/photos/mosquito.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
+
+  <PageHero
+    eyebrow="Los Angeles Mosquito Control"
+    title="Mosquito Control"
+    subtitle="Take back your yard. Our monthly mosquito treatments target the day-biting mosquitoes that have spread across Los Angeles — where they rest and where they breed."
+    image="/photos/mosquito.jpg"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: 'Mosquito Control' }]}
+  >
+    <PriceBadge slug="mosquito-control" />
+  </PageHero>
+
+  <section class="py-20 px-4">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">Why it's worse than it used to be</p>
+        <h2 class="h-section">Meet LA's "ankle biter" mosquitoes</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {facts.map((f) => (
+          <div class="card p-8">
+            <h3 class="text-lg font-extrabold text-brand-dark mb-2">{f.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{f.text}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-center mt-8"><a href="/blog/ankle-biter-mosquitoes-los-angeles/" class="font-bold text-brand-medium hover:text-brand-dark">Read: Why LA mosquitoes bite during the day →</a></p>
+    </div>
+  </section>
+
+  <ServiceIncluded
+    included={included}
+    includedTitle="Every visit includes"
+    note={{ title: 'Pair it with pest control', text: 'Add mosquito control to a general pest plan and we can take care of your whole property in one visit.', linkText: 'Ask about bundling', href: smsHref("Hi, I'd like to add mosquito control to my pest plan") }}
+  />
+
+  <ProcessSteps heading="How mosquito control works" steps={steps} />
+
+  <FaqList faqs={faqs} heading="Mosquito control questions" />
+
+  <ServiceCards exclude="mosquito-control" heading="Explore our other services" />
+</Layout>

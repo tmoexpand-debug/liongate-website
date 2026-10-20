@@ -1,0 +1,98 @@
+---
+import Icon from '../components/Icon.astro';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import ReviewCards from '../components/ReviewCards.astro';
+import { business } from '../data/site';
+
+const years = new Date().getFullYear() - business.foundingYear;
+
+const values = [
+  { icon: 'badge', title: 'Honest', text: "We recommend what your home actually needs. If you don't need a treatment, we'll tell you." },
+  { icon: 'leaf', title: 'Responsible', text: 'Targeted applications of EPA-registered products — the right amount in the right places, not blanket spraying.' },
+  { icon: 'clock', title: 'Reliable', text: 'We show up when we say we will, and we answer texts and calls fast.' },
+  { icon: 'heart', title: 'Family first', text: "We're a family-owned company, and we treat your home the way we'd treat our own." },
+  { icon: 'wrench', title: 'Hard working', text: 'Thorough inspections and careful work on every visit, not a quick spray and go.' },
+  { icon: 'shield', title: 'Guaranteed', text: "If pests come back between visits, so do we — free. That's our promise." },
+];
+
+const team = [
+  { initial: 'T', name: 'Tom', role: 'Owner', text: 'Tom runs Lion Gate and still works in the field. He knows LA pest patterns inside and out — and he won\'t upsell you on treatments you don\'t need.' },
+  { initial: 'R', name: 'Rick', role: 'Lead Technician', text: 'Rick is the technician customers ask for by name. Licensed, thorough, and good with both people and pests.' },
+];
+---
+<Layout title="About Lion Gate Pest Control" description={`Lion Gate Pest Control is a family-owned, licensed pest control company protecting Los Angeles homes since ${business.foundingYear}. Meet the team and learn what drives us.`}>
+  <PageHero
+    eyebrow="About us"
+    title="Family-owned pest control, protecting LA since 2005."
+    subtitle="We're a small, family-owned team — and that's on purpose. You'll know your technician by name, and we'll know your home."
+    image="/photos/truck.jpg"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'About' }]}
+  />
+
+  <section class="py-14 px-4 border-b border-gray-100">
+    <div class="container-site grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div><p class="text-5xl font-extrabold text-brand-dark">{years}+</p><p class="text-sm text-gray-500 font-semibold mt-1">Years in business</p></div>
+      <div><p class="text-5xl font-extrabold text-brand-dark">{business.rating}★</p><p class="text-sm text-gray-500 font-semibold mt-1">Google rating</p></div>
+      <div><p class="text-5xl font-extrabold text-brand-dark">40+</p><p class="text-sm text-gray-500 font-semibold mt-1">Pest types treated</p></div>
+      <div><p class="text-5xl font-extrabold text-brand-dark">100%</p><p class="text-sm text-gray-500 font-semibold mt-1">Satisfaction guaranteed</p></div>
+    </div>
+  </section>
+
+  <section class="py-20 px-4">
+    <div class="container-site grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="eyebrow mb-3">Our mission</p>
+        <h2 class="h-section mb-6">Quality pest control, done the honest way.</h2>
+        <div class="space-y-4 lead">
+          <p>Lion Gate Pest Control has protected Los Angeles homes since {business.foundingYear}. Many of our customers have been with us for years — some for more than two decades — and a lot of our new customers are their friends and relatives.</p>
+          <p>We handle general pest control, rodents, mosquitoes, and termites across the Greater Los Angeles area, from the San Fernando Valley to the Westside. Every treatment starts with understanding why pests are getting in, so we can fix the cause instead of just the symptoms.</p>
+          <p>We're licensed by the California Structural Pest Control Board (Reg. {business.spcbRegistration}) and fully insured.</p>
+        </div>
+      </div>
+      <img src="/photos/about.jpg" alt="Lion Gate technician treating around a garage" class="w-full aspect-[4/3] object-cover rounded-[2rem]" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="py-20 px-4 bg-brand-light">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">What we stand for</p>
+        <h2 class="h-section">The values that drive everything we do</h2>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {values.map((v) => (
+          <div class="card p-8">
+            <div class="w-12 h-12 rounded-2xl bg-brand-light text-brand-medium flex items-center justify-center mb-4"><Icon name={v.icon} /></div>
+            <h3 class="text-xl font-extrabold text-brand-dark mb-2">{v.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{v.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 px-4">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">Our team</p>
+        <h2 class="h-section">The people you'll see at your door</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+        {team.map((m) => (
+          <div class="card p-8 flex gap-5">
+            <span class="w-16 h-16 flex-shrink-0 rounded-full bg-brand-dark text-white font-extrabold text-2xl flex items-center justify-center">{m.initial}</span>
+            <div>
+              <h3 class="text-xl font-extrabold text-brand-dark">{m.name}</h3>
+              <p class="eyebrow !text-xs mb-3">{m.role}</p>
+              <p class="text-gray-600 leading-relaxed">{m.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-center mt-10 text-gray-600">Interested in joining the team? <a href="/careers/" class="font-bold text-brand-medium hover:text-brand-dark">See careers →</a></p>
+    </div>
+  </section>
+
+  <ReviewCards />
+</Layout>

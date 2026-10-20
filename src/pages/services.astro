@@ -1,0 +1,47 @@
+---
+import Icon from '../components/Icon.astro';
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import ReviewCards from '../components/ReviewCards.astro';
+import { services, smsHref } from '../data/site';
+---
+<Layout title="Pest Control Services in Los Angeles" description="General pest control, rodent control, mosquito control, and termite services for Los Angeles homes. Family owned since 2005 with a 100% satisfaction guarantee.">
+  <PageHero
+    eyebrow="Our services"
+    title="Pest control services for Los Angeles homes."
+    subtitle="Five services, one team. From ants in the kitchen to termites in the attic, we find the source and fix it."
+    image="/photos/truck.jpg"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Services' }]}
+  />
+
+  <section class="py-20 px-4">
+    <div class="container-site space-y-10">
+      {services.map((s, i) => (
+        <article class="card overflow-hidden grid lg:grid-cols-2">
+          <div class={`min-h-[280px] bg-brand-dark diagonal-stripe flex items-center justify-center ${i % 2 ? 'lg:order-2' : ''}`}>
+            {s.image
+              ? <img src={s.image} alt={s.name} loading="lazy" class="w-full h-full object-cover" />
+              : <Icon name={s.icon} class="w-28 h-28 text-white/80" strokeWidth={1.25} />}
+          </div>
+          <div class="p-8 md:p-12 flex flex-col justify-center">
+            <p class="eyebrow mb-2">{s.tagline}</p>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark mb-4">{s.name}</h2>
+            <p class="lead mb-6">{s.summary}</p>
+            <ul class="grid sm:grid-cols-2 gap-2 mb-8 text-sm">
+              {s.features.map((f) => <li class="flex gap-2"><span class="text-brand-medium font-bold">✓</span>{f}</li>)}
+            </ul>
+            <div class="flex flex-wrap items-center gap-4">
+              <a href={s.href} class="btn-primary">Learn more</a>
+              <a href={smsHref(`Hi, I'd like a quote for ${s.name.toLowerCase()}`)} class="btn-outline">Get a quote</a>
+              <span class="font-bold text-brand-medium">{s.price.amount ? `Starting at ${s.price.amount}${s.price.unit}` : s.price.label}</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <ProcessSteps />
+  <ReviewCards />
+</Layout>

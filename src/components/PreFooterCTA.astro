@@ -1,18 +1,19 @@
 ---
+import { business, promo, primaryCtaHref } from '../data/site';
 ---
-<section class="bg-brand-dark diagonal-stripe py-16 px-4">
+<section class="bg-brand-light py-20 px-4">
   <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-3xl md:text-4xl font-extrabold text-white uppercase tracking-widest mb-4">
-      Start Enjoying Pest Free Living Today
-    </h2>
-    <p class="text-green-200 text-lg mb-8 uppercase tracking-wider font-semibold">
-      Don't wait — pests won't.
+    <p class="eyebrow mb-3">Have questions?</p>
+    <h2 class="h-section mb-5">Start your pest-free home today.</h2>
+    <p class="lead mb-8 max-w-2xl mx-auto">
+      Text or call — we usually reply within minutes during business hours ({business.hours}).
     </p>
-    <a href="sms:+18183534800?&body=SAVE50" class="btn-sms-lg">
-      The Bugs Won't Text Us For You!
-    </a>
-    <p class="text-green-300 mt-6 text-sm">
-      Text <strong class="text-white">SAVE50</strong> to <strong class="text-white">(818) 353-4800</strong> · 50% Off First Service
-    </p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href={primaryCtaHref} class="btn-primary-lg">
+        {promo.active ? `Text "${promo.code}" — ${promo.headline}` : 'Text Us for a Free Quote'}
+      </a>
+      <a href={business.phoneHref} class="btn-outline !py-4 !px-8 text-lg">Call {business.phone}</a>
+    </div>
+    {promo.active && <p class="text-gray-500 text-sm mt-4">{promo.terms}</p>}
   </div>
 </section>

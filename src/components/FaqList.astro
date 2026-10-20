@@ -1,0 +1,32 @@
+---
+// Accessible FAQ accordion built on <details>, so it works without JS.
+// Pages that want FAQ rich results pass the same list to faqSchema().
+interface Props {
+  faqs: { q: string; a: string }[];
+  heading?: string;
+  eyebrow?: string;
+  bg?: string;
+}
+const { faqs, heading = 'Frequently asked questions', eyebrow = 'FAQ', bg = 'bg-white' } = Astro.props;
+---
+<section class={`py-20 px-4 ${bg}`}>
+  <div class="max-w-3xl mx-auto">
+    {heading && (
+      <div class="text-center mb-10">
+        <p class="eyebrow mb-3">{eyebrow}</p>
+        <h2 class="h-section">{heading}</h2>
+      </div>
+    )}
+    <div class="space-y-3">
+      {faqs.map((f) => (
+        <details class="group card px-6 open:shadow-md">
+          <summary class="flex items-center justify-between gap-4 py-5 cursor-pointer list-none font-bold text-brand-dark">
+            {f.q}
+            <span class="w-8 h-8 flex-shrink-0 rounded-full bg-brand-light flex items-center justify-center text-brand-dark transition-transform group-open:rotate-45 text-xl leading-none" aria-hidden="true">+</span>
+          </summary>
+          <div class="pb-6 text-gray-700 leading-relaxed">{f.a}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

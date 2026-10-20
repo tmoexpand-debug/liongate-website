@@ -1,26 +1,31 @@
 ---
+import Icon from '../components/Icon.astro';
 import Nav from '../components/Nav.astro';
 import PreFooterCTA from '../components/PreFooterCTA.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { business, cities as serviceCities, primaryCtaHref } from '../data/site';
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
+  /** Extra JSON-LD objects for this page (FAQPage, Service, Article, ...) */
+  schema?: object[];
 }
 
 const {
   title,
   description = 'Lion Gate Pest Control — Professional pest and rodent control serving the Greater Los Angeles area. Family & pet friendly. 100% satisfaction guarantee.',
-  image = '/hero-bg.jpg',
+  image = '/photos/home-hero.jpg',
+  schema = [],
 } = Astro.props;
 
 const fullTitle = `${title} | Lion Gate Pest`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
 const imageURL = new URL(image, Astro.site).href;
 
-const cities = ['Los Angeles', 'Burbank', 'Pasadena', 'Glendale', 'Santa Monica', 'Beverly Hills', 'Hollywood', 'Westwood', 'Malibu', 'La Cañada Flintridge', 'San Fernando Valley'];
+const cities = serviceCities.map((c) => c.name);
 
 const businessSchema = {
   '@context': 'https://schema.org',
@@ -32,6 +37,7 @@ const businessSchema = {
   telephone: '+1-818-353-4800',
   email: 'contact@liongatepest.com',
   logo: 'https://www.liongatepest.com/logo-color.png',
+  sameAs: [business.facebook],
   image: imageURL,
   priceRange: '$$',
   foundingDate: '2005',
@@ -88,6 +94,7 @@ const businessSchema = {
 
     <!-- Local business structured data -->
     <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+    {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -124,12 +131,18 @@ const businessSchema = {
       })();
     </script>
   </head>
-  <body class="font-montserrat text-brand-body">
+  <body class="site font-montserrat text-brand-body pb-16 lg:pb-0">
     <Nav />
     <main>
       <slot />
     </main>
     <PreFooterCTA />
     <Footer />
+
+    <!-- Mobile sticky contact bar -->
+    <div class="lg:hidden fixed bottom-0 inset-x-0 z-40 flex shadow-[0_-4px_16px_rgba(0,0,0,0.15)]">
+      <a href={primaryCtaHref} class="flex-1 bg-brand-medium text-white font-bold py-4 inline-flex items-center justify-center gap-2"><Icon name="chat" class="w-5 h-5" />Text Us</a>
+      <a href={business.phoneHref} class="flex-1 bg-brand-dark text-white font-bold py-4 inline-flex items-center justify-center gap-2"><Icon name="phone" class="w-5 h-5" />Call {business.phone}</a>
+    </div>
   </body>
 </html>

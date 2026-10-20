@@ -1,27 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import PriceBadge from '../components/PriceBadge.astro';
+import ServiceIncluded from '../components/ServiceIncluded.astro';
+import PestActivityChart from '../components/PestActivityChart.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import FaqList from '../components/FaqList.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import { services, cities, faqSchema, serviceSchema, smsHref, promo } from '../data/site';
 
 const included = [
-  'Ants (all species)',
-  'Cockroaches',
-  'Spiders',
-  'Fleas',
-  'Flies & Gnats',
-  'Wasps & Hornets',
-  'Mosquitoes',
-  'Beetles',
-  'Silverfish',
-  'Earwigs',
-  'Centipedes & Millipedes',
-  'Stink Bugs',
-  'Crickets',
-  'Aphids',
-  'Box Elder Bugs',
-  'Pill Bugs',
+  'Ants (all species)', 'Cockroaches', 'Spiders', 'Fleas', 'Flies & Gnats', 'Wasps & Hornets',
+  'Beetles', 'Silverfish', 'Earwigs', 'Centipedes & Millipedes', 'Stink Bugs', 'Crickets',
+  'Aphids', 'Box Elder Bugs', 'Pill Bugs', 'Ticks',
 ];
 
 const excluded = [
-  'Termites (separate treatment required)',
+  'Termites (separate service)',
+  'Mosquito yard treatments (separate service)',
   'Bed Bugs (specialized treatment available)',
   'Wildlife removal',
   'Structural damage repair',
@@ -29,212 +25,92 @@ const excluded = [
 
 const schedule = [
   { season: 'Spring', focus: 'Ant colonies, wasp nest prevention, perimeter barrier' },
-  { season: 'Summer', focus: 'Mosquitoes, flies, hornets, outdoor activity pests' },
-  { season: 'Fall', focus: 'Indoor pest-proofing, spiders, crickets entering home' },
-  { season: 'Winter', focus: 'Cockroaches, rodent-adjacent pests, interior treatments' },
+  { season: 'Summer', focus: 'Flies, hornets, and heat-driven ant invasions' },
+  { season: 'Fall', focus: 'Indoor pest-proofing, spiders, crickets entering the home' },
+  { season: 'Winter', focus: 'Cockroaches and interior treatments' },
 ];
+
+const steps = [
+  { title: 'Inspection', text: 'Our technician inspects interior and exterior areas to find pest activity, entry points, and conditions that attract pests.' },
+  { title: 'Treatment', text: 'We apply EPA-registered products to targeted areas — the perimeter, entry points, nesting areas, and high-activity zones — using methods suited to homes with kids and pets.' },
+  { title: 'Follow-up & monitoring', text: "Recurring visits maintain your protection. If pests return between visits, we come back at no charge — that's our guarantee." },
+];
+
+const faqs = [
+  { q: 'How often is general pest control service?', a: "Most homes do best on a recurring schedule. We'll recommend a visit frequency based on your home, your yard, and the pests you're seeing." },
+  { q: 'Do you treat inside the house?', a: 'Yes. Your first visit includes interior and exterior treatment. Recurring visits focus on the exterior barrier, and we treat inside anytime you need it.' },
+  { q: 'What happens if I still see bugs after treatment?', a: "It's normal to see some activity for a few days as pests come into contact with the treatment. If you're still seeing pests after that, or between visits, contact us and we'll come back free." },
+  { q: 'Is general pest control safe for my pets?', a: "We use EPA-registered products and apply them responsibly. We'll let you know about any brief dry time before pets go back into treated areas." },
+];
+
+const service = services.find((s) => s.slug === 'pest-control')!;
+const plans = services.filter((s) => s.slug.endsWith('pest-control'));
 ---
 
-<Layout title="Pest Control Services" description="Professional pest control services in Los Angeles. We treat 40+ pests including ants, cockroaches, spiders, wasps, and more. 100% satisfaction guarantee.">
+<Layout title="Pest Control Services" description="Professional pest control services in Los Angeles. We treat 40+ pests including ants, cockroaches, spiders, wasps, and more. 100% satisfaction guarantee." image="/photos/pest-control.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
 
-  <!-- Guarantee Banner -->
-  <div class="bg-brand-dark diagonal-stripe py-5 px-4">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-white font-bold uppercase tracking-wider text-center sm:text-left">
-        🛡️ If pests return between treatments — we come back <span class="text-yellow-300">FREE</span>
-      </p>
-      <a href="sms:+18183534800?&body=SAVE50" class="btn-sms text-sm py-2 px-6 flex-shrink-0">
-        Claim 50% Off Now
-      </a>
-    </div>
-  </div>
+  <PageHero
+    eyebrow="Los Angeles Pest Control"
+    title="Pest Control"
+    subtitle="Comprehensive pest management for Los Angeles homeowners. We eliminate the bugs and keep them away with regular service and a free re-treatment guarantee."
+    image="/photos/pest-control.jpg"
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: 'Pest Control' }]}
+  >
+    <PriceBadge slug="pest-control" />
+  </PageHero>
 
-  <!-- Hero -->
-  <section class="bg-brand-light py-16 px-4 border-b-4 border-brand-medium">
-    <div class="max-w-5xl mx-auto text-center">
-      <p class="text-brand-medium font-bold uppercase tracking-widest text-sm mb-2">Los Angeles Pest Control</p>
-      <h1 class="text-4xl md:text-6xl font-extrabold text-brand-dark uppercase tracking-widest mb-6">
-        Pest Control
-      </h1>
-      <p class="text-brand-body text-lg max-w-2xl mx-auto leading-relaxed mb-8">
-        Comprehensive pest management for Los Angeles homeowners. We eliminate the bugs and keep them away with our regular treatment schedule and free re-treatment guarantee.
-      </p>
-      <a href="sms:+18183534800?&body=SAVE50" class="btn-sms-lg">
-        Get a Free Quote
-      </a>
-    </div>
-  </section>
-
-  <!-- Service Photo -->
-  <div class="w-full max-h-[420px] overflow-hidden">
-    <img src="/pest-control-hero.jpg" alt="Ants along a kitchen baseboard — common household pest in Los Angeles" class="w-full object-cover object-center max-h-[420px]" />
-  </div>
-
-  <!-- Included / Excluded -->
-  <section class="bg-white py-16 px-4">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="section-heading mb-12">What's Included</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-        <!-- Included -->
-        <div class="bg-brand-light rounded-2xl p-8 border-2 border-brand-medium">
-          <h3 class="text-brand-dark font-extrabold uppercase tracking-widest text-lg mb-6 flex items-center gap-2">
-            <span class="text-brand-medium text-2xl">✓</span> We Treat
-          </h3>
-          <ul class="space-y-3">
-            {included.map(item => (
-              <li class="flex items-center gap-3 text-brand-body font-semibold text-sm">
-                <span class="text-brand-medium font-bold flex-shrink-0">✓</span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <!-- Excluded -->
-        <div>
-          <div class="bg-red-50 rounded-2xl p-8 border-2 border-red-200 mb-6">
-            <h3 class="text-red-700 font-extrabold uppercase tracking-widest text-lg mb-6 flex items-center gap-2">
-              <span class="text-red-500 text-2xl">✗</span> Not Included
-            </h3>
-            <ul class="space-y-3">
-              {excluded.map(item => (
-                <li class="flex items-center gap-3 text-red-700 font-semibold text-sm">
-                  <span class="text-red-500 font-bold flex-shrink-0">✗</span>
-                  {item}
-                </li>
-              ))}
+  <section id="plans" class="py-20 px-4 bg-brand-light scroll-mt-24">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">Choose your plan</p>
+        <h2 class="h-section">General or Premium?</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+        {plans.map((p, i) => (
+          <div class={`card p-8 md:p-10 flex flex-col ${i === 1 ? 'ring-2 ring-brand-medium' : ''}`}>
+            <h3 class="text-2xl font-extrabold text-brand-dark">{p.name}</h3>
+            <p class="text-gray-500 mb-6">{p.tagline}</p>
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-500">{p.price.label}</p>
+            <p class="text-5xl font-extrabold text-brand-dark mb-6">{p.price.amount}<span class="text-xl font-bold text-gray-500">{p.price.unit}</span></p>
+            <p class="text-gray-600 mb-6">{p.summary}</p>
+            <ul class="space-y-2 mb-8 flex-1">
+              {p.features.map((f) => <li class="flex gap-2"><span class="text-brand-medium font-bold">✓</span>{f}</li>)}
             </ul>
+            <a href={smsHref(promo.active ? promo.code : `Hi, I'd like ${p.name}`)} class="btn-primary w-full">Get Started</a>
           </div>
-          <!-- Custom treatments note -->
-          <div class="bg-brand-dark rounded-2xl p-6">
-            <h4 class="text-white font-extrabold uppercase tracking-widest text-sm mb-3">Custom Treatments Available</h4>
-            <p class="text-green-200 text-sm leading-relaxed">
-              Have a specific pest problem not listed? We offer custom treatment plans for bed bugs, termite prevention, and other specialty pests. Contact us to discuss your situation.
-            </p>
-            <a href="sms:+18183534800?&body=SAVE50" class="inline-block mt-4 text-yellow-300 font-bold text-sm uppercase tracking-wider hover:text-white transition-colors">
-              Ask About Custom Plans →
-            </a>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Pest Activity Chart -->
-  <section class="bg-brand-light py-16 px-4">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="section-heading mb-4">What Happens After Treatment</h2>
-      <p class="section-subheading mb-10">Pest activity drops sharply after your first visit and stays low with regular monthly or bi-monthly service</p>
+  <ServiceIncluded
+    included={included}
+    excluded={excluded}
+    note={{ title: 'Custom treatments available', text: 'Have a specific pest problem not listed? We offer custom treatment plans for bed bugs and other specialty pests.', linkText: 'Ask about custom plans', href: smsHref("Hi, I'd like to ask about a custom treatment plan") }}
+  />
 
-      <div class="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-green-200 mb-10">
-        <svg viewBox="0 0 700 285" class="w-full" role="img" aria-label="Line chart showing pest activity decreasing over 12 months with Lion Gate treatment vs no treatment">
-          <!-- Chart title -->
-          <text x="367" y="16" text-anchor="middle" font-size="18" fill="#2D5A3D" font-weight="bold" font-family="sans-serif" letter-spacing="2">PEST ACTIVITY OVER 12 MONTHS</text>
-
-          <!-- Horizontal grid lines -->
-          <line x1="50" y1="30" x2="685" y2="30" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
-          <line x1="50" y1="80" x2="685" y2="80" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
-          <line x1="50" y1="130" x2="685" y2="130" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
-          <line x1="50" y1="180" x2="685" y2="180" stroke="#e5e7eb" stroke-width="1" stroke-dasharray="4,4"/>
-          <line x1="50" y1="220" x2="685" y2="220" stroke="#d1d5db" stroke-width="1"/>
-
-          <!-- Y axis labels -->
-          <text x="44" y="34" text-anchor="end" font-size="16" fill="#9ca3af" font-family="sans-serif">High</text>
-          <text x="44" y="134" text-anchor="end" font-size="16" fill="#9ca3af" font-family="sans-serif">Med</text>
-          <text x="44" y="224" text-anchor="end" font-size="16" fill="#9ca3af" font-family="sans-serif">Low</text>
-
-          <!-- Without treatment shaded area -->
-          <polygon points="50,32 685,32 685,220 50,220" fill="#fee2e2" opacity="0.35"/>
-          <!-- Without treatment line -->
-          <line x1="50" y1="32" x2="685" y2="32" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="8,5"/>
-
-          <!-- With treatment shaded area -->
-          <polygon points="50,32 107,88 164,138 221,168 279,185 336,196 393,202 450,205 507,207 564,210 621,212 685,214 685,220 50,220" fill="#3A7D44" opacity="0.12"/>
-          <!-- With treatment line -->
-          <polyline points="50,32 107,88 164,138 221,168 279,185 336,196 393,202 450,205 507,207 564,210 621,212 685,214" fill="none" stroke="#3A7D44" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
-
-          <!-- Treatment visit dots (bi-monthly: Jan, Mar, May, Jul, Sep, Nov) -->
-          <circle cx="50" cy="32" r="6" fill="#2D5A3D"/>
-          <circle cx="164" cy="138" r="6" fill="#2D5A3D"/>
-          <circle cx="279" cy="185" r="6" fill="#2D5A3D"/>
-          <circle cx="393" cy="202" r="6" fill="#2D5A3D"/>
-          <circle cx="507" cy="207" r="6" fill="#2D5A3D"/>
-          <circle cx="621" cy="212" r="6" fill="#2D5A3D"/>
-
-          <!-- First treatment label -->
-          <text x="50" y="20" text-anchor="middle" font-size="14" fill="#2D5A3D" font-weight="bold" font-family="sans-serif">First Visit</text>
-
-          <!-- Month labels -->
-          <text x="50" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Jan</text>
-          <text x="107" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Feb</text>
-          <text x="164" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Mar</text>
-          <text x="221" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Apr</text>
-          <text x="279" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">May</text>
-          <text x="336" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Jun</text>
-          <text x="393" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Jul</text>
-          <text x="450" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Aug</text>
-          <text x="507" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Sep</text>
-          <text x="564" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Oct</text>
-          <text x="621" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Nov</text>
-          <text x="685" y="242" text-anchor="middle" font-size="14" fill="#6b7280" font-family="sans-serif">Dec</text>
-
-          <!-- X axis label -->
-          <text x="367" y="265" text-anchor="middle" font-size="14" fill="#9ca3af" font-family="sans-serif">Month</text>
-        </svg>
-
-        <!-- Legend -->
-        <div class="flex flex-wrap gap-6 justify-center mt-6">
-          <div class="flex items-center gap-2">
-            <svg width="32" height="12"><line x1="0" y1="6" x2="32" y2="6" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="6,4"/></svg>
-            <span class="text-sm text-brand-body font-semibold">No treatment</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg width="32" height="12"><line x1="0" y1="6" x2="32" y2="6" stroke="#3A7D44" stroke-width="3"/></svg>
-            <span class="text-sm text-brand-body font-semibold">With Lion Gate service</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="#2D5A3D"/></svg>
-            <span class="text-sm text-brand-body font-semibold">Treatment visit</span>
-          </div>
-        </div>
+  <section class="py-20 px-4 bg-brand-light">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">Results</p>
+        <h2 class="h-section">What happens after treatment</h2>
+        <p class="lead mt-4 max-w-2xl mx-auto">Pest activity drops sharply after your first visit and stays low with regular service.</p>
       </div>
-
-      <div class="text-center">
-        <a href="sms:+18183534800?&body=SAVE50" class="btn-sms-lg">
-          Get a Quote — 50% Off First Treatment
-        </a>
-        <p class="text-brand-body text-sm mt-4 font-semibold">Family Owned · Licensed &amp; Insured in California</p>
+      <PestActivityChart />
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-10">
+        {schedule.map((s) => (
+          <div class="card p-6">
+            <h3 class="font-extrabold text-brand-dark mb-1">{s.season}</h3>
+            <p class="text-sm text-gray-600">{s.focus}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Process -->
-  <section class="bg-white py-16 px-4">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="section-heading mb-12">Our Treatment Process</h2>
-      <div class="space-y-6">
-        <div class="flex gap-6 items-start">
-          <div class="w-10 h-10 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold flex-shrink-0">1</div>
-          <div>
-            <h3 class="font-extrabold text-brand-dark uppercase tracking-wider mb-1">Inspection</h3>
-            <p class="text-brand-body text-sm leading-relaxed">Our technician inspects interior and exterior areas to identify pest activity, entry points, and environmental factors contributing to the problem.</p>
-          </div>
-        </div>
-        <div class="flex gap-6 items-start">
-          <div class="w-10 h-10 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold flex-shrink-0">2</div>
-          <div>
-            <h3 class="font-extrabold text-brand-dark uppercase tracking-wider mb-1">Treatment</h3>
-            <p class="text-brand-body text-sm leading-relaxed">We apply EPA-registered products to targeted areas — perimeter, entry points, nesting areas, and high-activity zones. Interior treatments use products safe around family and pets.</p>
-          </div>
-        </div>
-        <div class="flex gap-6 items-start">
-          <div class="w-10 h-10 bg-brand-dark rounded-full flex items-center justify-center text-white font-extrabold flex-shrink-0">3</div>
-          <div>
-            <h3 class="font-extrabold text-brand-dark uppercase tracking-wider mb-1">Follow-Up &amp; Monitoring</h3>
-            <p class="text-brand-body text-sm leading-relaxed">We schedule monthly or bi-monthly follow-up visits to maintain protection. If pests return between visits, we come back at no charge — that's our guarantee.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <ProcessSteps heading="Our treatment process" steps={steps} />
 
+  <FaqList faqs={faqs} heading="Pest control questions" />
+
+  <ServiceCards exclude={['pest-control', 'premium-pest-control']} heading="Explore our other services" />
 </Layout>

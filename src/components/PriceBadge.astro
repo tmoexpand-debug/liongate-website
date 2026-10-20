@@ -1,0 +1,9 @@
+---
+import { services } from '../data/site';
+interface Props { slug: string }
+const s = services.find((x) => x.slug === Astro.props.slug)!;
+---
+<div class="inline-flex items-center gap-3 bg-white/15 backdrop-blur rounded-2xl px-5 py-3 mt-6 text-white">
+  <span class="text-xs font-bold uppercase tracking-widest text-green-200">{s.price.amount ? s.price.label : 'Starts with a'}</span>
+  <span class="text-2xl font-extrabold">{s.price.amount ? `${s.price.amount}${s.price.unit}` : 'Free inspection'}</span>
+</div>
