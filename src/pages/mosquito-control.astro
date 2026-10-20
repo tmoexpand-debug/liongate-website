@@ -41,13 +41,13 @@ const faqs = [
 const service = services.find((s) => s.slug === 'mosquito-control')!;
 ---
 
-<Layout title="Mosquito Control in Los Angeles" description="Mosquito control for Los Angeles yards. Monthly treatments target day-biting 'ankle biter' mosquitoes where they rest and breed. Starting at $120/mo." image="/hero-bg.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
+<Layout title="Mosquito Control in Los Angeles" description="Mosquito control for Los Angeles yards. Monthly treatments target day-biting 'ankle biter' mosquitoes where they rest and breed. Starting at $120/mo." image="/photos/mosquito.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
 
   <PageHero
     eyebrow="Los Angeles Mosquito Control"
     title="Mosquito Control"
     subtitle="Take back your yard. Our monthly mosquito treatments target the day-biting mosquitoes that have spread across Los Angeles — where they rest and where they breed."
-    image="/hero-bg.jpg"
+    image="/photos/mosquito.jpg"
     crumbs={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: 'Mosquito Control' }]}
   >
     <PriceBadge slug="mosquito-control" />

@@ -59,13 +59,13 @@ const faqs = [
 const service = services.find((s) => s.slug === 'rodent-control')!;
 ---
 
-<Layout title="Rodent Control Services" description="Professional rodent control in Los Angeles. We eliminate mice and rats with bait stations, trapping, and exclusion. 100% satisfaction guarantee." image="/rodent-control-hero.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
+<Layout title="Rodent Control Services" description="Professional rodent control in Los Angeles. We eliminate mice and rats with bait stations, trapping, and exclusion. 100% satisfaction guarantee." image="/photos/rodent.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
 
   <PageHero
     eyebrow="Los Angeles Rodent Specialists"
     title="Rodent Control"
     subtitle="Mice and rats are more than a nuisance — they carry disease, chew wiring, and contaminate food. Our rodent control program eliminates the problem at its source and keeps them from coming back."
-    image="/rodent-control-hero.jpg"
+    image="/photos/rodent.jpg"
     crumbs={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: 'Rodent Control' }]}
   >
     <PriceBadge slug="rodent-control" />

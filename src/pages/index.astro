@@ -11,7 +11,7 @@ import { business, promo, primaryCtaHref, workPhotos, faqSchema } from '../data/
 const years = new Date().getFullYear() - business.foundingYear;
 
 const reasons = [
-  { icon: 'home', title: 'Family owned', text: `A small local team protecting LA homes since ${business.foundingYear}. You'll see the same technicians visit after visit.` },
+  { icon: 'home', title: 'Family owned', text: `A small team protecting LA homes since ${business.foundingYear}. You'll see the same technicians visit after visit.` },
   { icon: 'shield', title: '100% satisfaction guarantee', text: "If pests come back between scheduled visits, we come back too — at no charge." },
   { icon: 'paw', title: 'Family & pet friendly', text: "EPA-registered products, applied carefully, with clear instructions for kids and pets before we start." },
   { icon: 'certificate', title: 'Licensed & insured', text: `Licensed by the California Structural Pest Control Board (Reg. ${business.spcbRegistration}) and fully insured.` },
@@ -35,7 +35,7 @@ const faqs = [
 
   <!-- HERO -->
   <section class="px-3 sm:px-4 pt-3">
-    <div class="relative overflow-hidden rounded-[2rem] min-h-[640px] md:min-h-[720px] flex items-end" style="background-image:url('/hero-bg.jpg');background-size:cover;background-position:center 30%;">
+    <div class="relative overflow-hidden rounded-[2rem] min-h-[640px] md:min-h-[720px] flex items-end" style="background-image:url('/photos/home-hero.jpg');background-size:cover;background-position:center 35%;">
       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10"></div>
       <div class="relative container-site w-full pb-12 md:pb-16 pt-32 grid lg:grid-cols-12 gap-8 items-end">
         <div class="lg:col-span-7">
@@ -83,7 +83,7 @@ const faqs = [
   <section class="py-20 px-4">
     <div class="container-site grid lg:grid-cols-2 gap-12 items-center">
       <div class="relative">
-        <img src="/pest-control-hero.jpg" alt="Lion Gate technician at work" class="w-full aspect-[4/5] object-cover rounded-[2rem]" loading="lazy" />
+        <img src="/photos/why-us.jpg" alt="Lion Gate technician placing a rodent bait station" class="w-full aspect-[4/5] object-cover rounded-[2rem]" loading="lazy" />
         <div class="absolute -bottom-6 -right-2 sm:right-6 bg-white rounded-2xl shadow-xl p-5 max-w-[15rem]">
           <p class="text-3xl font-extrabold text-brand-dark">Since {business.foundingYear}</p>
           <p class="text-sm text-gray-600">Protecting Los Angeles homes and families.</p>

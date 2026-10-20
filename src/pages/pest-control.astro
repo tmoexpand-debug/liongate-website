@@ -47,13 +47,13 @@ const service = services.find((s) => s.slug === 'pest-control')!;
 const plans = services.filter((s) => s.slug.endsWith('pest-control'));
 ---
 
-<Layout title="Pest Control Services" description="Professional pest control services in Los Angeles. We treat 40+ pests including ants, cockroaches, spiders, wasps, and more. 100% satisfaction guarantee." image="/pest-control-hero.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
+<Layout title="Pest Control Services" description="Professional pest control services in Los Angeles. We treat 40+ pests including ants, cockroaches, spiders, wasps, and more. 100% satisfaction guarantee." image="/photos/pest-control.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
 
   <PageHero
     eyebrow="Los Angeles Pest Control"
     title="Pest Control"
     subtitle="Comprehensive pest management for Los Angeles homeowners. We eliminate the bugs and keep them away with regular service and a free re-treatment guarantee."
-    image="/pest-control-hero.jpg"
+    image="/photos/pest-control.jpg"
     crumbs={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: 'Pest Control' }]}
   >
     <PriceBadge slug="pest-control" />

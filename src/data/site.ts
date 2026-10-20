@@ -28,7 +28,7 @@ export function smsHref(body?: string) {
 // To run a new promo, edit these fields. To turn promos off, set active: false
 // and every CTA falls back to a plain "request a quote" text.
 export const promo = {
-  active: true,
+  active: false,
   eyebrow: 'Fall Special',
   headline: '50% Off Your First Service',
   code: 'SAVE50',
@@ -58,7 +58,7 @@ export const services: Service[] = [
     tagline: 'Year-round protection',
     summary: 'Recurring interior and exterior treatments that stop ants, roaches, spiders, and 40+ common LA pests before they get inside.',
     icon: 'bug',
-    image: '/pest-control-hero.jpg',
+    image: '/photos/pest-control.jpg',
     price: { amount: '$50', unit: '/mo', label: 'Starting at', note: 'Recurring service plan' },
     features: ['Interior & exterior treatment', '40+ pests covered', 'Free re-service between visits', 'Family & pet friendly products'],
   },
@@ -79,7 +79,7 @@ export const services: Service[] = [
     tagline: 'Take back your yard',
     summary: 'Monthly yard treatments that target the day-biting "ankle biter" mosquitoes that have spread across Los Angeles.',
     icon: 'droplet',
-    image: '/hero-bg.jpg',
+    image: '/photos/mosquito.jpg',
     price: { amount: '$120', unit: '/mo', label: 'Starting at', note: 'Monthly yard treatments' },
     features: ['Foliage & resting-site treatment', 'Standing water inspection', 'Breeding-site larvicide', 'Monthly service in season'],
   },
@@ -90,7 +90,7 @@ export const services: Service[] = [
     tagline: 'Mice & rats, handled',
     summary: 'A full inspection, trapping and bait stations, and exclusion recommendations to get rats and mice out — and keep them out.',
     icon: 'rodent',
-    image: '/rodent-control-hero.jpg',
+    image: '/photos/rodent.jpg',
     price: { label: 'Free Inspection', note: 'Custom quote after inspection' },
     features: ['Full home inspection', 'Trapping & bait stations', 'Entry point identification', 'Follow-up monitoring visits'],
   },
@@ -291,9 +291,12 @@ export const cityHref = (c: City) => `/service-areas/${c.slug}/`;
 // Real photos of work go here as they come in. Shown in the homepage
 // "Recent work" gallery.
 export const workPhotos: { src: string; alt: string }[] = [
-  { src: '/hero-bg.jpg', alt: 'Lion Gate technician treating the exterior of a Los Angeles home' },
-  { src: '/pest-control-hero.jpg', alt: 'Ant trail along a kitchen baseboard' },
-  { src: '/rodent-control-hero.jpg', alt: 'Rodent control inspection' },
+  { src: '/photos/work-perimeter.jpg', alt: 'Lion Gate technician treating shrubs along a home foundation' },
+  { src: '/photos/work-garage.jpg', alt: 'Perimeter treatment along a garage door' },
+  { src: '/photos/work-bait-station.jpg', alt: 'Technician checking a rodent bait station' },
+  { src: '/photos/work-dewebbing.jpg', alt: 'Clearing webs from the eaves above a garage' },
+  { src: '/photos/work-entry.jpg', alt: 'Treating around a side entry door' },
+  { src: '/photos/work-truck.jpg', alt: 'Lion Gate Pest Control service truck' },
 ];
 
 // Featured Google reviews (shown on the homepage and city pages).
