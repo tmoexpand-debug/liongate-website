@@ -35,10 +35,10 @@ const faqs = [
 
   <!-- HERO -->
   <section class="px-3 sm:px-4 pt-3">
-    <div class="relative overflow-hidden rounded-[2rem] min-h-[640px] md:min-h-[720px] flex items-end" style="background-image:url('/photos/home-hero.jpg');background-size:cover;background-position:center 35%;">
+    <div class="relative overflow-hidden rounded-[2rem] min-h-[640px] md:min-h-[720px] flex items-end" style="background-image:url('/photos/home-hero.jpg');background-size:cover;background-position:20% 0%;">
       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10"></div>
       <div class="relative container-site w-full pb-12 md:pb-16 pt-32 grid lg:grid-cols-12 gap-8 items-end">
-        <div class="lg:col-span-7">
+        <div class={promo.active ? "lg:col-span-7" : "lg:col-span-7 lg:col-start-6"}>
           <p class="inline-flex items-center gap-2 bg-white/15 backdrop-blur text-white text-sm font-semibold px-4 py-2 rounded-full mb-6">
             <span class="text-yellow-300">★★★★★</span> {business.rating} on Google · Family owned since {business.foundingYear}
           </p>
