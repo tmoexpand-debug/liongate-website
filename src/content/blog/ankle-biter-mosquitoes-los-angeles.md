@@ -1,6 +1,6 @@
 ---
-title: "Why LA Mosquitoes Bite During the Day Now (and How to Stop Them)"
-description: "Invasive 'ankle biter' Aedes mosquitoes have spread across Los Angeles. Here's why they bite in daylight, where they breed in your yard, and how to cut them down."
+title: "Why LA Mosquitoes Bite by Day"
+description: "Invasive ankle-biter Aedes mosquitoes have spread across Los Angeles. Why they bite in daylight, where they breed in your yard, and how to cut them down."
 pubDate: 2026-09-15
 image: /photos/mosquito.jpg
 imageAlt: Technician treating shrubs along a home foundation

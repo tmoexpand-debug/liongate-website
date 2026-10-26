@@ -1,5 +1,5 @@
 ---
-title: "Roof Rats in Los Angeles: Why Your Fruit Trees and Palms Are Rat Highways"
+title: "Roof Rats in Los Angeles Yards"
 description: "Roof rats are the most common rodent in LA homes. Learn the signs, why fruit trees and palms attract them, and how to keep them out of your attic."
 pubDate: 2026-09-29
 image: /photos/rodent.jpg

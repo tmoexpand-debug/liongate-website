@@ -40,7 +40,7 @@ const articleSchema = {
     </header>
     {d.image && (
       <div class="max-w-5xl mx-auto my-10">
-        <img src={d.image} alt={d.imageAlt ?? ''} class="w-full aspect-[2/1] object-cover rounded-[2rem]" />
+        <img src={d.image} alt={d.imageAlt || d.title} class="w-full aspect-[2/1] object-cover rounded-[2rem]" />
       </div>
     )}
     <div class="max-w-3xl mx-auto prose-lg-site mt-10">

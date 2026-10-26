@@ -17,4 +17,22 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+// City pages: src/content/locations/burbank.md -> /pest-control/burbank/
+// Astro reserves `slug` on content collections (it becomes entry.slug from
+// the filename or the frontmatter slug). It cannot also be a schema field.
+const locations = defineCollection({
+  type: 'content',
+  schema: z.object({
+    city: z.string(),
+    title: z.string(),
+    description: z.string(),
+    neighborhoods: z.array(z.string()),
+    localPests: z.array(z.string()),
+    faqs: z.array(z.object({
+      q: z.string(),
+      a: z.string(),
+    })),
+  }),
+});
+
+export const collections = { blog, locations };

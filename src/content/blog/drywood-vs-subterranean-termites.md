@@ -1,6 +1,6 @@
 ---
-title: "Drywood vs. Subterranean Termites: How to Tell Which One You Have"
-description: "Southern California homes get two main kinds of termites. Learn how to tell drywood and subterranean termites apart and why the difference changes the treatment."
+title: "Drywood vs. Subterranean Termites"
+description: "Southern California homes get two main kinds of termites. Learn how to tell drywood and subterranean termites apart and why the difference changes treatment."
 pubDate: 2026-10-02
 relatedService: termite-control
 ---
