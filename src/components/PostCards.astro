@@ -29,8 +29,8 @@ const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'long', day: 'nu
           <a href={`/blog/${p.slug}/`} class="group card overflow-hidden flex flex-col hover:shadow-xl transition-shadow">
             <div class="aspect-[16/10] overflow-hidden bg-brand-dark diagonal-stripe flex items-center justify-center">
               {p.data.image
-                ? <img src={p.data.image} alt={p.data.imageAlt ?? ''} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                : <img src="/logo-white.png" alt="" class="w-1/2 opacity-80" loading="lazy" />}
+                ? <img src={p.data.image} alt={p.data.imageAlt || p.data.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                : <img src="/logo-white.png" alt="Lion Gate Pest Control" class="w-1/2 opacity-80" loading="lazy" />}
             </div>
             <div class="p-6 flex-1 flex flex-col">
               <time class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2" datetime={p.data.pubDate.toISOString()}>{fmt(p.data.pubDate)}</time>

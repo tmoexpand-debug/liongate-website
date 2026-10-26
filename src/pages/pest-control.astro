@@ -47,7 +47,7 @@ const service = services.find((s) => s.slug === 'pest-control')!;
 const plans = services.filter((s) => s.slug.endsWith('pest-control'));
 ---
 
-<Layout title="Pest Control Services" description="Professional pest control services in Los Angeles. We treat 40+ pests including ants, cockroaches, spiders, wasps, and more. 100% satisfaction guarantee." image="/photos/pest-control.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
+<Layout title="Pest Control Services in Los Angeles, CA" description="Professional pest control services in Los Angeles. We treat 40+ pests including ants, cockroaches, spiders, wasps, and more. 100% satisfaction guarantee." image="/photos/pest-control.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
 
   <PageHero
     eyebrow="Los Angeles Pest Control"
@@ -80,6 +80,10 @@ const plans = services.filter((s) => s.slug.endsWith('pest-control'));
           </div>
         ))}
       </div>
+      <p class="text-center text-gray-600 mt-10 max-w-2xl mx-auto">
+        In the east Valley, read the neighborhood guide to
+        <a href="/pest-control/burbank/" class="font-bold text-brand-medium hover:text-brand-dark">pest control in Burbank</a>.
+      </p>
     </div>
   </section>
 

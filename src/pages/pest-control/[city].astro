@@ -1,0 +1,122 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import FaqList from '../../components/FaqList.astro';
+import Icon from '../../components/Icon.astro';
+import { business, faqSchema } from '../../data/site';
+
+export async function getStaticPaths() {
+  const locations = await getCollection('locations');
+  return locations.map((entry) => ({
+    params: { city: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props {
+  entry: CollectionEntry<'locations'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const loc = entry.data;
+
+const pageUrl = new URL(`/pest-control/${entry.slug}/`, Astro.site).href;
+const homeUrl = new URL('/', Astro.site).href;
+const serviceUrl = new URL('/pest-control/', Astro.site).href;
+
+const serviceLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Pest Control',
+  name: `Pest Control in ${loc.city}, CA`,
+  description: loc.description,
+  url: pageUrl,
+  provider: { '@id': 'https://www.liongatepest.com/#business' },
+  areaServed: {
+    '@type': 'City',
+    name: loc.city,
+    containedInPlace: { '@type': 'AdministrativeArea', name: 'Los Angeles County, California' },
+  },
+};
+
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: homeUrl },
+    { '@type': 'ListItem', position: 2, name: 'Pest Control', item: serviceUrl },
+    { '@type': 'ListItem', position: 3, name: `${loc.city} Pest Control`, item: pageUrl },
+  ],
+};
+---
+<Layout
+  title={loc.title}
+  description={loc.description}
+  image="/photos/work-perimeter.jpg"
+  schema={[serviceLd, breadcrumbLd, faqSchema(loc.faqs)]}
+>
+  <PageHero
+    eyebrow={`${loc.city}, California`}
+    title={`${loc.city} Pest Control`}
+    subtitle={`Local pest control for ${loc.city} homes on the Valley floor and along the Verdugo foothills.`}
+    image="/photos/work-perimeter.jpg"
+    crumbs={[
+      { label: 'Home', href: '/' },
+      { label: 'Pest Control', href: '/pest-control/' },
+      { label: loc.city },
+    ]}
+  />
+
+  <section class="py-16 px-4">
+    <div class="container-site grid lg:grid-cols-12 gap-12 items-start">
+      <article class="lg:col-span-7 prose-lg-site">
+        <img
+          src="/photos/work-perimeter.jpg"
+          alt="Lion Gate technician treating shrubs along a home foundation"
+          class="w-full aspect-[16/9] object-cover rounded-[2rem] mb-8"
+          width="1200"
+          height="675"
+        />
+        <Content />
+      </article>
+      <aside class="lg:col-span-5 lg:sticky lg:top-24">
+        <div class="card p-8 bg-brand-light border-none">
+          <h2 class="text-xl font-extrabold text-brand-dark mb-4">Neighborhoods in {loc.city}</h2>
+          <ul class="grid grid-cols-1 gap-2 text-gray-700 mb-8">
+            {loc.neighborhoods.map((name) => (
+              <li class="flex gap-2">
+                <Icon name="pin" class="w-5 h-5 flex-shrink-0 text-brand-medium mt-0.5" />
+                {name}
+              </li>
+            ))}
+          </ul>
+          <h2 class="text-xl font-extrabold text-brand-dark mb-4">Local pests</h2>
+          <ul class="flex flex-wrap gap-2">
+            {loc.localPests.map((name) => (
+              <li class="bg-white rounded-full px-4 py-2 text-sm font-semibold text-brand-dark border border-gray-200">{name}</li>
+            ))}
+          </ul>
+          <p class="text-sm text-gray-600 mt-6">
+            <a href={business.phoneHref} class="font-bold text-brand-medium hover:text-brand-dark">Call {business.phone}</a>
+            {' '}or <a href="/contact/" class="font-bold text-brand-medium hover:text-brand-dark">contact Lion Gate</a> to schedule {loc.city} service.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <FaqList faqs={loc.faqs} heading={`${loc.city} pest control questions`} bg="bg-brand-light" />
+
+  <section class="py-16 px-4">
+    <div class="container-site text-center max-w-3xl">
+      <h2 class="h-section mb-4">Schedule pest control in {loc.city}</h2>
+      <p class="lead mb-8">
+        Call <a href={business.phoneHref} class="font-bold text-brand-medium hover:text-brand-dark">{business.phone}</a>
+        {' '}to talk through what you are seeing. You can also reach us on the <a href="/contact/" class="font-bold text-brand-medium hover:text-brand-dark">contact page</a>.
+      </p>
+      <a href={business.phoneHref} class="btn-primary !py-4 !px-8 text-lg">Call {business.phone}</a>
+    </div>
+  </section>
+</Layout>
