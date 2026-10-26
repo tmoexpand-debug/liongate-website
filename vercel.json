@@ -2,5 +2,17 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm install",
-  "framework": "astro"
+  "framework": "astro",
+  "redirects": [
+    {
+      "source": "/service-areas/burbank",
+      "destination": "/pest-control/burbank/",
+      "permanent": true
+    },
+    {
+      "source": "/service-areas/burbank/",
+      "destination": "/pest-control/burbank/",
+      "permanent": true
+    }
+  ]
 }

@@ -286,7 +286,8 @@ export const cities: City[] = [
   },
 ];
 
-export const cityHref = (c: City) => `/service-areas/${c.slug}/`;
+export const cityHref = (c: City) =>
+  c.slug === 'burbank' ? '/pest-control/burbank/' : `/service-areas/${c.slug}/`;
 
 // Real photos of work go here as they come in. Shown in the homepage
 // "Recent work" gallery.

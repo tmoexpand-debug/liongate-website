@@ -21,10 +21,17 @@ function sitemapXmlAlias() {
 
 export default defineConfig({
   site: 'https://www.liongatepest.com',
+  redirects: {
+    // Astro emits this as a 301. Vercel also redirects both slash forms in vercel.json.
+    '/service-areas/burbank': {
+      status: 301,
+      destination: '/pest-control/burbank/',
+    },
+  },
   integrations: [
     tailwind(),
     sitemap({
-      filter: (page) => !page.includes('/lp/'),
+      filter: (page) => !page.includes('/lp/') && !page.includes('/service-areas/burbank'),
     }),
     sitemapXmlAlias(),
   ],
