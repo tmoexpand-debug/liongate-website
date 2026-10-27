@@ -4,6 +4,7 @@
 // has exactly one job and every outbound link is a leak. Also noindex, so it can't
 // compete with or cannibalise the organic pages.
 import '../styles/global.css';
+import Icon from '../components/Icon.astro';
 
 interface Props {
   title: string;
@@ -17,6 +18,11 @@ interface Props {
   cityCopy?: Record<string, Record<string, string>>;
   /** Copy used for any city without its own entry. */
   defaultCopy?: Record<string, string>;
+  /**
+   * 'site' = the redesigned main-site look (white header, rounded cards, pill buttons).
+   * 'classic' keeps the original LP look so live pages don't change under a running campaign.
+   */
+  variant?: 'classic' | 'site';
 }
 
 const {
@@ -27,7 +33,9 @@ const {
   smsTemplate,
   cityCopy = {},
   defaultCopy = {},
+  variant = 'classic',
 } = Astro.props;
+const isSite = variant === 'site';
 
 const PHONE = '+18183534800';
 const PHONE_DISPLAY = '(818) 353-4800';
@@ -88,7 +96,45 @@ const defaultSmsHref = `sms:${PHONE}?&body=${encodeURIComponent(smsTemplate.repl
     </script>
   </head>
 
-  <body class="font-montserrat text-brand-body pb-20 md:pb-0">
+  <body class={isSite ? "site font-montserrat text-brand-body pb-16 lg:pb-0" : "font-montserrat text-brand-body pb-20 md:pb-0"}>
+    {isSite ? (
+      <Fragment>
+    <!-- Minimal header. Logo is intentionally NOT a link — no exits from a PPC page. -->
+    <header class="bg-white/95 backdrop-blur sticky top-0 z-50 border-b border-gray-200">
+      <div class="container-site flex items-center justify-between h-20 gap-4">
+        <img src="/logo-color.png" alt="Lion Gate Pest Control" class="h-12 md:h-14 w-auto" />
+        <a href={`tel:${PHONE}`} class="btn-outline text-sm !py-2.5 whitespace-nowrap">
+          <Icon name="phone" class="w-4 h-4" />{PHONE_DISPLAY}
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Trust footer. No navigation — NAP and credentials only. -->
+    <footer class="bg-brand-dark text-white pt-12 pb-8">
+      <div class="container-site text-center space-y-2 text-sm">
+        <img src="/logo-white.png" alt="Lion Gate Pest Control" class="h-12 w-auto mx-auto mb-5" />
+        <p><a href={`tel:${PHONE}`} class="text-white font-bold text-lg hover:text-green-200">{PHONE_DISPLAY}</a></p>
+        <p><a href="mailto:contact@liongatepest.com" class="text-green-100/80 hover:text-white transition-colors">contact@liongatepest.com</a></p>
+        <p class="text-green-100/80">Mon–Fri 9am–5pm · Serving <span data-city>{defaultCity}</span> and the surrounding area</p>
+        <p class="text-green-100/60 text-xs pt-6 mt-6 border-t border-white/15">
+          &copy; {new Date().getFullYear()} Lion Gate Pest Control. Family owned since 2005. Licensed &amp; insured in California.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Sticky mobile CTA bar. Most PPC traffic here will be phones. -->
+    <div class="lg:hidden fixed bottom-0 inset-x-0 z-40 flex shadow-[0_-4px_16px_rgba(0,0,0,0.15)]">
+      <a href={defaultSmsHref} data-sms class="flex-1 bg-brand-medium text-white font-bold py-4 inline-flex items-center justify-center gap-2"><Icon name="chat" class="w-5 h-5" />Text Us</a>
+      <a href={`tel:${PHONE}`} class="flex-1 bg-brand-dark text-white font-bold py-4 inline-flex items-center justify-center gap-2"><Icon name="phone" class="w-5 h-5" />Call Now</a>
+    </div>
+
+      </Fragment>
+    ) : (
+      <Fragment>
     <!-- Minimal header. Logo is intentionally NOT a link — no exits from a PPC page. -->
     <header class="bg-brand-dark px-4 py-3">
       <div class="max-w-5xl mx-auto flex items-center justify-between gap-4">
@@ -138,6 +184,9 @@ const defaultSmsHref = `sms:${PHONE}?&body=${encodeURIComponent(smsTemplate.repl
         📞 Call Now
       </a>
     </div>
+
+      </Fragment>
+    )}
 
     <!--
       City token. Ads pass ?city=Pasadena on the final URL; every [data-city] node and
