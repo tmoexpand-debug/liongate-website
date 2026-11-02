@@ -162,6 +162,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"roof-rats-moving-indoors-los-angeles.md": {
+	id: "roof-rats-moving-indoors-los-angeles.md";
+  slug: "roof-rats-moving-indoors-los-angeles";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 };
 "locations": {
 "burbank.md": {

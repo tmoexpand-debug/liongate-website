@@ -59,7 +59,7 @@ const faqs = [
 const service = services.find((s) => s.slug === 'rodent-control')!;
 ---
 
-<Layout title="Rodent Control Services" description="Professional rodent control in Los Angeles. We eliminate mice and rats with bait stations, trapping, and exclusion. 100% satisfaction guarantee." image="/photos/rodent.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
+<Layout title="Rodent Control in Los Angeles" description="Professional rodent control in Los Angeles. We eliminate mice and rats with bait stations, trapping, and exclusion. 100% satisfaction guarantee." image="/photos/rodent.jpg" schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
 
   <PageHero
     eyebrow="Los Angeles Rodent Specialists"
@@ -106,6 +106,11 @@ const service = services.find((s) => s.slug === 'rodent-control')!;
       </div>
       <div class="text-center mt-10">
         <a href={smsHref("Hi, I'd like a free rodent inspection")} class="btn-primary-lg">Book a Free Rodent Inspection</a>
+        <p class="text-gray-600 mt-6 max-w-2xl mx-auto">
+          Hearing scratching as the nights cool? Read how
+          <a href="/blog/roof-rats-moving-indoors-los-angeles/" class="font-bold text-brand-medium hover:text-brand-dark">roof rats move indoors in fall</a>
+          across Los Angeles and the Valley.
+        </p>
       </div>
     </div>
   </section>
