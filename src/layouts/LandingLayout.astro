@@ -104,8 +104,14 @@ const defaultSmsHref = `sms:${PHONE}?&body=${encodeURIComponent(smsTemplate.repl
     <!-- Minimal header. Logo is intentionally NOT a link — no exits from a PPC page. -->
     <header class="bg-white/95 backdrop-blur sticky top-0 z-50 border-b border-gray-200">
       <div class="container-site flex items-center justify-between h-20 gap-4">
-        <img src="/logo-color.png" alt="Lion Gate Pest Control" class="h-12 md:h-14 w-auto" />
-        <a href={`tel:${PHONE}`} class="btn-outline text-sm !py-2.5 whitespace-nowrap">
+        <div class="flex items-center gap-2 md:gap-3 min-w-0">
+          <img src="/logo-color.png" alt="" class="h-10 md:h-14 w-auto flex-shrink-0" />
+          <p class="text-brand-dark font-extrabold uppercase leading-none whitespace-nowrap">
+            <span class="block text-sm md:text-2xl tracking-wide">Lion Gate</span>
+            <span class="block text-[0.6rem] md:text-xs tracking-wider mt-1">Pest Control</span>
+          </p>
+        </div>
+        <a href={`tel:${PHONE}`} class="btn-outline text-sm !py-2.5 !px-3 sm:!px-6 whitespace-nowrap">
           <Icon name="phone" class="w-4 h-4" />{PHONE_DISPLAY}
         </a>
       </div>
