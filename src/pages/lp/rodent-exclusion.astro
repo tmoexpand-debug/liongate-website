@@ -12,13 +12,17 @@ const cities = [
 ];
 const defaultCity = 'Los Angeles';
 
+// Quo sales line: calls and texts land in the inbox the team already answers.
+const PHONE = '+16269983292';
+const PHONE_DISPLAY = '(626) 998-3292';
+
 const smsTemplate =
   "Hi Lion Gate - I'd like a free rodent exclusion inspection in {city}.";
 
 // Server-rendered fallback for the in-page CTAs. The layout script rewrites every
 // [data-sms] href with the resolved ?city= value, but the buttons must already be
 // tappable before that runs — an href="#" CTA is a dead button if JS fails.
-const defaultSmsHref = `sms:+18183534800?&body=${encodeURIComponent(smsTemplate.replace('{city}', defaultCity))}`;
+const defaultSmsHref = `sms:${PHONE}?&body=${encodeURIComponent(smsTemplate.replace('{city}', defaultCity))}`;
 
 // Every review below is verbatim from /reviews — real Google reviews, not written for this page.
 const reviews = [
@@ -86,7 +90,7 @@ const included = [
   {
     icon: 'clock',
     title: 'Interior trapping & follow-up',
-    body: 'Once the house is sealed, we set traps inside for the rodents already in, then come back to check them until activity stops.',
+    body: 'Once the house is sealed, we set traps inside for the rodents already in, then keep coming back to check them for up to 60 days, until activity stops.',
   },
 ];
 
@@ -95,7 +99,7 @@ const years = new Date().getFullYear() - 2005;
 const steps = [
   { title: 'Text us', text: "Tell us what you're hearing or seeing. A real person here usually replies within a few minutes during business hours to set up your free inspection." },
   { title: 'Free inspection & quote', text: 'We go through the attic, crawl space, garage and exterior, show you every entry point we find, and give you a straight price to seal it. No charge, no obligation.' },
-  { title: 'Seal, remove, monitor', text: 'We seal the openings, place exterior bait stations, and trap the rodents left inside — then follow up until activity stops.' },
+  { title: 'Seal, remove, monitor', text: 'We seal the openings, place exterior bait stations, and trap the rodents left inside. Our 60-day guarantee means we keep trapping until activity stops.' },
 ];
 ---
 
@@ -108,6 +112,8 @@ const steps = [
   cityCopy={cityCopy}
   defaultCopy={defaultCopy}
   variant="site"
+  phone={PHONE}
+  phoneDisplay={PHONE_DISPLAY}
 >
 
   <!-- Hero — same treatment as the main-site homepage hero, offer card in place of the promo card -->
@@ -119,7 +125,8 @@ const steps = [
           <p class="inline-flex items-center gap-2 bg-white/15 backdrop-blur text-white text-sm font-semibold px-4 py-2 rounded-full mb-6">
             <span class="text-yellow-300">★★★★★</span> 5.0 on Google · Family owned since 2005
           </p>
-          <h1 class="h-display text-white">Rodent Exclusion in <span data-city>{defaultCity}</span></h1>
+          <p class="text-green-300 font-bold uppercase tracking-widest text-xs md:text-sm mb-4">Rodent Exclusion in <span data-city>{defaultCity}</span></p>
+          <h1 class="h-display text-white">Get Your Home Rodent-Free. Keep It That Way.</h1>
           <p class="text-white/90 text-lg md:text-xl mt-6 max-w-xl leading-relaxed">
             Scratching in the attic? Droppings in the garage? Traps alone won't fix it — new rats
             keep coming in the same way. We find every entry point, seal your home shut, and
@@ -127,7 +134,7 @@ const steps = [
           </p>
           <div class="flex flex-col sm:flex-row gap-3 mt-8">
             <a href={defaultSmsHref} data-sms class="btn-light !py-4 !px-8 text-lg"><Icon name="chat" class="w-5 h-5" />Text for a Free Inspection</a>
-            <a href="tel:+18183534800" class="btn-ghost-light !py-4 !px-8 text-lg"><Icon name="phone" class="w-5 h-5" />(818) 353-4800</a>
+            <a href={`tel:${PHONE}`} class="btn-ghost-light !py-4 !px-8 text-lg"><Icon name="phone" class="w-5 h-5" />{PHONE_DISPLAY}</a>
           </div>
           <p class="text-white/75 text-sm font-semibold mt-5">Most texts answered within minutes · Mon–Fri 9am–5pm</p>
         </div>
@@ -150,7 +157,7 @@ const steps = [
     <div class="container-site grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
       <div><p class="text-4xl font-extrabold text-brand-dark">{years}+</p><p class="text-sm text-gray-500 font-semibold">Years serving LA</p></div>
       <div><p class="text-4xl font-extrabold text-brand-dark">5.0 ★</p><p class="text-sm text-gray-500 font-semibold">Google rating</p></div>
-      <div><p class="text-4xl font-extrabold text-brand-dark">Free</p><p class="text-sm text-gray-500 font-semibold">Rodent inspection</p></div>
+      <div><p class="text-4xl font-extrabold text-brand-dark">60-Day</p><p class="text-sm text-gray-500 font-semibold">Trapping guarantee</p></div>
       <div><p class="text-4xl font-extrabold text-brand-dark">0</p><p class="text-sm text-gray-500 font-semibold">Poison inside your home</p></div>
     </div>
   </section>
@@ -218,6 +225,20 @@ const steps = [
           </div>
         ))}
       </div>
+
+      <!-- Guarantee. The fine print sits right here because the page has no links to the terms. -->
+      <div class="rounded-3xl bg-brand-dark diagonal-stripe text-white p-8 md:p-10 mt-6 flex flex-col md:flex-row md:items-center gap-6">
+        <span class="w-14 h-14 rounded-2xl bg-white text-brand-dark flex items-center justify-center flex-shrink-0"><Icon name="shield" class="w-7 h-7" /></span>
+        <div>
+          <p class="text-green-300 font-bold uppercase tracking-widest text-xs md:text-sm mb-2">Our 60-day guarantee</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold mb-3">We keep trapping until they're gone.</h3>
+          <p class="text-green-100/85 leading-relaxed">
+            For 60 days after we seal your home, we keep coming back to check and reset traps at no
+            extra charge until rodent activity stops.
+          </p>
+          <p class="text-green-100/60 text-xs mt-3">Covers follow-up trapping inside the home during the 60 days after your exclusion work is complete.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -262,7 +283,7 @@ const steps = [
       </p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
         <a href={defaultSmsHref} data-sms class="btn-primary-lg"><Icon name="chat" class="w-5 h-5" />Text for a Free Inspection</a>
-        <a href="tel:+18183534800" class="btn-outline !py-4 !px-8 text-lg">Call (818) 353-4800</a>
+        <a href={`tel:${PHONE}`} class="btn-outline !py-4 !px-8 text-lg">Call {PHONE_DISPLAY}</a>
       </div>
     </div>
   </section>

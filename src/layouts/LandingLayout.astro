@@ -23,6 +23,9 @@ interface Props {
    * 'classic' keeps the original LP look so live pages don't change under a running campaign.
    */
   variant?: 'classic' | 'site';
+  /** Number for every tel:/sms: link on the page, E.164. Defaults to the main line. */
+  phone?: string;
+  phoneDisplay?: string;
 }
 
 const {
@@ -34,11 +37,10 @@ const {
   cityCopy = {},
   defaultCopy = {},
   variant = 'classic',
+  phone: PHONE = '+18183534800',
+  phoneDisplay: PHONE_DISPLAY = '(818) 353-4800',
 } = Astro.props;
 const isSite = variant === 'site';
-
-const PHONE = '+18183534800';
-const PHONE_DISPLAY = '(818) 353-4800';
 
 // Server-rendered default. The inline script below rewrites these when ?city= is present.
 const defaultSmsHref = `sms:${PHONE}?&body=${encodeURIComponent(smsTemplate.replace('{city}', defaultCity))}`;
