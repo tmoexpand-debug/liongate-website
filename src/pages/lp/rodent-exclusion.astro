@@ -2,6 +2,7 @@
 import LandingLayout from '../../layouts/LandingLayout.astro';
 import Icon from '../../components/Icon.astro';
 import ProcessSteps from '../../components/ProcessSteps.astro';
+import { cities as serviceAreas } from '../../data/site';
 
 // Cities the ?city= token may render. Same two zones as the ant campaign
 // (East Valley + the Pasadena arm), plus the broader names for catch-all ad groups.
@@ -10,14 +11,16 @@ const cities = [
   'Burbank', 'Glendale', 'Sun Valley', 'Tujunga', 'La Crescenta', 'La Cañada',
   'Los Angeles',
 ];
-const defaultCity = 'Los Angeles';
+// The default page speaks to the whole service area; ?city= is only for an ad group
+// aimed at one city.
+const defaultCity = 'Greater Los Angeles';
 
 // Quo sales line: calls and texts land in the inbox the team already answers.
 const PHONE = '+16269983292';
 const PHONE_DISPLAY = '(626) 998-3292';
 
 const smsTemplate =
-  "Hi Lion Gate - I'd like a free rodent exclusion inspection in {city}.";
+  "Hi Lion Gate - I'd like a free rodent exclusion inspection.";
 
 // Server-rendered fallback for the in-page CTAs. The layout script rewrites every
 // [data-sms] href with the resolved ?city= value, but the buttons must already be
@@ -59,7 +62,7 @@ const cityCopy = {
 const defaultCopy = {
   localTexture:
     "Around Los Angeles, most of the rats we find in attics are roof rats. They live in palms, ivy and fruit trees, run the power lines and fences, and get onto the roof from an overhanging limb. Once they are up there, a gap the size of a quarter is enough to get inside.",
-  serviceArea: '',
+  serviceArea: `Serving ${serviceAreas.map((c) => c.name).join(', ')} and nearby communities.`,
 };
 
 const entryPoints = [
