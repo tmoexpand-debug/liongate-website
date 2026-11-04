@@ -27,8 +27,12 @@ const smsTemplate =
 // tappable before that runs — an href="#" CTA is a dead button if JS fails.
 const defaultSmsHref = `sms:${PHONE}?&body=${encodeURIComponent(smsTemplate.replace('{city}', defaultCity))}`;
 
-// Every review below is verbatim from /reviews — real Google reviews, not written for this page.
+// Every review below is verbatim — real Google reviews, not written for this page.
 const reviews = [
+  {
+    text: 'Lion Gate Pest Control is a great company. The people are very friendly and knowledgeable. Rick took the time to show me the problem areas, explain the treatment process and educate me on how to mitigate future issues. He explained everything in a way that was easy to understand. He gave me a heads up when he was on his way and was on-time for the confirmed appointment window. I was impressed with how thorough the inspection was (attic, garage, shed, and under the house). The treatment was affordable and effective. If you want the job done well you should specifically request Rick as your inspector/technician.',
+    source: 'Verified Google Review',
+  },
   {
     text: "Absolutely amazing service. Came in, discovered the problem, got it all done diligently. They explained all about what they use and how it will work. Answered any and all questions and were an absolute delight to correspond with. Would give a 10/10 if I could. Can't go wrong with Lions Gate.",
     source: 'Verified Google Review',
@@ -251,10 +255,10 @@ const steps = [
   <section class="py-20 px-4">
     <div class="container-site">
       <div class="text-center mb-12">
-        <p class="eyebrow mb-3">5.0 ★ · 38 Google reviews</p>
+        <p class="eyebrow mb-3">5.0 ★ · 36 Google reviews</p>
         <h2 class="h-section">What your neighbors say</h2>
       </div>
-      <div class="swipe-row md:grid md:grid-cols-2 md:gap-6 max-w-5xl mx-auto">
+      <div class="swipe-row md:grid md:grid-cols-3 md:gap-6">
         {reviews.map((review) => (
           <figure class="swipe-item card p-7 md:p-8 flex flex-col">
             <div class="text-yellow-400 text-xl mb-4" aria-label="5 out of 5 stars">★★★★★</div>

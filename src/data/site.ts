@@ -12,7 +12,7 @@ export const business = {
   hours: 'Mon–Fri 9am–5pm',
   foundingYear: 2005,
   rating: '5.0',
-  reviewCount: 38,
+  reviewCount: 36,
   facebook: 'https://www.facebook.com/liongatepestcontrol',
   // California Structural Pest Control Board company registration
   spcbRegistration: 'PR 9942',
