@@ -32,7 +32,7 @@ Lion Gate serves Los Angeles and the San Fernando Valley, including Burbank. See
 
 The roof rat is the climber usually found in Southern California attics. It is darker and slimmer than a Norway rat, with a longer tail, and it runs fences, palms, and fruit-tree limbs rather than open ground. Many Burbank yards have citrus or other fruit, and streets facing the Verdugos add brush. That is where we look first, not proof that every home has rats.
 
-Signs show up before the animal does: scratching after dark, hollowed fruit, droppings in the garage, and rub marks along pipes. A kitchen trap rarely finishes it, because the nest is often above the ceiling. The visit has to find openings at the eaves and vents, and branches that touch the roof. That is the work described on our [rodent control](/rodent-control/) page. Homeowners often notice it in fall, when outdoor food thins out.
+Signs show up before the animal does: scratching after dark, hollowed fruit, droppings in the garage, and rub marks along pipes. A kitchen trap rarely finishes it, because the nest is often above the ceiling. The visit has to find openings at the eaves and vents, and branches that touch the roof. That is the work described on our [rodent control](/rodent-control/) page. Homeowners often notice it in fall, when outdoor food thins out. Early November is when that shift shows up overhead — see [roof rats moving indoors](/blog/roof-rats-moving-indoors-los-angeles/).
 
 ## Ants, spiders, and termites
 
