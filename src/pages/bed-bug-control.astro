@@ -1,0 +1,164 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import FaqList from '../components/FaqList.astro';
+import ServiceCards from '../components/ServiceCards.astro';
+import { business, cities, faqSchema, serviceSchema, smsHref, type Service } from '../data/site';
+
+// Not added to the services catalog. PriceBadge prints "Free inspection"
+// whenever a service has no dollar amount, and this visit is not published as free.
+const service: Service = {
+  slug: 'bed-bug-control',
+  href: '/bed-bug-control/',
+  name: 'Bed Bug Control',
+  tagline: 'A separate visit',
+  summary: 'Specialized bed bug inspection and treatment for Los Angeles and San Fernando Valley homes, quoted before any work begins.',
+  icon: 'bug',
+  price: { label: 'Quote before treatment', note: 'Separate from general pest control' },
+  features: [
+    'Inspection of beds and nearby furniture',
+    'Findings explained before treatment',
+    'Quote before any work begins',
+    'Scheduled separately from general pest control',
+  ],
+};
+
+const local = [
+  {
+    title: 'They hitchhike in',
+    text: 'Bed bugs do not fly, and they do not breed in a dirty kitchen. In Los Angeles the usual way in is a suitcase set on the bed after a trip, or a used sofa, mattress, or bed frame from a marketplace seller or the curb.',
+  },
+  {
+    title: 'Shared walls matter',
+    text: 'In Valley and city apartments and condos, bed bugs can move between units along walls and pipes. If you rent or own a unit, tell us when you call. What we can do depends on access to that unit.',
+  },
+  {
+    title: 'Winter does not clear them',
+    text: 'They live indoors and feed on people, so a cool San Fernando Valley night does not end the problem the way it slows some outdoor insects. If they are in the bed in November, they can still be there in January.',
+  },
+];
+
+const signs = [
+  'Black or rust-colored spots on sheets, pillowcases, and mattress seams',
+  'Pale shed skins, and tiny white eggs tucked into cracks',
+  'Live bugs about the size of an apple seed in seams, joints, and screw holes',
+  'A sweet, musty odor when there are a lot of them',
+  'Itchy bites in a line or cluster — or no bite reaction at all',
+  'Small blood smears on the sheets from bugs that were crushed',
+];
+
+const avoid = [
+  { title: 'Do not haul the mattress out first', text: 'Carrying an infested mattress down the hall shakes bugs into other rooms. Leave the bed where it is until someone has looked.' },
+  { title: 'Skip the bug bomb', text: 'Total-release foggers rarely reach the cracks where bed bugs hide, and the spray can push them into new rooms. Do not fog the bedroom while you wait.' },
+  { title: 'Bites are not a diagnosis', text: 'Some people itch. Some people never react. Fleas and daytime mosquitoes also bite. Check the seams before you decide it is bed bugs.' },
+];
+
+const steps = [
+  { title: 'Call or text', text: `Reach us at ${business.phone}. Tell us whether you have seen bugs, spots on the sheets, or only bites, and whether the home is a house, condo, or apartment.` },
+  { title: 'Inspect the sleeping areas', text: 'We check mattresses, frames, headboards, and the furniture next to the bed — the places bed bugs actually hide — and we tell you what we found.' },
+  { title: 'Quote, then treat', text: 'Bed bug work is scheduled on its own. You get a quote before treatment starts. A general pest visit is not a substitute.' },
+];
+
+const faqs = [
+  { q: 'Is bed bug control part of general pest control?', a: 'No. A general pest visit treats the pests on that plan, such as ants and spiders around the home. Bed bugs live in beds and nearby furniture, so they are scheduled as their own visit. The satisfaction guarantee described in our terms does not cover bed bugs.' },
+  { q: 'How do bed bugs get into a Los Angeles home?', a: 'They crawl, and they hitchhike. Common routes here are luggage set on the bed after travel, and used sofas, mattresses, or frames brought home from a seller or the curb. In apartments and condos they can also move between units along walls and pipes. A clean house can still get them.' },
+  { q: 'What are the signs of bed bugs?', a: 'Adults are flat and reddish brown, about the size of an apple seed, and they swell after a blood meal. Look for black or rusty spots on sheets and along mattress seams, pale shed skins, and eggs in tight cracks. Some people get itchy bites in a line or cluster. Others do not react at all, so bites by themselves are not proof.' },
+  { q: 'Should I throw the mattress away or bomb the room?', a: 'Leave the mattress in the room until it has been inspected. Washing and drying the bedding on hot helps the sheets, not the bed frame, the couch, or cracks in the wall. Skip total-release foggers. Call us before you start discarding furniture.' },
+  { q: 'How do I schedule bed bug service?', a: `Call or text ${business.phone} and describe what you are seeing. After an inspection of the beds and nearby furniture, we explain the findings and quote the work before treatment starts.` },
+];
+---
+
+<Layout title="Bed Bug Control in Los Angeles" description="Specialized bed bug control for Los Angeles and San Fernando Valley homes. Signs, how they spread, and a separate visit quoted before any treatment starts." schema={[serviceSchema(service, cities.map((c) => c.name)), faqSchema(faqs)]}>
+
+  <PageHero
+    eyebrow="Los Angeles Bed Bug Control"
+    title="Bed Bug Control"
+    subtitle="Bed bugs hide in the bed, not the yard. A separate visit looks where they actually live, and we quote the work before any treatment starts."
+    crumbs={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/' }, { label: 'Bed Bug Control' }]}
+  />
+
+  <section class="py-20 px-4">
+    <div class="container-site">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <p class="eyebrow mb-3">Los Angeles and the Valley</p>
+        <h2 class="h-section">Why bed bugs show up in local homes</h2>
+        <p class="lead mt-4">The common bed bug is an indoor insect. It feeds on people at night and spends the day wedged into seams and cracks, often no wider than a credit card. Heat, clutter, and a clean kitchen do not decide whether you have them. Travel and furniture do.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {local.map((item) => (
+          <div class="card p-8">
+            <h3 class="text-lg font-extrabold text-brand-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 px-4 bg-brand-light">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">Check the bed</p>
+        <h2 class="h-section">Signs of bed bugs</h2>
+        <p class="lead mt-4 max-w-2xl mx-auto">Pull the sheets back and look at the piping, the box spring, and the joints of the frame. A photo of the bug or the spots helps us tell you what you are looking at.</p>
+      </div>
+      <ul class="grid gap-4 sm:grid-cols-2 max-w-4xl mx-auto">
+        {signs.map((sign) => (
+          <li class="card p-5 flex gap-3 text-gray-700 font-semibold">
+            <span class="text-brand-medium font-bold">✓</span>
+            {sign}
+          </li>
+        ))}
+      </ul>
+      <p class="text-center mt-8">
+        <a href={smsHref('Hi, I think I might have bed bugs. Sending a photo.')} class="font-bold text-brand-medium hover:text-brand-dark">Text a photo to {business.phone} →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 px-4">
+    <div class="container-site">
+      <div class="text-center mb-12">
+        <p class="eyebrow mb-3">While you wait</p>
+        <h2 class="h-section">What not to do first</h2>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {avoid.map((item) => (
+          <div class="card p-8">
+            <h3 class="text-lg font-extrabold text-brand-dark mb-2">{item.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{item.text}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-gray-600 mt-10 max-w-2xl mx-auto">
+        Other bite complaints are often a different pest. Compare what you are seeing with the
+        <a href="/common-pests/" class="font-bold text-brand-medium hover:text-brand-dark">common Los Angeles pests</a>
+        guide, including fleas and ankle-biter mosquitoes.
+      </p>
+    </div>
+  </section>
+
+  <ProcessSteps heading="How bed bug service works" steps={steps} />
+
+  <section class="py-16 px-4">
+    <div class="container-site text-center max-w-3xl">
+      <h2 class="h-section mb-4">Schedule a bed bug visit</h2>
+      <p class="lead mb-8">
+        Call <a href={business.phoneHref} class="font-bold text-brand-medium hover:text-brand-dark">{business.phone}</a>
+        {' '}or use the <a href="/contact/" class="font-bold text-brand-medium hover:text-brand-dark">contact page</a>.
+        We serve homes in Los Angeles and the San Fernando Valley, including the neighborhoods on our
+        <a href="/service-areas/san-fernando-valley/" class="font-bold text-brand-medium hover:text-brand-dark">Valley service area</a> page.
+        General <a href="/pest-control/" class="font-bold text-brand-medium hover:text-brand-dark">pest control</a> does not replace this visit.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href={business.phoneHref} class="btn-primary !py-4 !px-8 text-lg">Call {business.phone}</a>
+        <a href="/contact/" class="btn-outline !py-4 !px-8 text-lg">Contact Lion Gate</a>
+      </div>
+    </div>
+  </section>
+
+  <FaqList faqs={faqs} heading="Bed bug questions" bg="bg-brand-light" />
+
+  <ServiceCards heading="Explore our other services" />
+</Layout>
