@@ -10,6 +10,7 @@ const pests = [
   { name: 'Argentine Ants', icon: 'bug', service: 'pest-control', text: "LA's most common household ant. Small, dark brown, and found in long trails. Colonies move indoors during heat waves and after rain looking for water and sweets.", signs: 'Trails along counters, baseboards, and window sills' },
   { name: 'German Cockroaches', icon: 'bug', service: 'pest-control', text: 'Small, light-brown roaches that live indoors — especially in kitchens and bathrooms. They reproduce quickly and spread between units in multi-family buildings.', signs: 'Pepper-like droppings in cabinets, roaches at night' },
   { name: 'American Cockroaches', icon: 'bug', service: 'pest-control', text: 'Large reddish-brown roaches that live in sewers, drains, and damp areas, then wander into homes — especially in coastal neighborhoods.', signs: 'Large roaches near drains, garages, and water heaters' },
+  { name: 'Bed Bugs', icon: 'bug', href: '/bed-bug-control/', linkLabel: 'See our bed bug control', text: 'Flat, reddish-brown insects that hide in mattress seams, bed frames, and furniture near where people sleep. They hitchhike on luggage and used furniture and stay active indoors year-round in Los Angeles.', signs: 'Dark spots on sheets, shed skins, apple-seed-sized bugs in the seams' },
   { name: 'Black Widow Spiders', icon: 'bug', service: 'pest-control', text: 'Shiny black spiders with a red hourglass. Common across LA in garages, block walls, woodpiles, and outdoor furniture. Their bite is medically significant.', signs: 'Messy, tangled webs low to the ground in dark corners' },
   { name: 'Roof Rats', icon: 'rodent', service: 'rodent-control', text: 'Agile climbers that travel along power lines, fences, and trees — then nest in attics. Fruit trees, palms, and ivy are their favorite habitats.', signs: 'Noises in the attic at night, hollowed-out fruit' },
   { name: 'House Mice', icon: 'rodent', service: 'rodent-control', text: 'Small rodents that can squeeze through a dime-sized gap. They nest in walls, cabinets, and garages and contaminate food and surfaces.', signs: 'Small droppings in drawers, gnawed food packaging' },
@@ -35,7 +36,9 @@ const pests = [
   <section class="py-20 px-4">
     <div class="container-site grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {pests.map((p) => {
-        const s = svc[p.service];
+        const s = p.service ? svc[p.service] : undefined;
+        const href = p.href ?? s.href;
+        const label = p.linkLabel ?? `Treated by our ${s.name.toLowerCase()}`;
         return (
           <article class="card p-8 flex flex-col">
             <div class="flex items-center gap-3 mb-4">
@@ -44,7 +47,7 @@ const pests = [
             </div>
             <p class="text-gray-600 leading-relaxed mb-4 flex-1">{p.text}</p>
             <p class="text-sm text-gray-700 mb-5"><strong class="text-brand-dark">Signs:</strong> {p.signs}</p>
-            <a href={s.href} class="text-sm font-bold text-brand-medium hover:text-brand-dark">Treated by our {s.name.toLowerCase()} →</a>
+            <a href={href} class="text-sm font-bold text-brand-medium hover:text-brand-dark">{label} →</a>
           </article>
         );
       })}
