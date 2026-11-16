@@ -29,7 +29,7 @@ const cities = serviceCities.map((c) => c.name);
 
 const businessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': ['LocalBusiness', 'PestControl'],
   '@id': 'https://www.liongatepest.com/#business',
   name: 'Lion Gate Pest Control',
   description: 'Family-owned pest and rodent control serving the Greater Los Angeles area since 2005. Licensed & insured in California.',

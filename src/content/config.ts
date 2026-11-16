@@ -28,6 +28,8 @@ const locations = defineCollection({
     description: z.string(),
     neighborhoods: z.array(z.string()),
     localPests: z.array(z.string()),
+    /** Hero subtitle. Falls back to the Verdugo/Valley line used for Burbank. */
+    subtitle: z.string().optional(),
     faqs: z.array(z.object({
       q: z.string(),
       a: z.string(),
