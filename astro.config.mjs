@@ -27,11 +27,18 @@ export default defineConfig({
       status: 301,
       destination: '/pest-control/burbank/',
     },
+    '/service-areas/glendale': {
+      status: 301,
+      destination: '/pest-control/glendale/',
+    },
   },
   integrations: [
     tailwind(),
     sitemap({
-      filter: (page) => !page.includes('/lp/') && !page.includes('/service-areas/burbank'),
+      filter: (page) =>
+        !page.includes('/lp/') &&
+        !page.includes('/service-areas/burbank') &&
+        !page.includes('/service-areas/glendale'),
     }),
     sitemapXmlAlias(),
   ],

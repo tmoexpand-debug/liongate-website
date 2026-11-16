@@ -286,8 +286,11 @@ export const cities: City[] = [
   },
 ];
 
+// Long-form pages in src/content/locations/ render at /pest-control/[city]/.
+const locationSlugs = new Set(['burbank', 'glendale']);
+
 export const cityHref = (c: City) =>
-  c.slug === 'burbank' ? '/pest-control/burbank/' : `/service-areas/${c.slug}/`;
+  locationSlugs.has(c.slug) ? `/pest-control/${c.slug}/` : `/service-areas/${c.slug}/`;
 
 // Real photos of work go here as they come in. Shown in the homepage
 // "Recent work" gallery.

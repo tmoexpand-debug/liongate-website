@@ -60,7 +60,7 @@ const breadcrumbLd = {
   <PageHero
     eyebrow={`${loc.city}, California`}
     title={`${loc.city} Pest Control`}
-    subtitle={`Local pest control for ${loc.city} homes on the Valley floor and along the Verdugo foothills.`}
+    subtitle={loc.subtitle ?? `Local pest control for ${loc.city} homes on the Valley floor and along the Verdugo foothills.`}
     image="/photos/work-perimeter.jpg"
     crumbs={[
       { label: 'Home', href: '/' },

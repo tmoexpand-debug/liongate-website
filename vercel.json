@@ -13,6 +13,16 @@
       "source": "/service-areas/burbank/",
       "destination": "/pest-control/burbank/",
       "permanent": true
+    },
+    {
+      "source": "/service-areas/glendale",
+      "destination": "/pest-control/glendale/",
+      "permanent": true
+    },
+    {
+      "source": "/service-areas/glendale/",
+      "destination": "/pest-control/glendale/",
+      "permanent": true
     }
   ]
 }
