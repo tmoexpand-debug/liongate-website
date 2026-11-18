@@ -44,3 +44,5 @@ From the roof, they only need a gap about the size of a quarter to get into the 
 Trapping a few rats in the attic helps, but if the entry points are still open, more rats will move in. Lasting rodent control has three parts: **remove the rats that are inside, seal the ways in, and monitor** to make sure no new ones show up.
 
 That's how Lion Gate's [rodent control service](/rodent-control/) works. It starts with a **free inspection** of your attic, roofline, and exterior so we can find exactly how they're getting in.
+
+Yard cleanup matters most before the weather shifts. In early November the same rats often leave the trees for the attic. See [roof rats moving indoors in Los Angeles](/blog/roof-rats-moving-indoors-los-angeles/).
