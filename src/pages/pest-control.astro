@@ -33,13 +33,13 @@ const schedule = [
 const steps = [
   { title: 'Inspection', text: 'Our technician inspects interior and exterior areas to find pest activity, entry points, and conditions that attract pests.' },
   { title: 'Treatment', text: 'We apply EPA-registered products to targeted areas — the perimeter, entry points, nesting areas, and high-activity zones — using methods suited to homes with kids and pets.' },
-  { title: 'Follow-up & monitoring', text: "Recurring visits maintain your protection. If pests return between visits, we come back at no charge — that's our guarantee." },
+  { title: 'Follow-up & monitoring', text: 'Recurring visits maintain your protection. If a pest included in your plan returns between visits, we come back at no charge.' },
 ];
 
 const faqs = [
   { q: 'How often is general pest control service?', a: "Most homes do best on a recurring schedule. We'll recommend a visit frequency based on your home, your yard, and the pests you're seeing." },
   { q: 'Do you treat inside the house?', a: 'Yes. Your first visit includes interior and exterior treatment. Recurring visits focus on the exterior barrier, and we treat inside anytime you need it.' },
-  { q: 'What happens if I still see bugs after treatment?', a: "It's normal to see some activity for a few days as pests come into contact with the treatment. If you're still seeing pests after that, or between visits, contact us and we'll come back free." },
+  { q: 'What happens if I still see bugs after treatment?', a: "It's normal to see some activity for a few days as pests come into contact with the treatment. If a pest included in your plan is still active after that, or between visits, contact us and we'll come back at no charge." },
   { q: 'Is general pest control safe for my pets?', a: "We use EPA-registered products and apply them responsibly. We'll let you know about any brief dry time before pets go back into treated areas." },
 ];
 
@@ -90,7 +90,7 @@ const plans = services.filter((s) => s.slug.endsWith('pest-control'));
   <ServiceIncluded
     included={included}
     excluded={excluded}
-    note={{ title: 'Custom treatments available', text: 'Have a specific pest problem not listed? We offer custom treatment plans for bed bugs and other specialty pests.', linkText: 'Ask about custom plans', href: smsHref("Hi, I'd like to ask about a custom treatment plan") }}
+    note={{ title: 'Bed bugs are a separate visit', text: 'General pest control does not cover bed bugs. That work is scheduled on its own, and we quote it before treatment starts.', linkText: 'Bed bug control', href: '/bed-bug-control/' }}
   />
 
   <section class="py-20 px-4 bg-brand-light">
