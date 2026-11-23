@@ -7,7 +7,7 @@ import { services } from '../data/site';
 const svc = Object.fromEntries(services.map((s) => [s.slug, s]));
 
 const pests = [
-  { name: 'Argentine Ants', icon: 'bug', service: 'pest-control', text: "LA's most common household ant. Small, dark brown, and found in long trails. Colonies move indoors during heat waves and after rain looking for water and sweets.", signs: 'Trails along counters, baseboards, and window sills' },
+  { name: 'Argentine Ants', icon: 'bug', service: 'pest-control', text: "LA's most common household ant. Small, dark brown, and found in long trails. Colonies move indoors during heat waves and after rain looking for water and sweets.", signs: 'Trails along counters, baseboards, and window sills', readMore: { before: 'Late fall storms are the other time those trails leave the yard. See ', href: '/blog/ants-in-house-after-rain-los-angeles/', label: 'why ants show up in the house after rain in Los Angeles', after: '.' } },
   { name: 'German Cockroaches', icon: 'bug', service: 'pest-control', text: 'Small, light-brown roaches that live indoors — especially in kitchens and bathrooms. They reproduce quickly and spread between units in multi-family buildings.', signs: 'Pepper-like droppings in cabinets, roaches at night' },
   { name: 'American Cockroaches', icon: 'bug', service: 'pest-control', text: 'Large reddish-brown roaches that live in sewers, drains, and damp areas, then wander into homes — especially in coastal neighborhoods.', signs: 'Large roaches near drains, garages, and water heaters' },
   { name: 'Bed Bugs', icon: 'bug', href: '/bed-bug-control/', linkLabel: 'See our bed bug control', text: 'Flat, reddish-brown insects that hide in mattress seams, bed frames, and furniture near where people sleep. They hitchhike on luggage and used furniture and stay active indoors year-round in Los Angeles.', signs: 'Dark spots on sheets, shed skins, apple-seed-sized bugs in the seams' },
@@ -46,6 +46,11 @@ const pests = [
               <h2 class="text-xl font-extrabold text-brand-dark">{p.name}</h2>
             </div>
             <p class="text-gray-600 leading-relaxed mb-4 flex-1">{p.text}</p>
+            {'readMore' in p && p.readMore && (
+              <p class="text-gray-600 leading-relaxed mb-4">
+                {p.readMore.before}<a href={p.readMore.href} class="font-bold text-brand-medium hover:text-brand-dark">{p.readMore.label}</a>{p.readMore.after}
+              </p>
+            )}
             <p class="text-sm text-gray-700 mb-5"><strong class="text-brand-dark">Signs:</strong> {p.signs}</p>
             <a href={href} class="text-sm font-bold text-brand-medium hover:text-brand-dark">{label} →</a>
           </article>

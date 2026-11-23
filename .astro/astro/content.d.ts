@@ -148,6 +148,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"ants-in-house-after-rain-los-angeles.md": {
+	id: "ants-in-house-after-rain-los-angeles.md";
+  slug: "ants-in-house-after-rain-los-angeles";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 "drywood-vs-subterranean-termites.md": {
 	id: "drywood-vs-subterranean-termites.md";
   slug: "drywood-vs-subterranean-termites";
@@ -174,6 +181,13 @@ declare module 'astro:content' {
 "burbank.md": {
 	id: "burbank.md";
   slug: "burbank";
+  body: string;
+  collection: "locations";
+  data: InferEntrySchema<"locations">
+} & { render(): Render[".md"] };
+"glendale.md": {
+	id: "glendale.md";
+  slug: "glendale";
   body: string;
   collection: "locations";
   data: InferEntrySchema<"locations">
