@@ -36,7 +36,7 @@ Signs show up before the animal does: scratching after dark, hollowed fruit, dro
 
 ## Ants, spiders, and termites
 
-Argentine ants are the small dark ants that trail along foundations, sinks, and pet bowls. They are the main nuisance ant in urban Southern California. When a Burbank yard dries out, they follow the slab edge, expansion joints, and pipes. A lot of the city's post-war homes are slab-on-grade, so those gaps matter more than the front door. Clearing the counter does not remove the colony outside.
+Argentine ants are the small dark ants that trail along foundations, sinks, and pet bowls. They are the main nuisance ant in urban Southern California. When a Burbank yard dries out, they follow the slab edge, expansion joints, and pipes. Rain is the other push: a soaked nest along that slab sends a trail into the kitchen overnight. See [ants in the house after rain](/blog/ants-in-house-after-rain-los-angeles/). A lot of the city's post-war homes are slab-on-grade, so those gaps matter more than the front door. Clearing the counter does not remove the colony outside.
 
 Black widows are common in Valley garages. They sit in stored boxes, under patio furniture, in block-wall weep holes, and in closed sheds. A bite is a medical concern, so the useful step is reducing that clutter and treating the spots where they hide.
 

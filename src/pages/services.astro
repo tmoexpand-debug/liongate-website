@@ -1,9 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import Icon from '../components/Icon.astro';
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import ProcessSteps from '../components/ProcessSteps.astro';
 import ReviewCards from '../components/ReviewCards.astro';
+import { blogPhotos } from '../data/blogPhotos';
 import { services, smsHref } from '../data/site';
 ---
 <Layout title="Pest Control Services in Los Angeles" description="General pest control, rodent control, mosquito control, and termite services for Los Angeles homes. Family owned since 2005 with a 100% satisfaction guarantee.">
@@ -20,8 +22,10 @@ import { services, smsHref } from '../data/site';
       {services.map((s, i) => (
         <article class="card overflow-hidden grid lg:grid-cols-2">
           <div class={`min-h-[280px] bg-brand-dark diagonal-stripe flex items-center justify-center ${i % 2 ? 'lg:order-2' : ''}`}>
-            {s.image
-              ? <img src={s.image} alt={s.name} loading="lazy" class="w-full h-full object-cover" />
+            {s.image && s.image in blogPhotos
+              ? <Image src={blogPhotos[s.image as keyof typeof blogPhotos]} alt={s.name} width={1200} widths={[480, 800, 1200]} sizes="(min-width: 1024px) 50vw, 100vw" format="webp" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              : s.image
+              ? <img src={s.image} alt={s.name} loading="lazy" decoding="async" class="w-full h-full object-cover" />
               : <Icon name={s.icon} class="w-28 h-28 text-white/80" strokeWidth={1.25} />}
           </div>
           <div class="p-8 md:p-12 flex flex-col justify-center">
